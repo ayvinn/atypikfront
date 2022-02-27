@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   activeMediaQuery = ''; 
 
   public slides = [];
+  public test:string = "dfsdfsdfsdf";
   public properties: Property[];
   public viewType: string = 'grid';
   public viewCol: number = 25;

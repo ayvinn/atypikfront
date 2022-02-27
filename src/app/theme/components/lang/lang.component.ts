@@ -12,6 +12,7 @@ export class LangComponent implements OnInit {
 
   ngOnInit() {  
    this.langName = this.getLangName(this.translateService.getDefaultLang());  
+   this.translateService.use('fr'); 
   } 
 
   public changeLang(lang:string){ 

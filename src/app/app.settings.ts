@@ -30,15 +30,15 @@ export class Settings {
 @Injectable()
 export class AppSettings {
     public settings = new Settings(
-        'HouseKey',  // theme name
-        'blue',      // blue, green, red, pink, purple, grey, orange-dark
+        'AtypikHouse',  // theme name
+        'orange-dark',      // blue, green, red, pink, purple, grey, orange-dark
         1,           // 1 or 2  
         true,        // true = sticky, false = not sticky
         'image',     // default, image, carousel, map, video
         false,       // true = rtl, false = ltr
-        1,           //  1, 2  or 3
+        2,           //  1, 2  or 3
         false,       //  true = search on button click
-        'USD',       // USD, EUR
+        'EUR',       // USD, EUR
 
         //NOTE:  don't change additional options values, they used for theme performance
         false,

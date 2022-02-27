@@ -2,8 +2,8 @@
   "LOGIN": "Login", 
   "LOGOUT": "Logout", 
   "REGISTER": "Register",
-  "ACCOUNT": "Account",
-  "SUBMIT_PROPERTY": "Submit property",
+  "ACCOUNT": "Compte",
+  "SUBMIT_PROPERTY": "Ajouter une location",
   "MENU": "Menu",
   "MY_PROPERTIES": "My Properties",
   "FAVORITES": "Favorites",
@@ -26,7 +26,7 @@
     "EXTERNAL_LINK": "External Link",
     "MENU_ITEM": "Menu Item",
     "CONTACT": "Contact",
-    "ABOUT_US": "About Us",
+    "ABOUT_US": "À propos",
     "ADMIN": "Admin"
   }, 
   "BTN": {

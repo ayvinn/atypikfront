@@ -26,7 +26,7 @@
     "EXTERNAL_LINK": "Lien Externe",
     "MENU_ITEM": "Menu Item",
     "CONTACT": "Contact",
-    "ABOUT_US": "Sur",
+    "ABOUT_US": "A propos",
     "ADMIN": "Admin"
   }, 
   "BTN": {
@@ -39,7 +39,7 @@
     "YES": "Oui",
     "NO": "Non",
     "OK": "D'accord",
-    "CLEAR": "Clair",
+    "CLEAR": "Vider",
     "ADVANCED": "Recherche Avancée",
     "HIDE": "Cacher"
   },
