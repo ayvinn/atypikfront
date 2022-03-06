@@ -4,6 +4,7 @@ import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+import { AuthServiceGuard } from '../app/shared/guard.service';
 
 export const routes: Routes = [
     { 
@@ -22,7 +23,7 @@ export const routes: Routes = [
             { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
             { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
             { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) }, 
-            { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule) }   
+            { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule),canActivate: [AuthServiceGuard]  }   
         ]
     },
     { path: 'landing', loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule) },

@@ -51,11 +51,9 @@ export class LoginComponent implements OnInit {
     console.log(values);
     this.user.authLogin(values).subscribe(
       data => {
-        console.log(data);
         if(data){
           this.etat=true ; //Categorie Admin
-          localStorage.setItem('nom', data.nom);
-          localStorage.setItem('role', data.role);
+          localStorage.setItem('nom', this.loginForm.value.username );
         }    
         else
           this.etat= false; 
