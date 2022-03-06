@@ -1,7 +1,11 @@
-<a mat-button [matMenuTriggerFor]="userMenu" #userMenuTrigger="matMenuTrigger">
+<a  *ngIf="cnx==='true'" mat-button [matMenuTriggerFor]="userMenu" #userMenuTrigger="matMenuTrigger" >
     <mat-icon class="mat-icon-sm">person</mat-icon>
     <span fxShow="false" fxShow.gt-sm class="mx-1 uppercase">{{ 'ACCOUNT' | translate }}</span> 
     <mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+</a>
+<a  *ngIf="cnx!='true'" mat-button (click)="navigate()">
+    <mat-icon class="mat-icon-sm">person</mat-icon>
+    <span fxShow="false" fxShow.gt-sm class="mx-1 uppercase">Se connecter</span> 
 </a>
 <mat-menu #userMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-menu-panel user-menu">
     <span (mouseleave)="userMenuTrigger.closeMenu()">
@@ -51,7 +55,7 @@
             <span>{{ 'HELP' | translate }}</span> 
         </a>
         <div class="divider"></div>
-        <a mat-menu-item routerLink="/login"> 
+        <a mat-menu-item  (click)="logout()"> 
             <mat-icon class="mat-icon-sm">power_settings_new</mat-icon>
             <span>{{ 'LOGOUT' | translate }}</span> 
         </a>

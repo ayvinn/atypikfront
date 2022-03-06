@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         {
           localStorage.setItem('isLoggedIn', "true");
           localStorage.setItem('token', 'test');
-          this.router.navigate(["/tableau"]);
+          window.location.href = '/';
             
         }else
         {
