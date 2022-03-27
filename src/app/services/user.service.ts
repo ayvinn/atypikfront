@@ -8,22 +8,29 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-  readonly url: string = constantURL.apiEndpoint + '/api/users';
+  readonly url: string = constantURL.apiEndpoint + '/api/authenticate';
   public users:User[];
   user:User;
   constructor(private http:HttpClient) {
 
   }
-  authLogin(model): Observable<User> {
-    return this.http.post<User>(`${this.url}/login`, model, {
+  authLogin(model): Observable<any> {
+    return this.http.post<any>(`${this.url}/login`,model, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+  register(model): Observable<any> {
+    return this.http.post<any>(`${this.url}/register`,model, {
+      headers: {
+        'Content-Type': 'application/json',
       }
     });
   }
   logout(): void {
     localStorage.setItem('isLoggedIn', "false");
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
   } 
   getAllUsers(): Observable<User[]>{
     return this.http.get<User[]>(this.url);

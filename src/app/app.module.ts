@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { JwtModule } from '@auth0/angular-jwt';
 import { NgProgressModule } from 'ngx-progressbar';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { AgmCoreModule } from '@agm/core';
@@ -44,7 +44,9 @@ import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/ver
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
 
-
+export function tokenGetter() {
+  return  localStorage.getItem("jwt");  
+}
 
 @NgModule({
   declarations: [
@@ -84,7 +86,14 @@ import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
     NgProgressHttpModule, 
     InputFileModule.forRoot(config),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    JwtModule.forRoot({
+      config : {
+        tokenGetter : tokenGetter,
+        allowedDomains: ["localhost:5001"],
+        disallowedRoutes : []
+      }
+    }),
   ],
   providers: [
     AppSettings,
