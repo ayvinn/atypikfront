@@ -25,6 +25,7 @@ export class PropertiesComponent implements OnInit {
   public properties: Property[];
   public viewType: string = 'grid';
   public viewCol: number = 33.3;
+  public variable: string  = "La maison est l'endroit d'où l'on part...  –T.S. Eliot";
   public count: number = 12;
   public sort: string;
   public searchFields: any;
@@ -64,6 +65,7 @@ export class PropertiesComponent implements OnInit {
 
   ngOnInit() {
     this.getProperties();
+    this.variable  = "La maison est l'endroit d'où l'on part...  –T.S. Eliot";
   }
 
   ngOnDestroy(){ 
