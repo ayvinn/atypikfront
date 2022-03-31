@@ -8,7 +8,7 @@
                 </button>
                 <mat-card [perfectScrollbar]="psConfig"> 
 
-                    <div class="widget"> 
+                  <!--  <div class="widget"> 
                         <mat-card *ngIf="agent">
                             <img mat-card-image [src]="agent.image" [alt]="agent.fullName"> 
                             <mat-card-content>
@@ -53,7 +53,7 @@
                                 </div> 
                             </mat-card-actions>                              
                         </mat-card>
-                    </div> 
+                    </div> -->
                     
                     <div class="widget">
                         <h3 class="widget-title bg-primary">Reply to the listing</h3>
@@ -87,7 +87,7 @@
                                 <button mat-raised-button color="accent" type="submit">Send Email</button>
                             </div>
                         </form>
-                    </div>
+                    </div> 
                    
                     <div class="widget">
                         <h3 class="widget-title bg-primary">Mortgage Calculator</h3>
@@ -115,12 +115,12 @@
                         </form>
                     </div>
 
-                    <div fxLayout="column" class="widget">
+                   <!-- <div fxLayout="column" class="widget">
                         <h3 class="widget-title bg-primary">Featured Properties</h3>
                         <div *ngFor="let prop of featuredProperties" class="mb-3">
                             <app-property-item [property]="prop" [viewType]="'grid'"></app-property-item> 
                         </div> 
-                    </div>
+                    </div> -->
                    
                 </mat-card>
             </mat-sidenav>
@@ -255,7 +255,7 @@
                     </mat-card-content>
                 </mat-card>
 
-                <mat-card class="mt-3"> 
+               <!-- <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
                         <mat-card-title class="uppercase">Additional features</mat-card-title> 
                     </mat-card-header>
@@ -267,7 +267,7 @@
                             </div>
                         </div>
                     </mat-card-content>
-                </mat-card>
+                </mat-card>-->
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
@@ -280,7 +280,7 @@
                     </mat-card-content>
                 </mat-card> 
 
-                <mat-card class="mt-3"> 
+               <!-- <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
                         <mat-card-title class="uppercase">Location</mat-card-title> 
                     </mat-card-header>
@@ -289,9 +289,9 @@
                             <agm-marker [latitude]="property?.location.lat" [longitude]="property?.location.lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>
                     </mat-card-content>                   
-                </mat-card>
+                </mat-card> -->
 
-                <mat-card class="mt-3"> 
+               <!---- <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
                         <mat-card-title class="uppercase">Plans</mat-card-title> 
                     </mat-card-header>
@@ -313,9 +313,9 @@
                             </mat-expansion-panel> 
                         </mat-accordion>                         
                     </mat-card-content>
-                </mat-card> 
+                </mat-card> -->
 
-                <mat-card *ngIf="property" class="mt-3"> 
+              <!--  <mat-card *ngIf="property" class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
                         <mat-card-title class="uppercase">Videos</mat-card-title> 
                     </mat-card-header>
@@ -329,7 +329,7 @@
                             <div [innerHtml]="embedVideo" class="videoWrapper"></div>                                    
                         </div>                             
                     </mat-card-content>
-                </mat-card>                
+                </mat-card>      -->          
 
                 <mat-card class="mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center"> 
                     <span>ID:<span class="fw-500 mx-2">{{property?.id}}</span></span>
@@ -346,13 +346,13 @@
     </div>
 </div>
  
-<div class="section mt-3">
+<!--<div class="section mt-3">
     <div class="px-3">
         <div class="theme-container"> 
             <h1 class="section-title">Related properties</h1>            
             <app-properties-carousel [properties]="relatedProperties"></app-properties-carousel>                        
         </div>
     </div>   
-</div> 
+</div> -->
 
 <app-get-in-touch></app-get-in-touch>
