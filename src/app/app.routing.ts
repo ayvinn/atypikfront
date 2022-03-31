@@ -4,7 +4,7 @@ import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
-import { AuthServiceGuard } from '../app/shared/guard.service';
+import { AuthServiceGuard } from '../app/services/guard.service';
 
 export const routes: Routes = [
     { 

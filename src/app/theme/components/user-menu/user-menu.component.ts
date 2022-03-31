@@ -25,7 +25,7 @@ export class UserMenuComponent implements OnInit {
   logout(){
     if (window.confirm("Se déconnecter ?!")) {
       localStorage.setItem('isLoggedIn','false');
-      localStorage.setItem('token','');
+      localStorage.removeItem('jwt');
       window.location.href = '/login';
   }
 

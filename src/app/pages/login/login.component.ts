@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
         if(this.etat == true)
         {
           localStorage.setItem('isLoggedIn', "true");
-          localStorage.setItem('token', 'test');
           window.location.href = '/';
             
         }else
@@ -45,21 +44,25 @@ export class LoginComponent implements OnInit {
      });
     }
   }
+  invalidlogin: boolean;
 
   verify() : any {
-    const values = { Email: this.loginForm.value.username, Password: this.loginForm.value.password };
+    const values = { username: this.loginForm.value.username, password: this.loginForm.value.password };
     console.log(values);
     this.user.authLogin(values).subscribe(
       data => {
         if(data){
+          const token = (<any>data).token; 
           this.etat=true ; //Categorie Admin
+          this.invalidlogin =false;
+          localStorage.setItem('jwt', token );
           localStorage.setItem('nom', this.loginForm.value.username );
         }    
         else
           this.etat= false; 
       },
       (error) => {
-        alert("erreur");
+        this.invalidlogin =true;
       }
     );
   }
