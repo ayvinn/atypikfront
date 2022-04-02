@@ -4,7 +4,7 @@
         "title": "Centrally located office", 
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Office",
-        "propertyStatus": ["For Rent", "No Fees"],
+        "propertyStatus": ["À louer", "Pas de frais"],
         "city": "Los Angeles",
         "zipCode": "90044",
         "neighborhood": ["Hollywood", "Highland Park"],
@@ -14,7 +14,7 @@
             "lng": -118.293730
         },
         "formattedAddress" : "1052 W 91st St, Los Angeles, CA 90044, USA",
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Refrigerator", "Fireplace", "Sauna", "TV Cable", "WiFi"], 
+        "features": ["Climatisation", "Barbeque", "Séchoir", "Micro-ondes", "Réfrigérateur", "Cheminée", "Sauna", "TV Cable", "WiFi"], 
         "featured": true,
         "priceDollar": {
             "sale": null,
@@ -143,7 +143,7 @@
         "title": "Spacious and warm flat", 
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Apartment",
-        "propertyStatus": ["Hot Offer", "No Fees"],
+        "propertyStatus": ["Offre spéciale", "Pas de frais"],
         "city": "Chicago",
         "zipCode": "60604",
         "neighborhood": ["Riverdale"],
@@ -153,7 +153,7 @@
             "lng": -87.629799
         },
         "formattedAddress": "55 W Jackson Blvd, Chicago, IL 60604, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Fireplace", "Sauna", "TV Cable", "WiFi"],
+        "features": ["Climatisation", "Barbeque", "Séchoir", "Micro-ondes", "Salle de sport", "Cheminée", "Sauna", "TV Cable", "WiFi"],
         "featured": true, 
         "priceDollar": {
             "sale": 1450000,
@@ -277,7 +277,7 @@
         "title": "House with a pool", 
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "House",
-        "propertyStatus": ["Sold", "For Sale"],
+        "propertyStatus": ["Vendu", "À vendre"],
         "city": "Seattle",
         "zipCode": "98108",
         "neighborhood": ["Queen Anne", "Belltown"],
@@ -287,7 +287,7 @@
             "lng": -122.330276
         },
         "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA", 
-        "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
+        "features": ["Climatisation", "Barbeque", "Séchoir", "Micro-ondes", "Salle de sport", "Piscine", "Sauna", "TV Cable", "WiFi"],
         "featured": true, 
         "priceDollar": {
             "sale": 4500000,
@@ -406,7 +406,7 @@
         "title": "Bright and sunny house", 
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "House",
-        "propertyStatus": ["For Rent", "No Fees"],
+        "propertyStatus": ["À louer", "Pas de frais"],
         "city": "Chicago",
         "zipCode": "60609",
         "neighborhood": ["Englewood", "Austin"],
@@ -416,7 +416,7 @@
             "lng": -87.660410
         },
         "formattedAddress": "1400 W 44th St, Chicago, IL 60609, USA", 
-        "features": ["Refrigerator", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
+        "features": ["Réfrigérateur", "Barbeque", "Séchoir", "Micro-ondes", "Salle de sport", "Piscine", "Sauna", "TV Cable", "WiFi"],
         "featured": true, 
         "priceDollar": {
             "sale": null,
@@ -535,7 +535,7 @@
         "title": "Centrally located apartment", 
         "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
         "propertyType": "Apartment",
-        "propertyStatus": ["For Rent", "No Fees"],
+        "propertyStatus": ["À louer", "Pas de frais"],
         "city": "Los Angeles",
         "zipCode": "90028",
         "neighborhood": ["Englewood", "Austin"],
@@ -545,7 +545,7 @@
             "lng": -118.327440
         },
         "formattedAddress": "1627 Vine St, Los Angeles, CA 90028, USA", 
-        "features": ["Air Conditioning", "Refrigerator", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
+        "features": ["Climatisation", "Réfrigérateur", "Séchoir", "Micro-ondes", "Salle de sport", "Piscine", "Sauna", "TV Cable", "WiFi"],
         "featured": true, 
         "priceDollar": {
             "sale": null,

@@ -3,7 +3,7 @@
     "title": "House with a pool", 
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
     "propertyType": "House",
-    "propertyStatus": ["Sold", "For Sale"],
+    "propertyStatus": ["Vendu", "À vendre"],
     "city": "Seattle",
     "zipCode": "98108",
     "neighborhood": ["Queen Anne", "Belltown"],
@@ -13,7 +13,7 @@
         "lng": -122.330276
     },
     "formattedAddress": "5921 17th Ave S, Seattle, WA 98108, USA", 
-    "features": ["Air Conditioning", "Barbeque", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
+    "features": ["Climatisation", "Barbeque", "Séchoir", "Micro-ondes", "Salle de sport", "Piscine", "Sauna", "TV Cable", "WiFi"],
     "featured": true, 
     "priceDollar": {
         "sale": 4500000,

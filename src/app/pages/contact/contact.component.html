@@ -14,16 +14,16 @@
                 <div fxFlex="100" fxFlex.gt-xs="33.3">
                     <div fxLayout="column" fxLayoutAlign="center center" class="text-center">
                         <mat-icon color="primary" class="mat-icon-lg">home</mat-icon>
-                        <h3 class="primary-color py-1">ADDRESS :</h3>
+                        <h3 class="primary-color py-1">ADDRESSE :</h3>
                         <span>22 rue des Vignerons 94300 Vincennes</span>
                     </div>
                 </div>
                 <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
                     <div fxLayout="column" fxLayoutAlign="center center">
-                        <mat-icon color="primary" class="mat-icon-lg">call</mat-icon>
-                        <h3 class="primary-color py-1">PHONES :</h3>
-                        <span>01 49 57 59 59</span>
-                        <span>01 49 57 59 59</span>
+                        <mat-icon color="primary" class="mat-icon-lg">Appelez nous</mat-icon>
+                        <h3 class="primary-color py-1">TÉLÉPHONE :</h3>
+                        <span>(+33)1 55 66 32 56</span>
+                        <span>(+33)1 55 66 32 56</span>
                     </div>
                 </div>
                 <div fxFlex="100" fxFlex.gt-xs="33.3" ngClass.xs="mt-2">
@@ -41,35 +41,35 @@
                 <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Name</mat-label>
+                            <mat-label>Nom</mat-label>
                             <input matInput placeholder="Name" formControlName="name" required>
-                            <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>
+                            <mat-error *ngIf="contactForm.controls.name.errors?.required">Le nom est requis</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Email</mat-label>
                             <input matInput placeholder="Email" formControlName="email" required>
-                            <mat-error *ngIf="contactForm.controls.email.errors?.required">Email is required</mat-error>
-                            <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                            <mat-error *ngIf="contactForm.controls.email.errors?.required">L'adresse e-mail est requise</mat-error>
+                            <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">L'adresse e-mail invalide</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Phone</mat-label>
+                            <mat-label>Téléphone</mat-label>
                             <input matInput placeholder="Phone" formControlName="phone" required>
-                            <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>
+                            <mat-error *ngIf="contactForm.controls.phone.errors?.required">Le téléphone est requis</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" class="px-1 mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Message</mat-label> 
                             <textarea matInput placeholder="Message" formControlName="message" required rows="7"></textarea> 
-                            <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
+                            <mat-error *ngIf="contactForm.controls.message.errors?.required">Un message est requis</mat-error>
                         </mat-form-field>
                     </div> 
                     <div class="w-100 py-2 text-center">
-                        <button mat-raised-button color="primary" type="submit" class="uppercase">Submit</button>
+                        <button mat-raised-button color="primary" type="submit" class="uppercase">Envoyer</button>
                     </div> 
                 </form> 
             

@@ -4,7 +4,7 @@
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Property Type</mat-label> 
+                <mat-label>Type du bien</mat-label> 
                 <mat-select placeholder="Select Property Type" formControlName="propertyType">
                     <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                         {{propertyType.name}}
@@ -15,7 +15,7 @@
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Property Status</mat-label>
+                <mat-label>Status du bien</mat-label>
                 <mat-select placeholder="Select Property Status" formControlName="propertyStatus" multiple>
                     <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
                         {{propertyStatus.name}}
@@ -29,16 +29,16 @@
             <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                        <mat-label>{{(variant == 1) ? 'Price' : 'Price From'}}</mat-label>
+                        <mat-label>{{(variant == 1) ? 'Price' : 'Budget min'}}</mat-label>
                         <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber>                  
                     </mat-form-field>
                 </div>
                 <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
-                    <mat-icon class="text-muted">remove</mat-icon>
+                    <mat-icon class="text-muted">Supprimmer</mat-icon>
                 </div>
                 <div fxFlex="45">
                     <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                        <mat-label>{{(variant == 1) ? '' : 'Price To'}}</mat-label>
+                        <mat-label>{{(variant == 1) ? '' : 'Budget Max'}}</mat-label>
                         <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber>                  
                     </mat-form-field>
                 </div>
@@ -51,7 +51,7 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>City</mat-label>
+                    <mat-label>Ville</mat-label>
                     <mat-select placeholder="Select City..." formControlName="city" (selectionChange)="onSelectCity()">
                         <mat-option *ngFor="let city of cities" [value]="city">
                             {{city.name}}
@@ -62,14 +62,14 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Zip Code</mat-label>
+                    <mat-label>Code postale</mat-label>
                     <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">                  
                 </mat-form-field>
             </div>
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Neighborhood</mat-label>
+                    <mat-label>Quartier</mat-label>
                     <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
                         <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: form.get('city').value?.id" [value]="neighborhood">
                             {{neighborhood.name}}
@@ -80,7 +80,7 @@
 
             <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
                 <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                    <mat-label>Street</mat-label>
+                    <mat-label>Rue</mat-label>
                     <mat-select placeholder="Select Street..." formControlName="street" multiple>
                         <mat-option *ngFor="let street of streets | filterStreets : { neighborhoods:form.get('neighborhood').value, cityId:form.get('city').value?.id } " [value]="street">
                             {{street.name}}
@@ -103,7 +103,7 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
-                        <mat-icon class="text-muted">remove</mat-icon>
+                        <mat-icon class="text-muted">Supprimmer</mat-icon>
                     </div>
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
@@ -163,7 +163,7 @@
                         </mat-form-field>
                     </div>
                     <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
-                        <mat-icon class="text-muted">remove</mat-icon>
+                        <mat-icon class="text-muted">Supprimmer</mat-icon>
                     </div>
                     <div fxFlex="45">
                         <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
@@ -224,7 +224,7 @@
             </div>
 
             <div fxFlex="100" class="mb-2"> 
-                <p class="uppercase m-2 fw-500">Features</p> 
+                <p class="uppercase m-2 fw-500">Caractéristiques</p> 
                 <div formArrayName="features" [fxLayout]="(vertical) ? 'column' : 'row wrap'">
                     <div [formGroupName]="i" *ngFor="let control of form['controls'].features['controls']; index as i" class="p-2">
                         <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>                         
@@ -243,7 +243,7 @@
       <button *ngIf="!vertical" mat-raised-button color="primary" class="uppercase mx-1" (click)="showMore = !showMore">
          Avancer
         </button>      
-      <button *ngIf="searchOnBtnClick" mat-raised-button color="primary" class="search-btn mx-1" (click)="search()"><mat-icon>search</mat-icon> Search</button>
+      <button *ngIf="searchOnBtnClick" mat-raised-button color="primary" class="search-btn mx-1" (click)="search()"><mat-icon>chercher</mat-icon> Chercher</button>
     </div>
     
 

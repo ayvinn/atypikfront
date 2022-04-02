@@ -3,7 +3,7 @@
     "title": "Centrally located apartment", 
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium magnam veniam sit reprehenderit deserunt ad voluptates id aperiam veritatis! Nobis saepe quos eveniet numquam vitae quis, tenetur consectetur impedit dolore.",
     "propertyType": "Apartment",
-    "propertyStatus": ["For Rent", "No Fees"],
+    "propertyStatus": ["À louer", "Pas de frais"],
     "city": "Los Angeles",
     "zipCode": "90028",
     "neighborhood": ["Englewood", "Austin"],
@@ -13,7 +13,7 @@
         "lng": -118.327440
     },
     "formattedAddress": "1627 Vine St, Los Angeles, CA 90028, USA", 
-    "features": ["Air Conditioning", "Refrigerator", "Dryer", "Microwave", "Gym", "Swimming Pool", "Sauna", "TV Cable", "WiFi"],
+    "features": ["Climatisation", "Réfrigérateur", "Séchoir", "Micro-ondes", "Salle de sport", "Piscine", "Sauna", "TV Cable", "WiFi"],
     "featured": true, 
     "priceDollar": {
         "sale": null,

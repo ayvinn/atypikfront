@@ -56,40 +56,55 @@
                     </div> -->
                     
                     <div class="widget">
-                        <h3 class="widget-title bg-primary">Reply to the listing</h3>
+                        <h3 class="widget-title bg-primary">Réservation</h3>
                         <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
                             <p>Interested in renting or buying this property? Then send us an email.</p>
-                            <mat-form-field appearance="outline" class="w-100">
+                            <!--<mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Name</mat-label>
                                 <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
                                 <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>                   
-                            </mat-form-field>
+                            </mat-form-field>-->
 
-                            <mat-form-field appearance="outline" class="w-100">
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Date d'Arrivée</mat-label>
+                                <input matInput [matDatepicker]="picker1">
+                                <mat-datepicker #picker1></mat-datepicker>
+                              </mat-form-field>
+                              <button mat-raised-button (click)="picker1.open()">Open</button>
+                            
+                              <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Date de Départ</mat-label>
+                                <input matInput [matDatepicker]="picker2">
+                                <mat-datepicker #picker2></mat-datepicker>
+                              </mat-form-field>
+                              <button mat-raised-button (click)="picker2.open()">Open</button>
+                              
+
+                            <!--<mat-form-field appearance="outline" class="w-100">
                                 <mat-label>E-mail</mat-label> 
                                 <input matInput placeholder="Your Email" autocomplete="off" formControlName="email">
                                 <mat-error *ngIf="contactForm.controls.email.errors?.required">Email is required</mat-error>
                                 <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
 
-                            <mat-form-field appearance="outline" class="w-100">
+                            <!--<mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Phone</mat-label>
                                 <input matInput placeholder="Your Phone" autocomplete="off" formControlName="phone" type="number"> 
                                 <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>                 
-                            </mat-form-field>
+                            </mat-form-field> -->
 
-                            <mat-form-field appearance="outline" class="w-100">
+                            <!--<mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Message</mat-label> 
                                 <textarea matInput placeholder="Your Message" formControlName="message" rows="6"></textarea> 
                                 <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
-                            </mat-form-field>  
+                            </mat-form-field>  -->
                             <div class="text-center">
-                                <button mat-raised-button color="accent" type="submit">Send Email</button>
+                                <button mat-raised-button color="accent" type="submit">Réserver</button>
                             </div>
                         </form>
                     </div> 
                    
-                    <div class="widget">
+                  <!--  <div class="widget">
                         <h3 class="widget-title bg-primary">Mortgage Calculator</h3>
                         <form [formGroup]="mortgageForm" (ngSubmit)="onMortgageFormSubmit(mortgageForm.value)">
                             <mat-form-field appearance="outline" class="w-100">
@@ -113,7 +128,7 @@
                                 <button mat-raised-button color="accent" type="submit">Calculate Mortgage</button>
                             </div>
                         </form>
-                    </div>
+                    </div> -->
 
                    <!-- <div fxLayout="column" class="widget">
                         <h3 class="widget-title bg-primary">Featured Properties</h3>
@@ -136,11 +151,11 @@
                     <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">                      
                         <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
                             <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property?.priceDollar.rent">{{property?.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>
+                            <span *ngIf="property?.priceDollar.rent">{{property?.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /mois</span>
                         </h2>
                         <h2 *ngIf="settings.currency == 'EUR'" class="primary-color price">
                             <span *ngIf="property?.priceEuro.sale">{{property?.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property?.priceEuro.rent">{{property?.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
+                            <span *ngIf="property?.priceEuro.rent">{{property?.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /mois</span>
                         </h2>
                         <app-rating [ratingsCount]="property?.ratingsCount" [ratingsValue]="property?.ratingsValue"></app-rating> 
                     </div>
@@ -189,41 +204,41 @@
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property Type:</span>
+                            <span>Type du bien:</span>
                             <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property Status:</span>
+                            <span>Status du bien:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                             </div>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>City:</span>
+                            <span>Ville:</span>
                             <span>{{property.city}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Zip Code:</span>
+                            <span>Code postale:</span>
                             <span>{{property.zipCode}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Neighborhood:</span>
+                            <span>Quartier:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Street:</span>
+                            <span>Rue:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let street of property.street; let last=last" [class.list-item]="property.street.length > 1" [class.last]="last">{{street}}</span>
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Bedrooms:</span>
+                            <span>Chambres:</span>
                             <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Bathrooms:</span>
+                            <span>Salles de bain:</span>
                             <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
@@ -231,11 +246,11 @@
                             <span>{{property.garages}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Property size:</span>
+                            <span>Supéficie du bien:</span>
                             <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Year Built:</span>
+                            <span>Année de construction:</span>
                             <span>{{property.yearBuilt}}</span>
                         </div>
                     </div>   

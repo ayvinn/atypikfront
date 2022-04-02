@@ -140,12 +140,12 @@ export class AppService {
 
   public getPropertyStatuses(){
     return [ 
-      { id: 1, name: 'For Sale' },
-      { id: 2, name: 'For Rent' },
-      { id: 3, name: 'Open House' },
-      { id: 4, name: 'No Fees' },
-      { id: 5, name: 'Hot Offer' },
-      { id: 6, name: 'Sold' }
+      { id: 1, name: 'À vendre' },
+      { id: 2, name: 'À louer' },
+      { id: 3, name: 'Open Space' },
+      { id: 4, name: 'Pas de frais' },
+      { id: 5, name: 'Offre spéciale' },
+      { id: 6, name: 'Vendu' }
     ]
   }
 
@@ -206,17 +206,17 @@ export class AppService {
 
   public getFeatures(){
     return [ 
-      { id: 1, name: 'Air Conditioning', selected: false },
+      { id: 1, name: 'Climatisation', selected: false },
       { id: 2, name: 'Barbeque', selected: false },
-      { id: 3, name: 'Dryer', selected: false },
-      { id: 4, name: 'Microwave', selected: false }, 
-      { id: 5, name: 'Refrigerator', selected: false },
+      { id: 3, name: 'Séchoir', selected: false },
+      { id: 4, name: 'Micro-ondes', selected: false }, 
+      { id: 5, name: 'Réfrigérateur', selected: false },
       { id: 6, name: 'TV Cable', selected: false },
       { id: 7, name: 'Sauna', selected: false },
       { id: 8, name: 'WiFi', selected: false },
-      { id: 9, name: 'Fireplace', selected: false },
-      { id: 10, name: 'Swimming Pool', selected: false },
-      { id: 11, name: 'Gym', selected: false },
+      { id: 9, name: 'Cheminée', selected: false },
+      { id: 10, name: 'Piscine', selected: false },
+      { id: 11, name: 'Salle de sport', selected: false },
     ]
   }
 

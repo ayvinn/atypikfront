@@ -9,8 +9,8 @@ import { emailValidator } from 'src/app/theme/utils/app-validators';
 })
 export class ContactComponent implements OnInit {
   public contactForm: FormGroup;
-  public lat: number = 40.678178;
-  public lng: number = -73.944158;
+  public lat: number = 48.844101;
+  public lng: number = 2.431290;
   public zoom: number = 12; 
   constructor(public formBuilder: FormBuilder) { }
 

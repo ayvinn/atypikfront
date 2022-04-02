@@ -10,12 +10,12 @@
     <div *ngIf="appService.Data.compareList.length > 0" class="compare-carousel py-3"> 
       
       <mat-card fxLayout="row" fxLayoutAlign="space-between center" class="compare-toolbar">      
-        <h3 class="uppercase">Compare: {{appService.Data.compareList.length}}</h3>      
+        <h3 class="uppercase">Comparer: {{appService.Data.compareList.length}}</h3>      
         <div fxLayout="row" fxLayoutAlign="center center" *ngIf="config.simulateTouch">
             <button mat-mini-fab color="primary" class="carousel-prev swiper-button-prev swipe-arrow mx-2"><mat-icon>keyboard_arrow_left</mat-icon></button>
             <button mat-mini-fab color="primary" class="carousel-next swiper-button-next swipe-arrow mx-2"><mat-icon>keyboard_arrow_right</mat-icon></button> 
         </div> 
-        <button mat-mini-fab color="warn" fxHide="false" fxHide.gt-xs (click)="clear()"><mat-icon>cancel</mat-icon></button>
+        <button mat-mini-fab color="warn" fxHide="false" fxHide.gt-xs (click)="clear()"><mat-icon>Annuler</mat-icon></button>
         <button mat-raised-button color="warn" class="uppercase" fxShow="false" fxShow.gt-xs (click)="clear()">Clear All</button>
       </mat-card>
       
@@ -38,51 +38,51 @@
                         <mat-chip color="primary" selected="true" class="w-100">
                             <h3 *ngIf="settings.currency == 'USD'" class="w-100 text-center">
                                 <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
-                                <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>
+                                <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /mois</span>
                             </h3>
                             <h3 *ngIf="settings.currency == 'EUR'" class="w-100 text-center">
                                 <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                                <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
+                                <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /mois</span>
                             </h3>
                         </mat-chip>
                     </mat-chip-list>
                     <div class="details py-3">
                         <div fxLayout="row" class="item">
-                          <span>Property Type:</span>
+                          <span>Type du bien:</span>
                           <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxLayout="row" class="item">
-                          <span>Property Status:</span>
+                          <span>Status du bien:</span>
                           <div fxLayout="row wrap" class="list">
                             <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                           </div>
                         </div> 
                         <div fxLayout="row" class="item">
-                          <span>City:</span>
+                          <span>Ville:</span>
                           <span>{{property.city}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Zip Code:</span>
+                          <span>Code Postale:</span>
                           <span>{{property.zipCode}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                            <span>Neighborhood:</span>
+                            <span>Quatier:</span>
                             <div fxLayout="row wrap" class="list">
                               <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
                         </div>
                         <div fxLayout="row" class="item">
-                            <span>Street:</span>
+                            <span>Rue:</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let street of property.street; let last=last" [class.list-item]="property.street.length > 1" [class.last]="last">{{street}}</span>
                             </div>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Bedrooms:</span>
+                          <span>Chambres:</span>
                           <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Bathrooms:</span>
+                          <span>Salles de bain:</span>
                           <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxLayout="row" class="item">
@@ -90,21 +90,21 @@
                           <span>{{property.garages}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Property size:</span>
+                          <span>Supeficie du bien:</span>
                           <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Year Built:</span>
+                          <span>Année de construction:</span>
                           <span>{{property.yearBuilt}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Features:</span>
+                          <span>Caractéristiques:</span>
                           <div fxLayout="row wrap" class="list">
                             <span *ngFor="let feature of property.features; let last=last" [class.list-item]="property.features.length > 1" [class.last]="last">{{feature}}</span>
                           </div>
                         </div> 
                         <div fxLayout="row" class="item">
-                          <span>Published:</span>
+                          <span>Publié:</span>
                           <span>{{property.published | date:"dd MMMM, yyyy" }}</span>
                         </div>                         
                     </div>
