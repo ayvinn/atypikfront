@@ -1,5 +1,5 @@
 import { Chat } from '../Chat/chat'
-import { User } from '../user'
+import { User } from '../User/user'
 
 export class ChatParticipant {
   id: number;

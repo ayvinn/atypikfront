@@ -1,5 +1,5 @@
 import { Nearby } from "./nearby";
-import { Photo } from "./photo";
+import { Photo } from "../Photo/photo";
 
 export class NearbyPhoto {
     NearbyId : number;

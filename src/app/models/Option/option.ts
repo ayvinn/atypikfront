@@ -1,4 +1,4 @@
-import { Accommodation } from "./Accommodation/accommodation";
+import { Accommodation } from "../Accommodation/accommodation";
 
 export class Option {
     id : number;

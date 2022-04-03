@@ -1,5 +1,5 @@
-import { NearbyComment } from "./nearby-comment";
-import { Photo } from "./photo";
+import { NearbyComment } from "./NearByComment/nearby-comment";
+import { Photo } from "./Photo/photo";
 
 export class NearbyCommentPhoto {
     nearbyCommentId : number;

@@ -1,8 +1,8 @@
 import { AccommodationFieldValue } from "../AccommodationFieldValue/accommodation-field-value";
 import { AccommodationPhoto } from "../accommodation-photo";
 import { Adress } from "../adress";
-import { Equipment } from "../equipment";
-import { UnavailableSlot } from "../unavailable-slot";
+import { Equipment } from "../Equipment/equipment";
+import { UnavailableSlot } from "../UnavailableSlot/unavailable-slot";
 
 export class AccomodationUpdate {   
     size : number;

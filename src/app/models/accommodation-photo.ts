@@ -1,5 +1,5 @@
 import { Accommodation } from "./Accommodation/accommodation";
-import { User } from "./user";
+import { User } from "./User/user";
 
 export class AccommodationPhoto {
     id : number;

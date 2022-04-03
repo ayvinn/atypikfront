@@ -1,6 +1,6 @@
 import { DateSelectionModelChange } from "@angular/material/datepicker";
 import { CommentPhoto } from "../comment-photo";
-import { User } from "../user";
+import { User } from "../User/user";
 
 export class Comment {
     id : number;

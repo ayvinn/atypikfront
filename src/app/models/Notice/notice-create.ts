@@ -1,8 +1,4 @@
-import { Accommodation } from "./Accommodation/accommodation";
-import { User } from "./user";
-
-export class Notice {
-    id : number;
+export class NoticeCreate {
     text : string;
     date : Date;
     cleanlinessScore : number; 
@@ -10,8 +6,5 @@ export class Notice {
     communicationScore : number;
     environmentalScore : number;
     accommodationId : number;
-    accommodation : Accommodation;
     userId : number;
-    user : User;
-
 }

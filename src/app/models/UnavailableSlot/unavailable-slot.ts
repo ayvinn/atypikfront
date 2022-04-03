@@ -1,5 +1,5 @@
-import { Accommodation } from "./Accommodation/accommodation";
-import { User } from "./user";
+import { Accommodation } from "../Accommodation/accommodation";
+import { User } from "../User/user";
 
 export class UnavailableSlot {
     id : number;

@@ -1,13 +1,13 @@
-import { Nearby } from '../nearby';
-import { Option } from '../option';
+import { Nearby } from '../Nearby/nearby';
+import { Option } from '../Option/option';
 import * as internal from "stream";
-import { User } from "../user";
+import { User } from "../User/user";
 import { Adress } from "../adress";
-import { Equipment } from "../equipment";
+import { Equipment } from "../Equipment/equipment";
 import { AccommodationFieldValue } from "../AccommodationFieldValue/accommodation-field-value";
-import { Reservation } from "../reservation";
+import { Reservation } from "../Reservation/reservation";
 import { AccommodationPhoto } from '../accommodation-photo';
-import { UnavailableSlot } from '../unavailable-slot';
+import { UnavailableSlot } from '../UnavailableSlot/unavailable-slot';
 
 export class Accommodation {
     id : number;
