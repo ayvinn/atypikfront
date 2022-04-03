@@ -1,0 +1,53 @@
+import { Nearby } from '../nearby';
+import { Option } from '../option';
+import * as internal from "stream";
+import { User } from "../user";
+import { Adress } from "../adress";
+import { Equipment } from "../equipment";
+import { AccommodationFieldValue } from "../AccommodationFieldValue/accommodation-field-value";
+import { Reservation } from "../reservation";
+import { AccommodationPhoto } from '../accommodation-photo';
+import { UnavailableSlot } from '../unavailable-slot';
+
+export class Accommodation {
+    id : number;
+    size : number;
+    kind : number;
+    status : number;
+    isStar : boolean;
+    step : number;
+    title : string;
+    description : string;
+    department : string;
+    country : string;
+    price : number;
+    commentsNumber : number;
+    commentPhotoNumber : number;
+    totalCleanlinessPoints : number;
+    totalServicePoints : number;
+    totalCommunicationPoints : number;
+    totalEnvironmentalPoints : number;
+    cleanlinessAverage : number;
+    serviceAverage : number;
+    communicationAverage : number;
+    environmentalAverage : number;
+    totalAverageNotice : number;
+    beds : number;
+    travelers : number;
+    bedrooms : number;
+    bathrooms : number;
+    accessibility : boolean;
+    pro : boolean;
+    userId : number;
+    user : User;
+    address : Adress;
+    equipments : Equipment[];
+    AccommodationFieldValues : AccommodationFieldValue[];
+    reservations : Reservation[];
+    comments : Comment[];
+    options : Option[];
+    nearby : Nearby[];
+    photos : AccommodationPhoto[];
+    UnavailableSlots : UnavailableSlot[];
+
+}
