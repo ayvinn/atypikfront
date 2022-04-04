@@ -132,20 +132,22 @@ export class AppService {
 
   public getPropertyTypes(){
     return [ 
-      { id: 1, name: 'Office' },
-      { id: 2, name: 'House' },
-      { id: 3, name: 'Apartment' }
+      { id: 0, name: 'Appartement' },
+      { id: 1, name: 'Maison' },
+      { id: 3, name: 'Annexe' },
+      { id: 4, name: "Maison d'hote" },
+      { id: 5, name: 'Logement unique' }
     ]
   }
 
   public getPropertyStatuses(){
     return [ 
-      { id: 1, name: 'À vendre' },
-      { id: 2, name: 'À louer' },
-      { id: 3, name: 'Open Space' },
-      { id: 4, name: 'Pas de frais' },
-      { id: 5, name: 'Offre spéciale' },
-      { id: 6, name: 'Vendu' }
+      { id: 0, name: ' Cabane dans les arbres ' },
+      { id: 1, name: ' Bulle ' },
+      { id: 2, name: " Cabane sur l'eau "},
+      { id: 3, name: ' Cabane ' },
+      { id: 4, name: ' Cabane sur pilotis ' },
+      { id: 5, name: ' Chalet ' }
     ]
   }
 

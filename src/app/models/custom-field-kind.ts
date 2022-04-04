@@ -1,6 +1,6 @@
 export class CustomFieldKind {
-    kind : Kind;
+    kind : number;
     customFieldId : number;
-    CustomField : CustomField;
+    CustomField : number;
 
 }

@@ -4,6 +4,8 @@ import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { MapsAPILoader } from '@agm/core';
+import { AccommodationsService } from 'src/app/services/accommodations.service';
+import { AccommodationCreate } from 'src/app/models/Accommodation/accommodation-create';
 
 @Component({
   selector: 'app-submit-property',
@@ -23,11 +25,25 @@ export class SubmitPropertyComponent implements OnInit {
   public lat: number = 40.678178;
   public lng: number = -73.944158;
   public zoom: number = 12;  
-
+  public acomodationcreate :AccommodationCreate = new AccommodationCreate();
   constructor(public appService:AppService, 
               private fb: FormBuilder, 
               private mapsAPILoader: MapsAPILoader, 
-              private ngZone: NgZone) { }
+              private ngZone: NgZone,
+              public accomodationservice: AccommodationsService) { }
+  submitstep1(){
+    console.log(this.submitForm.get('basic.propertyType').value);
+   
+      this.acomodationcreate.kind = this.submitForm.get('basic.propertyType').value;
+      this.acomodationcreate.size = this.submitForm.get('basic.propertyStatus').value;
+      this.acomodationcreate.step = 2;
+      this.accomodationservice.postAccommodation(this.acomodationcreate).subscribe(res => {
+     
+        console.log(res);
+        
+      });
+    
+  }            
 
   ngOnInit() {
     this.features = this.appService.getFeatures();  
@@ -39,13 +55,9 @@ export class SubmitPropertyComponent implements OnInit {
 
     this.submitForm = this.fb.group({
       basic: this.fb.group({
-        title: [null, Validators.required],
-        desc: null,
-        priceDollar: null,
-        priceEuro: null,
         propertyType: [null, Validators.required],
-        propertyStatus: null, 
-        gallery: null
+        propertyStatus: null 
+    //    gallery: null
       }),
       address: this.fb.group({
         location: ['', Validators.required],
@@ -69,6 +81,7 @@ export class SubmitPropertyComponent implements OnInit {
         featured: false
       })
     }); 
+    
 
     this.setCurrentPosition();
     this.placesAutocomplete();
