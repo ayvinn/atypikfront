@@ -30,7 +30,7 @@
         }
       },
       "root": "",
-      "sourceRoot": "src", 
+      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -51,7 +51,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [ 
+            "allowedCommonJsDependencies": [
               "ngx-embed-video"
             ],
             "vendorChunk": true,
@@ -185,9 +185,25 @@
           "configurations": {
             "production": {}
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "ssr": "cloud-run",
+            "prerender": true,
+            "firebaseProject": "atypikhouse-87a7c",
+            "firebaseHostingSite": "atypikhouse-87a7c",
+            "functionName": "ssr-housekey",
+            "functionsNodeVersion": "16.13",
+            "region": "us-central1",
+            "browserTarget": "housekey:build:production",
+            "serverTarget": "housekey:server:production",
+            "prerenderTarget": "housekey:prerender:production",
+            "outputPath": "dist/housekey/run"
+          }
         }
       }
-    } 
+    }
   },
   "defaultProject": "housekey"
 }

@@ -37,7 +37,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -74,11 +74,13 @@ import { HeaderMapComponent } from './header-map/header-map.component';
 import { HeaderVideoComponent } from './header-video/header-video.component'; 
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component'; 
-import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component'; 
+import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-header-controls.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
+    NgxDropzoneModule,
     RouterModule,
     ReactiveFormsModule,
     SwiperModule,
@@ -214,7 +216,7 @@ import { DialogHeaderControlsComponent } from './dialog-header-controls/dialog-h
     HeaderVideoComponent,
     ConfirmDialogComponent,
     AlertDialogComponent,
-    DialogHeaderControlsComponent
+    DialogHeaderControlsComponent,
   ], 
   providers:[
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

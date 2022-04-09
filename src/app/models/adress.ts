@@ -7,4 +7,5 @@ export class Adress {
     x : number;
     y : number;
     cityCode : string;
+    step:number;
 }

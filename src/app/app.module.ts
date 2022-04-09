@@ -28,7 +28,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { AppSettings } from './app.settings';
 import { AppInterceptor } from './theme/utils/app-interceptor';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
@@ -43,6 +43,13 @@ import { HorizontalMenuComponent } from './theme/components/menu/horizontal-menu
 import { VerticalMenuComponent } from './theme/components/menu/vertical-menu/vertical-menu.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { LockScreenComponent } from './pages/lock-screen/lock-screen.component';
+import { DropzoneDirective } from './directives/dropzone.directive';
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 export function tokenGetter() {
   return  localStorage.getItem("jwt");  
@@ -63,12 +70,20 @@ export function tokenGetter() {
     HorizontalMenuComponent,
     VerticalMenuComponent,
     FooterComponent,
-    LockScreenComponent
+    LockScreenComponent,
+    DropzoneDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }), 
     BrowserAnimationsModule, 
     FormsModule, 
+    
+    AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
+    AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
+    AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
+    AngularFireDatabaseModule,
+
+    NgxDropzoneModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I',
@@ -90,7 +105,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config : {
         tokenGetter : tokenGetter,
-        allowedDomains: ["localhost:5001"],
+        allowedDomains: ["localhost:8080","localhost:5001"],
         disallowedRoutes : []
       }
     }),

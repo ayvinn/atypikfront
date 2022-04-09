@@ -48,3 +48,7 @@ Thumbs.db
 
 .editorconfig
 package-lock.json
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json

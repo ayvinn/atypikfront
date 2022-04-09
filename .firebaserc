@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "atypikhouse-87a7c": {
+      "hosting": {
+        "housekey": [
+          "atypikhouse-87a7c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "atypikhouse-87a7c"
+  }
+}

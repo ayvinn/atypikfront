@@ -4,7 +4,17 @@
 
 export const environment = {
   production: false,
-  url: ''
+  url: '',
+  firebase : {
+    apiKey: "AIzaSyCpwm-ioR07BTQHqbAG8OyNy3g0hjRnQHQ",
+    authDomain: "atypikhouse-87a7c.firebaseapp.com",
+    projectId: "atypikhouse-87a7c",
+    storageBucket: "atypikhouse-87a7c.appspot.com",
+    messagingSenderId: "1036054515442",
+    appId: "1:1036054515442:web:2491bea4abb66973768a6b",
+    measurementId: "G-GQ8WNBV5P1"
+  }
+  
 };
 
 /*

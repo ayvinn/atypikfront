@@ -1,11 +1,14 @@
 /// <reference types="@types/googlemaps" />
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { MapsAPILoader } from '@agm/core';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { AccommodationCreate } from 'src/app/models/Accommodation/accommodation-create';
+import { Adress } from 'src/app/models/adress';
+import { filter } from 'rxjs/operators';
+import { UploadService } from 'src/app/services/upload.service';
 
 @Component({
   selector: 'app-submit-property',
@@ -20,30 +23,166 @@ export class SubmitPropertyComponent implements OnInit {
   public propertyTypes = [];
   public propertyStatuses = [];
   public cities = [];
+  public options = this.features;
   public neighborhoods = [];
   public streets = [];
+  public feature =[];
   public lat: number = 40.678178;
   public lng: number = -73.944158;
   public zoom: number = 12;  
+  public id :number=0;
+  fileData: File = null;
+  previewUrl: any = null;
+  files: File[] = [];
   public acomodationcreate :AccommodationCreate = new AccommodationCreate();
+  public adress :Adress = new Adress();
   constructor(public appService:AppService, 
               private fb: FormBuilder, 
               private mapsAPILoader: MapsAPILoader, 
               private ngZone: NgZone,
+              private globalservice : UploadService,
               public accomodationservice: AccommodationsService) { }
-  submitstep1(){
+  
+              onChange(event) {
+               // this.feature = <any>this.submitForm.get('additional.features').value as any;
+            
+                if(event.checked) {
+                  this.feature.push({deviceId:event.source.value})
+                } else {
+                  const i = this.feature.findIndex(x => x.value === event.source.value);
+                  this.feature.splice(i);
+                }
+              }          
+   submitstep1(){
     console.log(this.submitForm.get('basic.propertyType').value);
    
       this.acomodationcreate.kind = this.submitForm.get('basic.propertyType').value;
       this.acomodationcreate.size = this.submitForm.get('basic.propertyStatus').value;
       this.acomodationcreate.step = 2;
-      this.accomodationservice.postAccommodation(this.acomodationcreate).subscribe(res => {
-     
-        console.log(res);
+       this.accomodationservice.postAccommodation(this.acomodationcreate).subscribe(res => {
+        this.id=(<any>res).id;
+        this.submitstep6();  
         
+      });  
+     
+  }  
+  submitstep2(){
+      console.log(this.submitForm.get('address.city').value);   
+      this.adress.city =  this.submitForm.get('address.city').value;
+      this.adress.postalCode = this.submitForm.get('address.zipCode').value;
+      this.adress.street = this.submitForm.get('address.street').value;
+      this.adress.addressComplement = this.submitForm.get('address.neighborhood').value;
+      this.adress.step = 3;
+      this.accomodationservice.putAcommodation(this.id,{address :this.adress,step : 3}).subscribe(res => {
       });
+  }   
+  submitstep3(){
+
+    this.accomodationservice.putAcommodation(this.id,{bathrooms :Number(this.submitForm.get('additional.bathrooms').value),
+    bedrooms :Number(this.submitForm.get('additional.bathrooms').value),
+    beds : Number(this.submitForm.get('additional.area').value),
+    travelers:Number(this.submitForm.get('additional.garages').value),
+    step : 4
+  }).subscribe(res => {
+    });
+    this.submitstep4();
     
-  }            
+ 
+}     
+submitstep4(){
+  var json = Object.assign({}, this.feature);
+
+  this.accomodationservice.putAcommodation(this.id,{equipments :this.feature,
+  step : 5
+}).subscribe(res => {
+
+  });
+  this.globalservice.clear();
+}   
+submitstep5(){
+; 
+  this.accomodationservice.putAcommodation(this.id,{photos :this.globalservice.getMyGV(),step : 6}).subscribe(res => {
+    this.submitstep8();
+  });
+  this.globalservice.clear();
+}
+public upload(event: any): void {
+  this.fileData = event.addedFiles[0];
+  this.files.push(...event.addedFiles);
+  console.log('Event: ', event.addedFiles);
+  console.log('FileName: ', this.fileData.name);
+  this.preview();
+} 
+submitstep6(){
+  
+  this.accomodationservice.putAcommodation(this.id,{title:this.submitForm.get('basic.title').value,
+  description:this.submitForm.get('basic.desc').value,
+  step :7
+  },
+  ).subscribe(res => {
+    this.submitstep7();
+  });    
+  } 
+  submitstep7(){
+    
+    this.accomodationservice.putAcommodation(this.id,{price:this.submitForm.get('basic.priceEuro').value,
+    step :8
+    },
+    ).subscribe(res => {
+    });    
+    }
+    submitstep8(){
+    
+      this.accomodationservice.putAcommodation(this.id,{stauts:1,
+      step :9
+      },
+      ).subscribe(res => {
+      });    
+      }
+    
+preview() {
+  const mimeType = this.fileData.type;
+  if (mimeType.match(/image\/*/) == null) {
+    return;
+  }
+   const reader = new FileReader();
+  reader.readAsDataURL(this.fileData);
+  reader.onload = (event) => {
+    this.previewUrl=reader.result;
+    console.log('Result: ', reader.result);
+    console.log('Reader: ', this.previewUrl);
+  };
+} 
+
+onRemove(event) {
+  console.log(event);
+  this.files.splice(this.files.indexOf(event), 1);
+  this.previewUrl=null;
+}
+public  formArray: FormArray;
+onCheckChange(event) {
+   this.formArray = this.submitForm.get('additional.features') as FormArray;
+  /* Selected */
+  if(event.target.checked){
+    // Add a new control in the arrayForm
+    this.formArray.push(new FormControl(event.target.i.value));
+  }
+  /* unselected */
+  else{
+    // find the unselected element
+    let i: number = 0;
+
+    this.formArray.controls.forEach((ctrl: FormControl) => {
+      if(ctrl.value == event.target.value) {
+        // Remove the unselected element from the arrayForm
+        this.formArray.removeAt(i);
+        return;
+      }
+
+      i++;
+    });
+  }
+}
 
   ngOnInit() {
     this.features = this.appService.getFeatures();  
@@ -52,11 +191,13 @@ export class SubmitPropertyComponent implements OnInit {
     this.cities = this.appService.getCities();
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();  
-
     this.submitForm = this.fb.group({
       basic: this.fb.group({
         propertyType: [null, Validators.required],
-        propertyStatus: null 
+        propertyStatus: null ,
+        title: [null, Validators.required],
+        desc: null,
+        priceEuro: null,
     //    gallery: null
       }),
       address: this.fb.group({
