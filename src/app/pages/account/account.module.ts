@@ -10,6 +10,7 @@ import { MyPropertiesComponent } from './my-properties/my-properties.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditPropertyComponent } from './edit-property/edit-property.component';
+import { LogementsComponent } from './logements/logements.component';
 
 export const routes = [
   { 
@@ -19,7 +20,8 @@ export const routes = [
       { path: 'my-properties', component: MyPropertiesComponent },
       { path: 'my-properties/:id', component: EditPropertyComponent },
       { path: 'favorites', component: FavoritesComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'logements', component: LogementsComponent }
     ]
   }
 ];
@@ -31,7 +33,7 @@ export const routes = [
     MyPropertiesComponent, 
     FavoritesComponent, 
     ProfileComponent, 
-    EditPropertyComponent
+    EditPropertyComponent, LogementsComponent
   ],
   imports: [
     CommonModule,

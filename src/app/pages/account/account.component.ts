@@ -15,10 +15,12 @@ export class AccountComponent implements OnInit {
   public sidenavOpen:boolean = true;
   public links = [ 
     { name: 'Profile', href: 'profile', icon: 'person' },  
+    { name: 'Logements', href: 'logements', icon: 'home' },    
     { name: 'My Properties', href: 'my-properties', icon: 'view_list' },
-    { name: 'Favorites', href: 'favorites', icon: 'favorite' }, 
+    { name: 'Favories', href: 'favorites', icon: 'favorite' }, 
     { name: 'Submit Property', href: '/submit-property', icon: 'add_circle' },  
-    { name: 'Logout', href: '/login', icon: 'power_settings_new' },    
+    { name: 'Logout', href: '/login', icon: 'power_settings_new' }, 
+     
   ]; 
   constructor(public router:Router) { }
 

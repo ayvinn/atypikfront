@@ -105,7 +105,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config : {
         tokenGetter : tokenGetter,
-        allowedDomains: ["localhost:8080","localhost:5001"],
+        allowedDomains: ["localhost:8080","localhost:5001","atypikhouse.azurewebsites.net"],
         disallowedRoutes : []
       }
     }),
