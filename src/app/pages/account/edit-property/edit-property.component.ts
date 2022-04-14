@@ -33,7 +33,7 @@ export class EditPropertyComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.features = this.appService.getFeatures();
+  //  this.features = this.appService.getFeatures();
     this.propertyTypes = this.appService.getPropertyTypes();
     this.propertyStatuses = this.appService.getPropertyStatuses();
     this.cities = this.appService.getCities();

@@ -14,12 +14,16 @@ export class AccountComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   public links = [ 
-    { name: 'Profile', href: 'profile', icon: 'person' },  
-    { name: 'Logements', href: 'logements', icon: 'home' },    
-    { name: 'My Properties', href: 'my-properties', icon: 'view_list' },
+    { name: 'Profil', href: 'profile', icon: 'person' },  
+    { name: 'Mes reservations', href: 'bookings', icon: 'book' }, 
+    { name: 'Logements', href: 'logements', icon: 'home' },   
+    { name: 'Paramètres', href: 'custom', icon: 'settings' },    
+    { name: 'Mes logements', href: 'my-properties', icon: 'view_list' },
     { name: 'Favories', href: 'favorites', icon: 'favorite' }, 
-    { name: 'Submit Property', href: '/submit-property', icon: 'add_circle' },  
-    { name: 'Logout', href: '/login', icon: 'power_settings_new' }, 
+    { name: 'Gérer les équipements', href: 'equipment', icon: 'fitbit' },
+    { name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' },  
+    { name: 'Se déconecter', href: '/login', icon: 'power_settings_new' }, 
+    
      
   ]; 
   constructor(public router:Router) { }

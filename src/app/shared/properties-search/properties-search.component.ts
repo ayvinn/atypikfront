@@ -34,7 +34,7 @@ export class PropertiesSearchComponent implements OnInit {
     this.cities = this.appService.getCities();
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();
-    this.features = this.appService.getFeatures();
+    //this.features = this.appService.getFeatures();
     this.form = this.fb.group({
       propertyType: null,
       propertyStatus: null, 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { constantURL } from '../shared/constantURL';
 
 @Injectable({
@@ -37,8 +38,8 @@ getUsersprofile(){
   return this.http.get(this.url+"/profile");
 }
 
-getUsersbookings(){
-  return this.http.get(this.url+"/bookings");
+getUsersbookings(param):Observable<any[]>{
+  return this.http.get<any[]>(`${this.url}/bookings`,{params : param});
 }
 getUsersUnavailableSlots(){
   return this.http.get(this.url+"/unavailableSlots");

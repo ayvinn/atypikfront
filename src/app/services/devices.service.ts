@@ -10,8 +10,8 @@ export class DevicesService {
 
   constructor(private http:HttpClient) { }
 
-  getDevices(){
-    return this.http.get(this.url+"/");
+  getDevices(): Observable<any[]>{
+    return this.http.get<any[]>(this.url);
 }
 
 postDevices(DevicesCreate){
@@ -23,6 +23,6 @@ putDevices(id,putdevice) {
 }
 
 deleteDevice(id) {
-  return this.http.delete(this.url+"/Device/"+id);
+  return this.http.delete(this.url+"/"+id);
 }
 }

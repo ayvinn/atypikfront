@@ -5,21 +5,23 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
+import { CustomFieldsService } from 'src/app/services/custom-fields.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCustomFieldComponent } from './add-custom-field/add-custom-field.component';
 
 @Component({
-  selector: 'app-logements',
-  templateUrl: './logements.component.html',
-  styleUrls: ['./logements.component.scss']
+  selector: 'app-custom-fields',
+  templateUrl: './custom-fields.component.html',
+  styleUrls: ['./custom-fields.component.scss']
 })
-export class LogementsComponent implements OnInit {
+export class CustomFieldsComponent implements OnInit {
 
-  displayedColumns: string[] = ['Type','Title','Status','actions'];
-  satuts: string[] = ['Brouillon','	En attente de validation','Validé'];
+  displayedColumns: string[] = ['Title','Value','actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  data :any[];
-  constructor(public appService:AppService,public accomodationservice:AccommodationsService) { }
+  data :string[]=['Booleen','Texte','Nombre'];
+  constructor(public appService:AppService,public customfieldsservice:CustomFieldsService,public dialog: MatDialog) { }
 
   ngOnInit() {
    /* this.appService.getProperties().subscribe(res => {
@@ -27,25 +29,37 @@ export class LogementsComponent implements OnInit {
     });    */
   //  var event ;
   //  event.pageIndex = 0;
-    this.data = this.appService.getPropertyStatuses();
+    
     this.loaddata(0);
   }
   propertyType(data){
-    return this.data[parseInt(data)].name;
+    return this.data[parseInt(data)];
   }
   list: any[] = [];
   loaddata(val:any){
-    this.accomodationservice.getAccommodationsAll({page:val,toValidateOnly:false,searchTerm:''}).subscribe(res => {
+    this.customfieldsservice.getCustomFields().subscribe(res => {
       if(!res){
         return;
-      }
-      
-      this.dataSource = new MatTableDataSource(res['items']);
+      }   
+      this.dataSource = new MatTableDataSource<any>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
   }
-  
+
+  openDialog(): void {
+
+    const dialogRef = this.dialog.open(AddCustomFieldComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.libelle = result;
+      this.ngOnInit();
+    });
+
+  }
   public initDataSource(data:any){
 
 
@@ -65,7 +79,7 @@ export class LogementsComponent implements OnInit {
 				if(dialogResult){ 
          // this.dataSource.data.splice(index,1);
          // this.initDataSource(this.dataSource.data); 
-          this.accomodationservice.deleteAcommodation(element).subscribe(res => {
+          this.customfieldsservice.deleteCustomField(element).subscribe(res => {
             this.ngOnInit();
           }
           )
@@ -73,28 +87,7 @@ export class LogementsComponent implements OnInit {
 			});   
     } 
   } 
-  public updatestatuts(element:any) {
-    
-    // const index: number = this.dataSource.data.indexOf(element.id);    
-     if (element !== -1) {
-       
-       const message = 'Publier ce logement ?';
-       let dialogRef = this.appService.openConfirmDialog(null, message); 
-       dialogRef.afterClosed().subscribe(dialogResult => {
-         if(dialogResult){ 
-          // this.dataSource.data.splice(index,1);
-          // this.initDataSource(this.dataSource.data); 
-           this.accomodationservice.putAcommodation(element,{status:2}).subscribe(res => {
-             this.ngOnInit();
-           }
-           )
-         }
-       });   
-     } 
-   } 
-  getstatuts(a: any){
-    return this.satuts[a] ;
-  }
+
 
   public applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();

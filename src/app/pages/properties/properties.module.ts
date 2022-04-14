@@ -5,6 +5,9 @@ import { AgmCoreModule } from '@agm/core';
 import { SharedModule } from '../../shared/shared.module';
 import { PropertiesComponent } from './properties.component';
 import { PropertyComponent } from './property/property.component';
+import { PaymentComponent } from './payment/payment.component';
+//import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 export const routes = [
   { path: '', component: PropertiesComponent, pathMatch: 'full' },
@@ -14,7 +17,8 @@ export const routes = [
 @NgModule({
   declarations: [
     PropertiesComponent, 
-    PropertyComponent
+    PropertyComponent, PaymentComponent,
+    
   ],
   exports: [
     PropertiesComponent, 
@@ -23,7 +27,13 @@ export const routes = [
     CommonModule,
     RouterModule.forChild(routes),
     AgmCoreModule,
-    SharedModule
-  ]
+    SharedModule,
+    CreditCardDirectivesModule
+  ],
+  providers: [
+
+   // { provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
+    
+  ],
 })
 export class PropertiesModule { }

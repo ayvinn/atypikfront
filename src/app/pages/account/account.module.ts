@@ -11,6 +11,11 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditPropertyComponent } from './edit-property/edit-property.component';
 import { LogementsComponent } from './logements/logements.component';
+import { CustomFieldsComponent } from './custom-fields/custom-fields.component';
+import { AddCustomFieldComponent } from './custom-fields/add-custom-field/add-custom-field.component';
+import { EquipmentsComponent } from './equipments/equipments.component';
+import { AddEquipmentComponent } from './equipments/add-equipment/add-equipment.component';
+import { BookingsComponent } from './bookings/bookings.component';
 
 export const routes = [
   { 
@@ -21,7 +26,11 @@ export const routes = [
       { path: 'my-properties/:id', component: EditPropertyComponent },
       { path: 'favorites', component: FavoritesComponent },
       { path: 'profile', component: ProfileComponent },
-      { path: 'logements', component: LogementsComponent }
+      { path: 'logements', component: LogementsComponent },
+      { path: 'equipment', component: EquipmentsComponent },
+      { path: 'custom', component: CustomFieldsComponent },
+      { path: 'bookings', component: BookingsComponent },
+
     ]
   }
 ];
@@ -33,7 +42,7 @@ export const routes = [
     MyPropertiesComponent, 
     FavoritesComponent, 
     ProfileComponent, 
-    EditPropertyComponent, LogementsComponent
+    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent
   ],
   imports: [
     CommonModule,

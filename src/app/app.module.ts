@@ -49,6 +49,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 
 export function tokenGetter() {
@@ -71,13 +72,14 @@ export function tokenGetter() {
     VerticalMenuComponent,
     FooterComponent,
     LockScreenComponent,
-    DropzoneDirective
+    DropzoneDirective,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }), 
     BrowserAnimationsModule, 
     FormsModule, 
-    
+    CreditCardDirectivesModule,
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
     AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features
     AngularFireStorageModule,                               // imports firebase/storage only needed for storage features
@@ -113,7 +115,9 @@ export function tokenGetter() {
   providers: [
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
-    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+
+    
   ],
   bootstrap: [AppComponent]
 })

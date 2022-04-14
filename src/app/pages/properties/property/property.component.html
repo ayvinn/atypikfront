@@ -55,51 +55,39 @@
                         </mat-card>
                     </div> -->
                     
-                    <div class="widget">
+                    <div class="widget" >
                         <h3 class="widget-title bg-primary">Réservation</h3>
-                        <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
-                            <p>Interested in renting or buying this property? Then send us an email.</p>
-                            <!--<mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Name</mat-label>
-                                <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
-                                <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>                   
-                            </mat-form-field>-->
-
-                            <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label>Date d'Arrivée</mat-label>
-                                <input matInput [matDatepicker]="picker1">
-                                <mat-datepicker #picker1></mat-datepicker>
-                              </mat-form-field>
-                              <button mat-raised-button (click)="picker1.open()">Open</button>
+                        <form style="margin-top: 10%;" [formGroup]="contactForm" (ngSubmit)="openDialog()">
                             
-                              <mat-form-field class="example-full-width" appearance="fill">
-                                <mat-label>Date de Départ</mat-label>
-                                <input matInput [matDatepicker]="picker2">
-                                <mat-datepicker #picker2></mat-datepicker>
-                              </mat-form-field>
-                              <button mat-raised-button (click)="picker2.open()">Open</button>
+
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Enter la date </mat-label>
+                                <mat-date-range-input [rangePicker]="picker" [min]="todayDate">
+                                    <input matStartDate
+                            placeholder="Start date" [min]="todayDate"
+                             #dateRangeStart>
+                            <input matEndDate
+                             placeholder="End date" [min]="todayDate"
+                             #dateRangeEnd
+                             (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                                </mat-date-range-input>
+                                <mat-hint>
+                                    MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+                            </mat-form-field>
                               
-
-                            <!--<mat-form-field appearance="outline" class="w-100">
-                                <mat-label>E-mail</mat-label> 
-                                <input matInput placeholder="Your Email" autocomplete="off" formControlName="email">
-                                <mat-error *ngIf="contactForm.controls.email.errors?.required">Email is required</mat-error>
-                                <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
-                            </mat-form-field> -->
-
-                            <!--<mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Phone</mat-label>
-                                <input matInput placeholder="Your Phone" autocomplete="off" formControlName="phone" type="number"> 
-                                <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>                 
-                            </mat-form-field> -->
-
-                            <!--<mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Message</mat-label> 
-                                <textarea matInput placeholder="Your Message" formControlName="message" rows="6"></textarea> 
-                                <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
-                            </mat-form-field>  -->
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>Nombre de personnes</mat-label>
+                                <input matInput placeholder="Enrer le Nombre des personnes " autocomplete="off" #fondovalor formControlName="name" onlyNumber>
+                                <mat-error *ngIf="contactForm.controls.name.errors?.required">Le nombre de perssonne est obligatoire</mat-error>                   
+                            </mat-form-field>   
+                             
+                            <p>{{data.price  | currency : 'EUR' : 'symbol' : '1.0'}} x {{getdays()}} Nuits</p>
+                            <hr class="solid">
+                            <p style="font-weight: bold;margin-top: 2%;"> TOTAL : {{gettotal()}}</p>
                             <div class="text-center">
-                                <button mat-raised-button color="accent" type="submit">Réserver</button>
+                                <button mat-raised-button color="accent" type="submit" (click)="openDialog()">Réserver</button>
                             </div>
                         </form>
                     </div> 
@@ -142,22 +130,25 @@
             <mat-sidenav-content ngClass.gt-sm="distance">
                 <mat-card fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">             
                     <div>
-                        <h2 class="uppercase" ngClass.xs="text-center">{{property?.title}}</h2>
+                        <h2 class="uppercase" ngClass.xs="text-center">{{data.title}}</h2>
                         <p fxLayout="row" fxLayoutAlign.xs="center" class="address mb-0">
                             <mat-icon class="text-muted">location_on</mat-icon>
-                            <span>{{property?.formattedAddress}}</span>
+                            <span>{{data.address.street}}, {{data.address.city}}, {{data.address.postalCode}}</span>
                         </p>
                     </div>
                     <div fxLayout="column" fxLayoutAlign.xs="center center" class="mx-3">                      
                         <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
-                            <span *ngIf="property?.priceDollar.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
+                            <span *ngIf="data?.price.sale">{{property?.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property?.priceDollar.rent">{{property?.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /mois</span>
                         </h2>
                         <h2 *ngIf="settings.currency == 'EUR'" class="primary-color price">
-                            <span *ngIf="property?.priceEuro.sale">{{property?.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
-                            <span *ngIf="property?.priceEuro.rent">{{property?.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /mois</span>
+                            <span *ngIf="property?.price">{{this.data?.price | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                            <span *ngIf="property?.price">{{this.data?.price | currency : 'EUR' : 'symbol' : '1.0'}} /mois</span>
                         </h2>
-                        <app-rating [ratingsCount]="property?.ratingsCount" [ratingsValue]="property?.ratingsValue"></app-rating> 
+                        <h2 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                            <span *ngIf="data.price">{{data.price | currency : 'EUR' : 'symbol' : '1.0'}}</span>
+                        </h2>
+                        <app-rating [ratingsCount]="data.environmentalAverage" [ratingsValue]="data.environmentalAverage"></app-rating> 
                     </div>
                     <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
                         <mat-icon>more_vert</mat-icon>
@@ -176,8 +167,8 @@
                         </div>   
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)"> 
                             <div class="swiper-wrapper">      
-                                <div *ngFor="let image of property?.gallery" class="swiper-slide">
-                                    <img [attr.data-src]="image.big" class="swiper-lazy">
+                                <div *ngFor="let image of data.photos" class="swiper-slide">
+                                    <img [attr.data-src]="image.name" class="swiper-lazy">
                                     <div class="swiper-lazy-preloader"></div>          
                                 </div>
                             </div>                      
@@ -188,8 +179,8 @@
                     <div class="small-carousel">   
                         <div id="small-carousel" class="swiper-container" [swiper]="config2"> 
                             <div class="swiper-wrapper">      
-                                <div *ngFor="let image of property?.gallery; let i=index;" class="swiper-slide" [ngClass]="'thumb-'+i" [class.active-thumb]="i == 0">
-                                    <img [attr.data-src]="image.small" class="swiper-lazy mw-100" (click)="selectImage(i)">
+                                <div *ngFor="let image of data.photos; let i=index;" class="swiper-slide" [ngClass]="'thumb-'+i" [class.active-thumb]="i == 0">
+                                    <img [attr.data-src]="image.name" class="swiper-lazy mw-100" (click)="selectImage(i)">
                                     <div class="swiper-lazy-preloader"></div>          
                                 </div>
                             </div>  
@@ -258,13 +249,13 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Features</mat-card-title> 
+                        <mat-card-title class="uppercase">Equipments</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <div fxLayout="row wrap">
-                            <div *ngFor="let feature of property?.features" fxFlex="100" fxFlex.gt-xs="33.3">
-                                <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>
-                                <span class="mx-2">{{feature}}</span>
+                            <div *ngFor="let equipment of data.equipments" fxFlex="100" fxFlex.gt-xs="33.3">
+                                <mat-icon class="mat-icon-sm" color="primary">check</mat-icon>                              
+                                <span class="mx-2">{{equipment.device.name}}</span>
                             </div>
                         </div>
                     </mat-card-content>
@@ -289,9 +280,7 @@
                         <mat-card-title class="uppercase">Description</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
-                        <p>{{property?.desc}}</p>
-                        <p>{{property?.desc}}</p>
-                        <p>{{property?.desc}}</p>
+                        <p>{{data.description}}</p>
                     </mat-card-content>
                 </mat-card> 
 
@@ -346,14 +335,7 @@
                     </mat-card-content>
                 </mat-card>      -->          
 
-                <mat-card class="mt-3" fxLayout="row wrap" fxLayoutAlign="space-between center"> 
-                    <span>ID:<span class="fw-500 mx-2">{{property?.id}}</span></span>
-                    <span>Published:<span class="fw-500 mx-2">{{property?.published | date:"dd MMMM, yyyy"}}</span></span>
-                    <span>Last Update:<span class="fw-500 mx-2">{{property?.lastUpdate | date:"dd MMMM, yyyy"}}</span></span>
-                    <span>Views:<span class="fw-500 mx-2">{{property?.views}}</span></span> 
-                </mat-card>
-
-                <app-comments *ngIf="property" [propertyId]="property.id"></app-comments>  
+                <app-comments *ngIf="data" [propertyId]="data.id"></app-comments>  
 
             </mat-sidenav-content>
         </mat-sidenav-container>

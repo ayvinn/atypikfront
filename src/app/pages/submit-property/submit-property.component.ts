@@ -9,6 +9,9 @@ import { AccommodationCreate } from 'src/app/models/Accommodation/accommodation-
 import { Adress } from 'src/app/models/adress';
 import { filter } from 'rxjs/operators';
 import { UploadService } from 'src/app/services/upload.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { CustomFieldsService } from 'src/app/services/custom-fields.service';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-submit-property',
@@ -16,8 +19,10 @@ import { UploadService } from 'src/app/services/upload.service';
   styleUrls: ['./submit-property.component.scss']
 })
 export class SubmitPropertyComponent implements OnInit {
+
   @ViewChild('horizontalStepper') horizontalStepper: MatStepper; 
   @ViewChild('addressAutocomplete') addressAutocomplete: ElementRef;
+  dataSource: MatTableDataSource<any>;
   public submitForm:FormGroup; 
   public features = [];
   public propertyTypes = [];
@@ -27,6 +32,7 @@ export class SubmitPropertyComponent implements OnInit {
   public neighborhoods = [];
   public streets = [];
   public feature =[];
+  public data =[];
   public lat: number = 40.678178;
   public lng: number = -73.944158;
   public zoom: number = 12;  
@@ -41,7 +47,8 @@ export class SubmitPropertyComponent implements OnInit {
               private mapsAPILoader: MapsAPILoader, 
               private ngZone: NgZone,
               private globalservice : UploadService,
-              public accomodationservice: AccommodationsService) { }
+              public accomodationservice: AccommodationsService,
+              public devicesservice:DevicesService) { }
   
               onChange(event) {
                // this.feature = <any>this.submitForm.get('additional.features').value as any;
@@ -184,8 +191,32 @@ onCheckChange(event) {
   }
 }
 
-  ngOnInit() {
-    this.features = this.appService.getFeatures();  
+ public async  loaddata(){
+   
+ /*  this.devicesservice.getDevices().subscribe(res => {
+    if(!res){
+      return;
+    }   
+    this.dataSource = new MatTableDataSource<any>(res);
+  this.data=res;
+  for(let data of this.data) {
+  //  this.features.push({id:data.id}, {name:data.name})
+    this.setfeatures(data.id,data.name);
+  }
+ //this.features =  res as any[];
+ // console.log('hna',this.features);
+  });*/
+  const data = await this.devicesservice.getDevices().toPromise();
+  this.features = data;
+}
+public async setfeatures(id,name){
+   this.features.push({id:id,name:name})
+}
+   public async ngOnInit() {
+
+   // this.features = JSON.a; 
+    await this.loaddata();
+    console.log('hna:',this.features);
     this.propertyTypes = this.appService.getPropertyTypes();
     this.propertyStatuses = this.appService.getPropertyStatuses();
     this.cities = this.appService.getCities();
@@ -223,7 +254,7 @@ onCheckChange(event) {
       })
     }); 
     
-
+ 
     this.setCurrentPosition();
     this.placesAutocomplete();
   }
@@ -424,11 +455,12 @@ onCheckChange(event) {
    
   // -------------------- Additional ---------------------------  
   public buildFeatures() {
+
     const arr = this.features.map(feature => { 
+      
       return this.fb.group({
         id: feature.id,
         name: feature.name,
-        selected: feature.selected
       });
     })   
     return this.fb.array(arr);

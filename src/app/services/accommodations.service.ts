@@ -44,8 +44,8 @@ export class AccommodationsService {
   getAccommodationHost(id){
     return this.http.get(this.url+"/"+id+"/host");
   }
-  getAccommodationsHost(){
-    return this.http.get(this.url+"/host");
+  getAccommodationsHosts(): Observable<any[]>{
+    return this.http.get<any[]>(this.url+"/host");
   }
   getAccommodationBooking(id){
     return this.http.get(this.url+"/"+id+"/bookings");

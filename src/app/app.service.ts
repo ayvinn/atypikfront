@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './shared/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { DevicesService } from './services/devices.service';
 
 export class Data {
   constructor(public properties: Property[],
@@ -39,6 +40,7 @@ export class AppService {
               public appSettings:AppSettings,
               public dialog: MatDialog,
               public translateService: TranslateService,
+              public devicesservice:DevicesService,
               @Inject(PLATFORM_ID) private platformId: Object) { }
     
   public getProperties(): Observable<Property[]>{
@@ -205,9 +207,29 @@ export class AppService {
       { id: 24, name: 'Green Lake Street #2', cityId: 4, neighborhoodId: 12 }      
     ]
   }
+data;
+public features = [];
+  public  async getFeatures(){
 
-  public getFeatures(){
-    return [ 
+    
+     await this.devicesservice.getDevices().subscribe(res => {
+       if(!res){
+         return;
+       }   
+     //  this.dataSource = new MatTableDataSource<any>(res);
+     this.data=res;
+     var features = [];
+     for(let data of this.data) {
+     //  this.features.push({id:data.id}, {name:data.name})
+      // this.setfeatures(data.id,data.name);
+       features.push({id:data.id}, {name:data.name})
+     }
+    // return features;
+      return  this.features =  res as any[];
+    // console.log('hna',this.features);
+     });
+ 
+    /*return [ 
       { id: 1, name: 'Climatisation', selected: false },
       { id: 2, name: 'Barbeque', selected: false },
       { id: 3, name: 'Séchoir', selected: false },
@@ -219,7 +241,7 @@ export class AppService {
       { id: 9, name: 'Cheminée', selected: false },
       { id: 10, name: 'Piscine', selected: false },
       { id: 11, name: 'Salle de sport', selected: false },
-    ]
+    ]*/
   }
 
 

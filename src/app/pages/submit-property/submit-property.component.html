@@ -3,7 +3,7 @@
   
       <mat-card ngClass.lt-lg="p-0" [formGroup]="submitForm">
   
-        <mat-horizontal-stepper #horizontalStepper linear="true" class="submit-property" (selectionChange)="onSelectionChange($event)">
+        <mat-horizontal-stepper #horizontalStepper linear="false" class="submit-property" (selectionChange)="onSelectionChange($event)">
 
             <mat-step [stepControl]="submitForm.get('basic')" label="Basic">
               <div class="step-content">
@@ -215,7 +215,7 @@
                           <p class="uppercase m-2 fw-500">Caractéristiques</p> 
                           <div formArrayName="features" fxLayout="row wrap">
                               <div [formGroupName]="i" *ngFor="let control of submitForm.get('additional')['controls'].features['controls']; index as i"   class="p-2">
-                                  <mat-checkbox formControlName="selected" (change)="onChange($event)"  [value]="features[i].id">{{features[i].name}}</mat-checkbox>                         
+                                  <mat-checkbox formControlName="selected" (change)="onChange($event)"  [value]="features[i].id ">{{features[i].name }}</mat-checkbox>                         
                               </div>
                           </div>
                       </div>

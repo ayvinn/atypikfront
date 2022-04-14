@@ -18,8 +18,8 @@ export class CustomFieldsService {
 
 }
 
-  getCustomFields(){
-    return this.http.get(this.url+"/");
+  getCustomFields(): Observable<any[]>{
+    return this.http.get<any[]>(this.url);
 
   }
   getCustomField(id){
@@ -31,7 +31,7 @@ putCustomField(id,customfieldUpdate) {
 }
 
 deleteCustomField(id) {
-  return this.http.delete(this.url+"/CustomField/"+id);
+  return this.http.delete(this.url+'/'+id);
 }
 
 postCustomField(CustomFieldCreate){

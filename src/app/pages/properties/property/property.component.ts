@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from 'src/app/app.service';
@@ -9,6 +9,10 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
 import { EmbedVideoService } from 'ngx-embed-video'; 
 import { emailValidator } from 'src/app/theme/utils/app-validators';
+import { AccommodationsService } from 'src/app/services/accommodations.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PaymentComponent } from '../payment/payment.component';
+
 
 @Component({
   selector: 'app-property',
@@ -18,12 +22,14 @@ import { emailValidator } from 'src/app/theme/utils/app-validators';
 export class PropertyComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;  
   @ViewChildren(SwiperDirective) swipers: QueryList<SwiperDirective>;
+  @ViewChild('fondovalor') fondovalor:ElementRef;
   public psConfig: PerfectScrollbarConfigInterface = {
     wheelPropagation:true
   };
   public sidenavOpen:boolean = true;
   public config: SwiperConfigInterface = {}; 
   public config2: SwiperConfigInterface = {}; 
+  todayDate:Date = new Date();
   private sub: any;
   public property:Property; 
   public settings: Settings;  
@@ -31,21 +37,81 @@ export class PropertyComponent implements OnInit {
   public relatedProperties: Property[];
   public featuredProperties: Property[];
   public agent:any;
+  public propertyId:any;
   public mortgageForm: FormGroup;
+  public data:any;
+  public days = 0;
+  public name = '';
+  public total = 0;
+  public datestart = new Date();
+  public dateend = new Date();
   public monthlyPayment:any;
   public contactForm: FormGroup;
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
               private activatedRoute: ActivatedRoute, 
               private embedService: EmbedVideoService,
-              public fb: FormBuilder) {
+              public fb: FormBuilder,
+              public dialog: MatDialog,
+              public accomodationservice:AccommodationsService) {
     this.settings = this.appSettings.settings; 
   }
 
-  ngOnInit() {
+  dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+    console.log(dateRangeStart.value);
+    console.log(dateRangeEnd.value);
+    console.log(this.calculateDiff(dateRangeStart.value,dateRangeEnd.value));
+   this.datestart = new Date (dateRangeStart.value);
+   this.dateend = new Date (dateRangeEnd.value); 
+    this.days = this.calculateDiff(dateRangeStart.value,dateRangeEnd.value);
+  }
+  getdays(){
+    return this.days;
+  }
+  gettotal(){
+    this.total = this.days*this.data.price;
+    return this.total;
+  }
+  openDialog(): void {
+    console.log(this.getFotoFondo());
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      width: '800px',
+      data: {
+        accommodationId:this.propertyId,
+        datestart: this.datestart,
+        dateend : this.dateend,
+        numberprs : this.name
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.libelle = result;
+      this.ngOnInit();
+    });
+
+  }
+  getFotoFondo(){ 
+     return this.fondovalor.nativeElement.value
+}
+  calculateDiff(dateSent,dateback){
+    dateSent = new Date(dateSent);
+    dateback = new Date(dateback);
+    return Math.floor((Date.UTC(dateback.getFullYear(), dateback.getMonth(), dateback.getDate()) - Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+
+  public async ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {   
       this.getPropertyById(params['id']); 
+      this.propertyId = params['id'];
     });
+    console.log(this.propertyId);
+    
+
+    const data = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
+    this.data =data;
+    console.log(this.data.price);
+
     this.getRelatedProperties();
     this.getFeaturedProperties();
     this.getAgent(1);
@@ -68,6 +134,8 @@ export class PropertyComponent implements OnInit {
       message: ['', Validators.required]
     });
   } 
+
+  onKey(event) {this.name = event.target.value;}
 
   ngOnDestroy() {
     this.sub.unsubscribe();

@@ -66,4 +66,4 @@
       </table> 
       <p *ngIf="dataSource?.data.length === 0" class="py-5 mb-0 text-center">No data available</p> 
   </div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"  showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[20]"  (page)="onPaginateChange($event)" showFirstLastButtons></mat-paginator>
