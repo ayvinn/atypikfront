@@ -15,7 +15,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class BookingsComponent implements OnInit {
 
   displayedColumns: string[] = ['Arrive','Departure','Price','Status','actions'];
-  satuts: string[] = ['En attente','Validé'];
+  satuts: string[] = ['En attente','Annulé','Validé'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;

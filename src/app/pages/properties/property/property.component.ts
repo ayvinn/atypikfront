@@ -80,7 +80,7 @@ export class PropertyComponent implements OnInit {
         accommodationId:this.propertyId,
         datestart: this.datestart,
         dateend : this.dateend,
-        numberprs : this.name
+        numberprs : this.getFotoFondo()
       }
     });
 

@@ -12,7 +12,7 @@ import { InputFileConfig, InputFileModule } from 'ngx-input-file';
 const config: InputFileConfig = {
   fileAccept: '*'
 };
-
+import {MatTabsModule} from '@angular/material/tabs';
 import { environment } from 'src/environments/environment';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
@@ -79,6 +79,7 @@ export function tokenGetter() {
     BrowserModule.withServerTransition({ appId: 'serverApp' }), 
     BrowserAnimationsModule, 
     FormsModule, 
+    MatTabsModule,
     CreditCardDirectivesModule,
     AngularFireModule.initializeApp(environment.firebase),  // imports firebase/app needed for everything
     AngularFirestoreModule,                                 // imports firebase/firestore, only needed for database features

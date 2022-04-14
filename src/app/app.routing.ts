@@ -23,7 +23,7 @@ export const routes: Routes = [
             { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
             { path: 'terms-conditions', loadChildren: () => import('./pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsModule) },
             { path: 'account', loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule) }, 
-            { path: 'host', loadChildren: () => import('./pages/host/host.module').then(m => m.HostModule) }, 
+            { path: 'host/:id', loadChildren: () => import('./pages/host/host.module').then(m => m.HostModule) }, 
             { path: 'submit-property', loadChildren: () => import('./pages/submit-property/submit-property.module').then(m => m.SubmitPropertyModule),canActivate: [AuthServiceGuard]  }   
         ]
     },
