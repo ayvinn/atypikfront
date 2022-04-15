@@ -30,10 +30,14 @@ export class HostComponent implements OnInit {
   public sub ;
   public propertyId: any;
   displayedColumns: string[] = ['Arrive','Departure','name','actions'];
-  satuts: string[] = ['En attente','Validé'];
+  displayedColumns2: string[] = ['Arrive','Departure','name','Status'];
+  satuts: string[] = ['En attente','Validé','Refusé'];
   dataSource: MatTableDataSource<any>;
+  dataSource2: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator2: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort2: MatSort;
   data :any[];
   constructor(public appService:AppService,public accomodationservice:AccommodationsService,private activatedRoute: ActivatedRoute,
     public reservationservice:ReservationsService
@@ -50,6 +54,7 @@ export class HostComponent implements OnInit {
   //  event.pageIndex = 0;
     this.data = this.appService.getPropertyStatuses();
     this.loaddata();
+    this.loaddata2();
   }
   propertyType(data){
     return this.data[parseInt(data)].name;
@@ -66,6 +71,21 @@ export class HostComponent implements OnInit {
       this.dataSource.sort = this.sort;
     });
   }
+  loaddata2(){
+    this.accomodationservice.getAccommodationBookings(this.propertyId,{page:0,order:'desc'}).subscribe(res => {
+      if(!res){
+        return;
+      }
+      
+      this.dataSource2 = new MatTableDataSource<any>(res['items']);
+      this.dataSource2.paginator = this.paginator2;
+      this.dataSource2.sort = this.sort2;
+    });
+  }
+
+  getstatut(){
+
+  }
   
   public initDataSource(data:any){
 
@@ -76,7 +96,7 @@ export class HostComponent implements OnInit {
   } 
   
   validatereservation(id){
-    this.reservationservice.putReservations(id,{bookingStatus:2}).subscribe(res => {
+    this.reservationservice.putReservations(id,{bookingStatus:1}).subscribe(res => {
        this.ngOnInit();
         
     })
