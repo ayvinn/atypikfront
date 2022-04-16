@@ -118,7 +118,28 @@
 
 
 
-                <mat-tab label="Gérer les disponibilités"> Content 3 </mat-tab>
+                <mat-tab label="    Gérer les disponibilités">
+                    
+                   <h2 style="margin: 2%;"> Gérer les disponibilités</h2>
+                
+                    <mat-form-field appearance="fill" style="margin-left: 2%;">
+                        <mat-label>Enter une date</mat-label>
+                        <mat-date-range-input [rangePicker]="picker"  [dateFilter]="myFilter"  >
+                          <input matStartDate  #dateRangeStart placeholder="Start date">
+                          <input matEndDate  #dateRangeEnd placeholder="End date">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker  [dateClass]="dateClass()"  (selectedChange)="onSelect($event)">
+                            <mat-date-range-picker-actions>
+                                <button mat-button matDateRangePickerCancel (click) ="clear()">Annuler</button>
+                                <button mat-raised-button color="primary" matDateRangePickerApply (click)="push(dateRangeStart, dateRangeEnd)">Appliquer</button>
+                              </mat-date-range-picker-actions>
+                        </mat-date-range-picker>
+                      </mat-form-field>
+                      
+                      <button  style = "margin-left: 2%;" mat-raised-button color="accent" type="submit" (click)="submitslots()">Sauvgarder</button>
+
+                </mat-tab>
             </mat-tab-group>
         </mat-card>
     </div>

@@ -47,8 +47,8 @@ export class AccommodationsService {
   getAccommodationsHosts(): Observable<any[]>{
     return this.http.get<any[]>(this.url+"/host");
   }
-  getAccommodationBooking(id){
-    return this.http.get(this.url+"/"+id+"/bookings");
+  getAccommodationBookings(id,param): Observable<any[]>{
+    return this.http.get<any[]>(this.url+"/"+id+"/bookings",{params : param});
   }
   getAccommodationBookingsToValidate(id): Observable<any[]>{
     return this.http.get<any[]>(this.url+"/"+id+"/bookings/to-validate");
