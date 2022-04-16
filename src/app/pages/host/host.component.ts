@@ -183,7 +183,7 @@ export class HostComponent implements OnInit {
     this.dateClass();
   }
   submitslots(){
-    if(this.end != []){
+    if(this.end.length>0){
 
       this.end.forEach(element => {
         this.start.push({start:element.start,end:element.end})
