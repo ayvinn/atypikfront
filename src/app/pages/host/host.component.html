@@ -102,7 +102,7 @@
                                 </td>
                             </ng-container>
 
-                           
+
                             <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
                             <tr mat-row *matRowDef="let property; columns: displayedColumns2;">
                             </tr>
@@ -118,26 +118,80 @@
 
 
 
-                <mat-tab label="    Gérer les disponibilités">
-                    
-                   <h2 style="margin: 2%;"> Gérer les disponibilités</h2>
-                
+                <mat-tab label="Gérer les disponibilités">
+
+                    <h2 style="margin: 2%;"> Gérer les disponibilités</h2>
+
                     <mat-form-field appearance="fill" style="margin-left: 2%;">
                         <mat-label>Enter une date</mat-label>
-                        <mat-date-range-input [rangePicker]="picker"  [dateFilter]="myFilter"  >
-                          <input matStartDate  #dateRangeStart placeholder="Start date">
-                          <input matEndDate  #dateRangeEnd placeholder="End date">
+                        <mat-date-range-input [rangePicker]="picker" [dateFilter]="myFilter">
+                            <input matStartDate #dateRangeStart placeholder="Start date">
+                            <input matEndDate #dateRangeEnd placeholder="End date">
                         </mat-date-range-input>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-date-range-picker #picker  [dateClass]="dateClass()"  (selectedChange)="onSelect($event)">
+                        <mat-date-range-picker #picker [dateClass]="dateClass()" (selectedChange)="onSelect($event)">
                             <mat-date-range-picker-actions>
-                                <button mat-button matDateRangePickerCancel (click) ="clear()">Annuler</button>
-                                <button mat-raised-button color="primary" matDateRangePickerApply (click)="push(dateRangeStart, dateRangeEnd)">Appliquer</button>
-                              </mat-date-range-picker-actions>
+                                <button mat-button matDateRangePickerCancel (click)="clear()">Annuler</button>
+                                <button mat-raised-button color="primary" matDateRangePickerApply
+                                    (click)="push(dateRangeStart, dateRangeEnd)">Appliquer</button>
+                            </mat-date-range-picker-actions>
                         </mat-date-range-picker>
-                      </mat-form-field>
-                      
-                      <button  style = "margin-left: 2%;" mat-raised-button color="accent" type="submit" (click)="submitslots()">Sauvgarder</button>
+                    </mat-form-field>
+
+                    <button style="margin-left: 2%;" mat-raised-button color="accent" type="submit"
+                        (click)="submitslots()">Sauvgarder</button>
+
+                </mat-tab>
+                <mat-tab label="Informations supplémentaires">
+
+                    <div fxFlex="100" class="mb-2" [formGroup]="submitForm" (ngSubmit)="submitparameters()"
+                        *ngIf="submitForm">
+                        <p class="uppercase m-2 fw-500">Informations supplémentaires</p>
+                        <form formGroupName="additional"  style="display: table-caption !important;">
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div formArrayName="parameters" fxLayout="row wrap">
+                                            <div [formGroupName]="i"
+                                                *ngFor="let control of submitForm.get('additional')['controls'].parameters['controls']; index as i"
+                                                class="p-2">
+                                                <!-- <mat-checkbox formControlName="selected" (change)="onChange($event)"  [value]="parameters[i].id ">{{parameters[i].name }}</mat-checkbox>-->
+                                                <div class="form-group">
+                                                    <mat-radio-group *ngIf="parameters[i].value == 0"
+                                                        aria-label="Select an option" id="parameters[i].id"
+                                                        formControlName="valeurbool" class="w-100">
+                                                        <mat-label>{{parameters[i].label}}</mat-label><br>
+                                                        <mat-radio-button value=true>Oui</mat-radio-button>
+                                                        <mat-radio-button style="margin-left: 5%;" value=false>Non
+                                                        </mat-radio-button>
+                                                    </mat-radio-group>
+                                                </div>
+                                                <div class="form-group">
+                                                    <mat-form-field *ngIf="parameters[i].value == 1"
+                                                        appearance="outline" class="w-100">
+                                                        <mat-label>{{parameters[i].label}}</mat-label>
+                                                        <input matInput id="parameters[i].id"
+                                                            formControlName="valuertext" type="text" autocomplete="off">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <mat-form-field *ngIf="parameters[i].value == 2"
+                                                        appearance="outline" class="w-100">
+                                                        <mat-label>{{parameters[i].label}}</mat-label>
+                                                        <input matInput id="parameters[i].id"
+                                                            formControlName="valuernumber" type="tel"
+                                                            autocomplete="off">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <button mat-raised-button  class="col-12 text-right" type="submit" color="primary">Sauvgarder</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
                 </mat-tab>
             </mat-tab-group>

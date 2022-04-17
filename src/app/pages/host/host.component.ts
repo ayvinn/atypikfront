@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -30,6 +31,7 @@ export class HostComponent implements OnInit {
     }*/
   public sub;
   public propertyId: any;
+  public submitForm:FormGroup; 
   public count = 0;
   todayDate: Date = new Date();
   displayedColumns: string[] = ['Arrive', 'Departure', 'name', 'actions'];
@@ -37,6 +39,7 @@ export class HostComponent implements OnInit {
   satuts: string[] = ['En attente', 'Validé', 'Refusé'];
   public start = [];
   public end = [];
+  public parameters: any = null;
   dataSource: MatTableDataSource<any>;
   dataSource2: MatTableDataSource<any>;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -46,7 +49,7 @@ export class HostComponent implements OnInit {
   datesToHighlight = ["2022-04-22T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-28T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-23T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-25T18:30:00.000Z"];
   data: any[];
   constructor(public appService: AppService, public accomodationservice: AccommodationsService, private activatedRoute: ActivatedRoute,
-    public reservationservice: ReservationsService
+    public reservationservice: ReservationsService,private fb: FormBuilder,
   ) { }
 
   async ngOnInit() {
@@ -57,20 +60,44 @@ export class HostComponent implements OnInit {
       this.propertyId = params['id'];
     });
     const data = await this.accomodationservice.getAccommodationHost(this.propertyId).toPromise();
-
+    
     data['unavailableSlots'].forEach(element => {
       this.start.push({ start: new Date(element.start), end: new Date(element.end) });
     });
-
-    console.log(this.start, this.end);
+    
     this.count = 0;
     //  var event ;
     //  event.pageIndex = 0;
     this.data = this.appService.getPropertyStatuses();
     this.loaddata();
     this.loaddata2();
+    this.getparameters();
+    const parameters = await this.accomodationservice.getAccommodationBookingsParameters(this.propertyId).toPromise();
+    this.parameters = parameters;
+    console.log('hna:',this.parameters);
+    this.submitForm = this.fb.group({
+      additional: this.fb.group({
+      
+        parameters: this.buildParameters(),
+
+      })
+   
+    }); 
 
 
+  }
+  public buildParameters() {
+
+    const arr = this.parameters.map(parameter  => { 
+      
+       return this.fb.group({
+        valuertext:null,
+        valeurbool:null,
+        valeurnumber:null,
+        id : parameter.id
+      });
+    })   
+    return this.fb.array(arr);
   }
   propertyType(data) {
     return this.data[parseInt(data)].name;
@@ -86,7 +113,32 @@ export class HostComponent implements OnInit {
     return true;
 
   }
+submitparameters(){
+  var data = [];
+  var arrayControl = this.submitForm.get(['additional','parameters']).value;
+  arrayControl.forEach(element => {
 
+          if(element.valuertext != null && element.valuertext != ''){
+              data.push({valueText:element.valuertext,customFieldId:element.id});
+          }
+          else if(element.valeurbool != null && element.valeurbool != ''){
+            data.push({valueBoolean:JSON.parse(element.valeurbool),customFieldId:element.id});
+          }
+
+        else if(element.valuernumber != null && element.valuernumber != ''){
+          data.push({valueNumber:element.valuertext,customFieldId:element.id});
+           }
+        else data.push({customFieldId:element.id});   
+  });
+  this.accomodationservice.putAcommodation(this.propertyId,{accommodationFieldValues:data}).subscribe(res =>
+    {
+      console.log(res);
+    }
+  )
+}
+get formRow() {
+  return this.submitForm.get(['additional','parameters']) as FormArray;
+}
   list: any[] = [];
   loaddata() {
     this.accomodationservice.getAccommodationBookingsToValidate(this.propertyId).subscribe(res => {
@@ -150,7 +202,7 @@ export class HostComponent implements OnInit {
 
   selectedDate: any;
   onSelect(event) {
-    console.log(event);
+    
     this.selectedDate = event;
   }
 
@@ -197,6 +249,10 @@ export class HostComponent implements OnInit {
     }else alert('aucun element a ajouter !');
  
  
+  }
+
+  async getparameters(){
+   // this.parameters = await this.accomodationservice.getAccommodationBookingsParameters(this.propertyId).toPromise();
   }
 
   /*onPaginateChange(event){
