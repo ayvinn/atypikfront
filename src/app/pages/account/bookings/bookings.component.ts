@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,7 +7,7 @@ import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { UsersService } from 'src/app/services/users.service';
-
+import { AddCommentComponent } from './add-comment/add-comment.component';
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -20,7 +21,7 @@ export class BookingsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   data :any[];
-  constructor(public appService:AppService,public usersservice:UsersService) { }
+  constructor(public appService:AppService,public usersservice:UsersService,public dialog: MatDialog) { }
 
   ngOnInit() {
    /* this.appService.getProperties().subscribe(res => {
@@ -70,5 +71,28 @@ export class BookingsComponent implements OnInit {
   onPaginateChange(event){
     this.loaddata(JSON.stringify(event.pageIndex));
     //alert(JSON.stringify("Current page index: " + event.pageIndex));
+  }
+  openDialog(id): void {
+
+    const dialogRef = this.dialog.open(AddCommentComponent, {
+      width: '800px',
+      data :{
+          id:id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.libelle = result;
+      this.ngOnInit();
+    });
+
+  }
+  compare(date){
+    var date1 = new Date(date);
+    if(date1 <= new Date()){
+      return true
+    }
+    return false;
   }
 }

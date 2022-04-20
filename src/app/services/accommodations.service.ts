@@ -69,7 +69,6 @@ export class AccommodationsService {
     return this.http.delete(this.url+"/comments/"+id);
   }
   postAccommodationComment(commentcreate){
-    return this.http.post(this.url, commentcreate);
+    return this.http.post(this.url+"/comments", commentcreate);
   }
-
 }

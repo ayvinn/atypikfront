@@ -16,6 +16,7 @@ import { AddCustomFieldComponent } from './custom-fields/add-custom-field/add-cu
 import { EquipmentsComponent } from './equipments/equipments.component';
 import { AddEquipmentComponent } from './equipments/add-equipment/add-equipment.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { AddCommentComponent } from './bookings/add-comment/add-comment.component';
 
 export const routes = [
   { 
@@ -42,7 +43,7 @@ export const routes = [
     MyPropertiesComponent, 
     FavoritesComponent, 
     ProfileComponent, 
-    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent
+    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent, AddCommentComponent
   ],
   imports: [
     CommonModule,

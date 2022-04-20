@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
@@ -43,28 +45,43 @@ export class CommentsComponent implements OnInit {
     { title: 'Satisfied', icon: 'sentiment_satisfied', percentage: 80, selected: false },
     { title: 'Very Satisfied', icon: 'sentiment_very_satisfied', percentage: 100, selected: false }
   ];
-  constructor(public fb: FormBuilder) { }
-
-  ngOnInit() {
+  constructor(public fb: FormBuilder,public router: Router,public accommodationsservice :AccommodationsService,private _snackBar: MatSnackBar) { }
+  public comments = [];
+  async ngOnInit() {
+    const data = await this.accommodationsservice.getAccommodation(parseInt(localStorage.getItem('accomodattionId'))).toPromise();
+    this.comments = data['comments'];
     this.commentForm = this.fb.group({ 
       review: [null, Validators.required],            
-      name: [null, Validators.compose([Validators.required, Validators.minLength(4)])],
-      email: [null, Validators.compose([Validators.required, emailValidator])],
       rate: null,
       propertyId: this.propertyId
     }); 
   }
+  isItemInfoRoute() {
 
+    return this.router.url.search('properties') > -1
+ }
+ isItemInfoRoute2() {
+
+  return this.router.url.search('bookings') > -1
+}
   public onCommentFormSubmit(values:any){
     if (this.commentForm.valid) { 
       console.log(values);
-      if(values.rate){
-        //property.ratingsCount++,
-        //property.ratingsValue = property.ratingsValue + values.rate,
-      }     
+      var id = parseInt(localStorage.getItem('accomodattionId'));
+      
+        this.accommodationsservice.postAccommodationComment({accommodationId:id,environmentalScore:values.rate
+        ,content:values.review,cleanlinessScore :0 ,serviceScore:0, communicationScore:0, photos:[]
+      }).subscribe(
+        (data) => this.openSnackBar('Commentaire ajouter avc success','X'),
+      (err) => this.openSnackBar(err.error.message,'X')
+
+      );
+      
     } 
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
   public rate(rating:any){
     this.ratings.filter(r => r.selected = false);
     this.ratings.filter(r => r.percentage == rating.percentage)[0].selected = true;

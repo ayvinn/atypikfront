@@ -30,9 +30,10 @@
               <button mat-icon-button color="warn" [routerLink]="['/properties', element.accommodationId ]" matTooltip="Parcourire" class="remove">
                   <mat-icon>zoom_in</mat-icon>
               </button> 
-              <button *ngIf="element.status==1  " mat-icon-button color="primary" (click)="updatestatuts(element.id)" matTooltip="Publier" class="remove">
-                <mat-icon>done outline icon</mat-icon>
-            </button> 
+             <button *ngIf="compare(element.dateArrival)  && element.bookingStatus==2" mat-icon-button color="primary" (click)="openDialog(element.accommodationId)" matTooltip="Laisser un avis" class="remove">
+              <mat-icon>rate_review</mat-icon>
+          </button> 
+
           </td>
         </ng-container> 
         
