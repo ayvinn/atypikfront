@@ -64,10 +64,10 @@
                 </div>
 
                 <div class="features mt-3">                    
-                    <p><span>Supéficie du bien</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
+                    <p><span>Nomnre de voyageur</span><span>{{property.area.value}} {{property.area.unit}}</span></p>
                     <p><span>Chambres</span><span>{{property.bedrooms}}</span></p>
                     <p><span>Salles de bain</span><span>{{property.bathrooms}}</span></p>
-                    <p><span>Garages</span><span>{{property.garages}}</span></p>
+                    <p><span>Lits</span><span>{{property.garages}}</span></p>
                 </div> 
 
             </mat-card-content>
@@ -75,7 +75,7 @@
             <mat-card-actions class="m-0 p-0" fxLayoutAlign="space-between center"> 
                 <p fxLayout="row" class="date mb-0">
                     <mat-icon class="text-muted">date_range</mat-icon>
-                    <span class="mx-2">{{property.published | date:"dd MMMM, yyyy" }}</span>
+                    <span class="mx-2">{{property.published | date:"dd/MM/yyyy" }}</span>
                 </p>
                 <div>
                     <a [routerLink]="['/properties', property.id]" mat-stroked-button color="primary" class="uppercase">Details</a>
