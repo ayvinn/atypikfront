@@ -18,7 +18,7 @@ export class UsersService {
   }
 
 putUsersnoid(id,body) {
-  return this.http.put(this.url+"/"+id,{body});
+  return this.http.put(this.url+"/"+id,body);
 }
 
 getUsersid(id){

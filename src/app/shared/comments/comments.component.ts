@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -10,8 +10,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
-  @Input('propertyId') propertyId;
   public commentForm: FormGroup;
+  
   public reviews = [
     { 
       author: 'Bruno Vespa', 
@@ -45,10 +45,17 @@ export class CommentsComponent implements OnInit {
     { title: 'Satisfied', icon: 'sentiment_satisfied', percentage: 80, selected: false },
     { title: 'Very Satisfied', icon: 'sentiment_very_satisfied', percentage: 100, selected: false }
   ];
-  constructor(public fb: FormBuilder,public router: Router,public accommodationsservice :AccommodationsService,private _snackBar: MatSnackBar) { }
+  private sub: any;
+  private propertyId: any;
+  constructor(public fb: FormBuilder,
+    private activatedRoute: ActivatedRoute
+    ,public router: Router,public accommodationsservice :AccommodationsService,private _snackBar: MatSnackBar) { }
   public comments = [];
   async ngOnInit() {
-    const data = await this.accommodationsservice.getAccommodation(parseInt(localStorage.getItem('accomodattionId'))).toPromise();
+    this.sub = this.activatedRoute.params.subscribe(params => {   
+      this.propertyId = params['id'];
+    });
+    const data = await this.accommodationsservice.getAccommodation(parseInt(this.propertyId)).toPromise();
     this.comments = data['comments'];
     this.commentForm = this.fb.group({ 
       review: [null, Validators.required],            
@@ -67,7 +74,7 @@ export class CommentsComponent implements OnInit {
   public onCommentFormSubmit(values:any){
     if (this.commentForm.valid) { 
       console.log(values);
-      var id = parseInt(localStorage.getItem('accomodattionId'));
+      var id = parseInt(this.propertyId);
       
         this.accommodationsservice.postAccommodationComment({accommodationId:id,environmentalScore:values.rate
         ,content:values.review,cleanlinessScore :0 ,serviceScore:0, communicationScore:0, photos:[]

@@ -32,7 +32,7 @@ export class EditUsersComponent implements OnInit {
 
 
   submit(){
-    const values = {firstName: this.infoForm.get('firstname').value, lastName: this.infoForm.get('lastname').value, certified:true,email:'test@TestBed.test',profilePicture:''};
+    const values = {FirstName: this.infoForm.get('firstname').value, LastName: this.infoForm.get('lastname').value, Certified:true,Email:'test@TestBed.test',ProfilePicture:''};
     console.log('Ajouter :',values);
     this.UserService.putUsersnoid(this.data.id,values).subscribe(res => {
       console.log('Ajouter : ', res);
