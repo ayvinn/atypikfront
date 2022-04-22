@@ -21,7 +21,8 @@ export class AccountComponent implements OnInit {
     { name: 'Mes logements', href: 'my-properties', icon: 'view_list' },
     { name: 'Favories', href: 'favorites', icon: 'favorite' }, 
     { name: 'Gérer les équipements', href: 'equipment', icon: 'fitbit' },
-    { name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' },  
+    { name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' }, 
+    { name: 'Gérer les comptes', href: 'users', icon: 'group'}, 
     { name: 'Se déconecter', href: '/login', icon: 'power_settings_new' }, 
     
      

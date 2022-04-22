@@ -1,3 +1,4 @@
+import { EditUsersComponent } from './edit-users/edit-users.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
@@ -5,24 +6,25 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
-import { CustomFieldsService } from 'src/app/services/custom-fields.service';
 import { DevicesService } from 'src/app/services/devices.service';
-import { AddCustomFieldComponent } from '../custom-fields/add-custom-field/add-custom-field.component';
-import { AddEquipmentComponent } from './add-equipment/add-equipment.component';
+import { UserService } from 'src/app/services/user.service';
+import { UsersService } from 'src/app/services/users.service';
+import { AddEquipmentComponent } from '../equipments/add-equipment/add-equipment.component';
 
 @Component({
-  selector: 'app-equipments',
-  templateUrl: './equipments.component.html',
-  styleUrls: ['./equipments.component.scss']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.scss']
 })
-export class EquipmentsComponent implements OnInit {
+export class UsersComponent implements OnInit {
+
 
   displayedColumns: string[] = ['Title','actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   data :string[]=['Booleen','Texte','Nombre'];
-  constructor(public appService:AppService,public devicesservice:DevicesService,public dialog: MatDialog) { }
+  constructor(public appService:AppService,public userservice:UsersService,public dialog: MatDialog) { }
 
   ngOnInit() {
    /* this.appService.getProperties().subscribe(res => {
@@ -38,22 +40,23 @@ export class EquipmentsComponent implements OnInit {
   }
   list: any[] = [];
   loaddata(val:any){
-    this.devicesservice.getDevices().subscribe(res => {
+    this.userservice.getAllUsers().subscribe(res => {
       if(!res){
         return;
       }   
       this.dataSource = new MatTableDataSource<any>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      console.log(this.dataSource);
     });
   }
-  openDialog(): void {
+  openDialog(id): void {
 
-    const dialogRef = this.dialog.open(AddEquipmentComponent, {
+    const dialogRef = this.dialog.open(EditUsersComponent, {
       width: '800px',
-     /* data:{
-        id:
-      }*/
+      data:{
+        id:id
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -82,7 +85,7 @@ export class EquipmentsComponent implements OnInit {
 				if(dialogResult){ 
          // this.dataSource.data.splice(index,1);
          // this.initDataSource(this.dataSource.data); 
-          this.devicesservice.deleteDevice(element).subscribe(res => {
+          this.userservice.deleteUsers(element).subscribe(res => {
             this.ngOnInit();
           }
           )

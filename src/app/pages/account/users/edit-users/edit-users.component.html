@@ -1,0 +1,25 @@
+<div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-sm="50" class="p-3">
+        <h2 class="text-muted text-center fw-600 mb-3">Détails du compte</h2>
+        <form [formGroup]="infoForm" (ngSubmit)="submit()" *ngIf="infoForm"> 
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Prénom</mat-label>
+                <input matInput placeholder="Prénom" formControlName="firstname" required autocomplete="off">
+                <mat-error *ngIf="infoForm.controls.firstname.errors?.required">Le prénom est requis</mat-error>
+                <mat-error *ngIf="infoForm.controls.firstname.hasError('minlength')">Le nom doit contenir 3 caractères minimum</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Nom" formControlName="lastname" required autocomplete="off">
+                <mat-error *ngIf="infoForm.controls.lastname.errors?.required">Le nom est requis</mat-error>
+                <mat-error *ngIf="infoForm.controls.lastname.hasError('minlength')">Le nom doit contenir 3 caractères minimum</mat-error>
+            </mat-form-field>
+           
+            <div class="text-center mt-2">
+                <button mat-raised-button color="primary" type="submit" class="uppercase">Mettre à jour le profil</button>
+            </div> 
+        </form>
+    </div>
+    
+
+</div> 

@@ -17,6 +17,8 @@ import { EquipmentsComponent } from './equipments/equipments.component';
 import { AddEquipmentComponent } from './equipments/add-equipment/add-equipment.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { AddCommentComponent } from './bookings/add-comment/add-comment.component';
+import { UsersComponent } from './users/users.component';
+import { EditUsersComponent } from './users/edit-users/edit-users.component';
 
 export const routes = [
   { 
@@ -31,6 +33,7 @@ export const routes = [
       { path: 'equipment', component: EquipmentsComponent },
       { path: 'custom', component: CustomFieldsComponent },
       { path: 'bookings', component: BookingsComponent },
+      { path:  'users' , component: UsersComponent},
 
     ]
   }
@@ -43,7 +46,7 @@ export const routes = [
     MyPropertiesComponent, 
     FavoritesComponent, 
     ProfileComponent, 
-    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent, AddCommentComponent
+    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent, AddCommentComponent, UsersComponent, EditUsersComponent
   ],
   imports: [
     CommonModule,

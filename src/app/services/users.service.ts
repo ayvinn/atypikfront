@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { User } from '../models/User/user';
 import { constantURL } from '../shared/constantURL';
 
 @Injectable({
@@ -12,12 +13,12 @@ export class UsersService {
   constructor(private http:HttpClient) { }
 
   
-  getUsers(){
-    return this.http.get(this.url+"/");
-}
+  getAllUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.url);
+  }
 
-putUsersnoid(body) {
-  return this.http.put(this.url+"/",{body});
+putUsersnoid(id,body) {
+  return this.http.put(this.url+"/"+id,{body});
 }
 
 getUsersid(id){
@@ -31,7 +32,7 @@ putUsers(body) {
 }
 
 deleteUsers(id) {
-  return this.http.delete(this.url+"/Users/"+id);
+  return this.http.delete(this.url+"/"+id);
 }
 
 getUsersprofile(){
