@@ -19,7 +19,7 @@ import { AddEquipmentComponent } from '../equipments/add-equipment/add-equipment
 export class UsersComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['Title','actions'];
+  displayedColumns: string[] = ['Title','Email','actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
