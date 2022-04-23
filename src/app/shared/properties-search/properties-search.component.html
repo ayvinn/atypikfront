@@ -4,9 +4,9 @@
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Type du bien</mat-label> 
-                <mat-select placeholder="Select Property Type" formControlName="propertyType">
-                    <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
+                <mat-label>Catégorie du bien</mat-label> 
+                <mat-select placeholder="Select Property Type" formControlName="propertyType" >
+                    <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType.id">
                         {{propertyType.name}}
                     </mat-option>
                 </mat-select>
@@ -15,9 +15,9 @@
 
         <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
             <mat-form-field [appearance]="getAppearance()" [floatLabel]="getFloatLabel()">
-                <mat-label>Status du bien</mat-label>
-                <mat-select placeholder="Select Property Status" formControlName="propertyStatus" multiple>
-                    <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
+                <mat-label>Type du bien</mat-label>
+                <mat-select placeholder="Select Property Status" formControlName="propertyStatus" >
+                    <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus.id">
                         {{propertyStatus.name}}
                     </mat-option>
                 </mat-select>

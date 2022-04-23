@@ -1,91 +1,121 @@
-<app-header-image *ngIf="settings.header == 'image'" 
-                [backgroundImage]="'assets/images/others/homepage.jpg'"
-                [bgImageAnimate]="true"
-                [contentOffsetToTop]="true"
-                [title]="'Find your house key'"
-                [desc]="'Leading Real Estate Company'"
-                [isHomePage]="true"
-                [fullscreen]="false">
-</app-header-image> 
+<app-header-image *ngIf="settings.header == 'image'" [backgroundImage]="'assets/images/others/homepage.jpg'"
+    [bgImageAnimate]="true" [contentOffsetToTop]="true" [title]="'Find your house key'"
+    [desc]="'Leading Real Estate Company'" [isHomePage]="true" [fullscreen]="false">
+</app-header-image>
 
-<app-header-carousel *ngIf="settings.header == 'carousel'" 
-                    [slides]="slides" 
-                    [contentOffsetToTop]="true"
-                    [fullscreen]="false">
+<app-header-carousel *ngIf="settings.header == 'carousel'" [slides]="slides" [contentOffsetToTop]="true"
+    [fullscreen]="false">
 </app-header-carousel>
 
-<app-header-map *ngIf="settings.header == 'map'" 
-                [locations]="locations" 
-                [contentOffsetToTop]="true"
-                [fullscreen]="false">
+<app-header-map *ngIf="settings.header == 'map'" [locations]="locations" [contentOffsetToTop]="true"
+    [fullscreen]="false">
 </app-header-map>
 
-<app-header-video *ngIf="settings.header == 'video'" 
-                [backgroundVideo]="'http://themeseason.com/data/videos/video-1.mp4'" 
-                [contentOffsetToTop]="true"
-                [title]="'Trouvez votre location de vacances '"
-                [desc]="'Quelle sera votre prochaine destination ?'"
-                [isHomePage]="true"
-                [fullscreen]="true">
+<app-header-video *ngIf="settings.header == 'video'"
+    [backgroundVideo]="'http://themeseason.com/data/videos/video-1.mp4'" [contentOffsetToTop]="true"
+    [title]="'Trouvez votre location de vacances '" [desc]="'Quelle sera votre prochaine destination ?'"
+    [isHomePage]="true" [fullscreen]="true">
 </app-header-video>
 
 <div class="px-3">
     <div class="theme-container">
-                
+
         <mat-card class="main-content-header">
 
-            <app-properties-search 
+            <!--  <app-properties-search 
                 [variant]="settings.searchPanelVariant"
                 [searchOnBtnClick]="settings.searchOnBtnClick"
                 [removedSearchField]="removedSearchField" 
                 (onSearchChange)="searchChanged($event)"
                 (onSearchClick)="searchClicked()">
-            </app-properties-search>
-            
-        </mat-card>  
-    
+            </app-properties-search>-->
+
+
+            <form  [formGroup]="contactForm" class="search-wrapper">
+                <div [fxLayout]="(vertical) ? 'column' : 'row wrap'"> 
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                <mat-form-field appearance="outline" >
+                    <mat-label>Lieu</mat-label>
+                    <input matInput placeholder="Enrer la ville" autocomplete="off" #fondovalor2
+                        formControlName="lieu" >
+                </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                <mat-form-field appearance="outline" >
+                    <mat-label>Enter la date </mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input matStartDate placeholder="Start date" #dateRangeStart formControlName="email">
+                        <input matEndDate placeholder="End date" #dateRangeEnd formControlName="message"
+                            (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                    </mat-date-range-input>
+                    <mat-hint>
+                        MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle style="margin-left: 40%;" matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+                </div>
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                <mat-form-field appearance="outline" >
+                    <mat-label>Nombre de personnes</mat-label>
+                    <input matInput placeholder="Enrer le Nombre des personnes " autocomplete="off" #fondovalor
+                        formControlName="name" onlyNumber>
+                </mat-form-field>
+                </div>
+
+                </div>
+            </form>
+                
+            <div fxLayout="row" fxLayoutAlign="center center" class="p-2">       
+                <button mat-raised-button color="warn" class="uppercase mx-1" (click)="search()" >Rechercher</button>
+                <button mat-raised-button color="secondary" class="uppercase mx-1" (click)="vider()">vider</button>
+                <button *ngIf="!vertical" mat-raised-button color="primary" class="uppercase mx-1" [routerLink]="['/properties']" (click)="showMore = !showMore">
+                   Avancer
+                  </button>      
+              </div>
+
+        </mat-card>
+
     </div>
-    
-    <div class="theme-container"> 
+
+    <div class="theme-container">
 
         <div fxLayout="row wrap" class="properties-wrapper">
-            
-            <div fxFlex="100" fxLayoutAlign="start start" class="p-2"> 
+
+            <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
                 <mat-chip-list [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
                     <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
                         {{ pagination?.total }} found
-                    </mat-chip> 
+                    </mat-chip>
                 </mat-chip-list>
-                <app-properties-search-results-filters 
-                    [searchFields]="searchFields" 
+                <app-properties-search-results-filters [searchFields]="searchFields"
                     (onRemoveSearchField)="removeSearchField($event)">
-                </app-properties-search-results-filters>                 
+                </app-properties-search-results-filters>
             </div>
-            <div fxFlex="100" class="p-2">                
-                <app-properties-toolbar [isHomePage]="true" 
-                                        (onChangeCount)="changeCount($event)"
-                                        (onChangeSorting)="changeSorting($event)"
-                                        (onChangeViewType)="changeViewType($event)"></app-properties-toolbar>
+            <div fxFlex="100" class="p-2">
+                <app-properties-toolbar [isHomePage]="true" (onChangeCount)="changeCount($event)"
+                    (onChangeSorting)="changeSorting($event)" (onChangeViewType)="changeViewType($event)">
+                </app-properties-toolbar>
             </div>
-            <div *ngFor="let property of properties" [fxFlex]="(viewType=='grid') ? viewCol : 100" class="item">                         
-                <app-property-item [property]="property" [viewType]="viewType" [viewColChanged]="viewCol"></app-property-item>
+            <div *ngFor="let property of properties" [fxFlex]="(viewType=='grid') ? viewCol : 100" class="item">
+                <app-property-item [property]="property" [viewType]="viewType" [viewColChanged]="viewCol">
+                </app-property-item>
             </div>
-            <div *ngIf="properties?.length" fxFlex="100" fxLayoutAlign="center center" class="p-2 mt-2">                
-                <app-load-more [step]="2"></app-load-more> 
+            <div *ngIf="properties?.length" fxFlex="100" fxLayoutAlign="center center" class="p-2 mt-2">
+                <app-load-more [step]="2"></app-load-more>
             </div>
 
-            <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200">                
+            <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200">
                 <mat-spinner *ngIf="!message"></mat-spinner>
                 <mat-chip-list *ngIf="message">
                     <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
                         {{message}}
-                    </mat-chip> 
-                </mat-chip-list> 
+                    </mat-chip>
+                </mat-chip-list>
             </div>
 
         </div>
 
-        
+
     </div>
 </div>
 
@@ -94,14 +124,14 @@
 
 <app-our-services></app-our-services>
 
-<app-testimonials></app-testimonials> 
+<app-testimonials></app-testimonials>
 
-<app-hot-offer-today [propertyId]="4"></app-hot-offer-today> 
+<app-hot-offer-today [propertyId]="4"></app-hot-offer-today>
 
 <app-featured-properties [properties]="featuredProperties"></app-featured-properties>
 
 <app-our-agents></app-our-agents>
-      
+
 <app-clients></app-clients>
 
 <app-get-in-touch></app-get-in-touch>

@@ -52,6 +52,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 
 
+
 export function tokenGetter() {
   return  localStorage.getItem("jwt");  
 }
@@ -117,6 +118,7 @@ export function tokenGetter() {
     AppSettings,
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true },
+   
 
     
   ],
