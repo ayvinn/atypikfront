@@ -8,21 +8,181 @@
 <div class="px-3"> 
     
   <div class="theme-container">  
-
     <mat-sidenav-container class="all-properties mt-3"> 
       <mat-sidenav #sidenav [autoFocus]="false" [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="search-sidenav">         
         <mat-card [perfectScrollbar]="psConfig"> 
           <button fxHide="false" fxHide.gt-xs mat-icon-button (click)="sidenav.toggle()">
               <mat-icon color="accent">close</mat-icon>
           </button>
-          <app-properties-search 
+        <!--  <app-properties-search 
               [variant]="settings.searchPanelVariant"
               [vertical]="true"
               [searchOnBtnClick]="settings.searchOnBtnClick"              
               [removedSearchField]="removedSearchField" 
               (onSearchChange)="searchChanged($event)"
               (onSearchClick)="searchClicked()">
-          </app-properties-search>
+          </app-properties-search>-->
+          <form [formGroup]="form" class="search-wrapper" [ngClass]="'variant-'+variant" (ngSubmit)="search()" *ngIf="form" >
+
+            <div [fxLayout]="(vertical) ? 'column' : 'row wrap'"> 
+        
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>Catégorie du bien</mat-label> 
+                        <mat-select placeholder="Selectioner la catégorie" formControlName="propertyType"  multiple >
+                            <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType.id" >
+                                {{propertyType.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+        
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Type du bien</mat-label>
+                        <mat-select placeholder="Selectionner le type " formControlName="propertyStatus"  multiple >
+                            <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus.id">
+                                {{propertyStatus.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>        
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                    <mat-form-field appearance="outline" >
+                        <mat-label>Enter la date </mat-label>
+                        <mat-date-range-input [rangePicker]="picker">
+                            <input matStartDate placeholder="Date d'arriver" #dateRangeStart formControlName="datedepart">
+                            <input matEndDate placeholder="Date de depart" #dateRangeEnd formControlName="datearrive"
+                                (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                        </mat-date-range-input>
+                        
+                        <mat-datepicker-toggle style="margin-left: 40%;" matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+                    </div>
+
+                <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="price">
+        
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                        <div fxFlex="45">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{(variant == 1) ? 'Budget Min' : 'Budget Min'}}</mat-label>
+                                <input matInput autocomplete="off" placeholder="From" formControlName="from" type="text" onlyNumber>                  
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="10" class="text-center" [class.pt-2]="variant == 2">
+                            <mat-icon class="text-muted">remove</mat-icon>
+                        </div>
+                        <div fxFlex="45">
+                            <mat-form-field appearance="outline">
+                                <mat-label>{{(variant == 1) ? 'Budget Max' : 'Budget Max'}}</mat-label>
+                                <input matInput autocomplete="off" placeholder="To" formControlName="to" type="text" onlyNumber>                  
+                            </mat-form-field>
+                        </div>
+                    </div> 
+        
+                </div>          
+        
+                
+                <div  [fxLayout]="(vertical) ? 'column' : 'row wrap'" class="w-100">
+        
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">                         
+                        <mat-form-field appearance="outline">
+                            <mat-label>Ville</mat-label>
+                            <mat-select placeholder="Selectionner une ville" formControlName="city" >
+                                <mat-option *ngFor="let city of cities" [value]="city.name">
+                                    {{city.name}}
+                                </mat-option>
+                            </mat-select> 
+                        </mat-form-field>
+                    </div>
+        
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre de perssone</mat-label>
+                            <input matInput placeholder="exp. 2" autocomplete="off" formControlName="zipCode">                  
+                        </mat-form-field>
+                    </div>
+        
+
+            
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bedrooms">
+            
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{(variant == 1) ? 'Chambres' : 'Chambres'}}</mat-label>
+                                    <mat-select placeholder="Nombre de chambres" formControlName="from">
+                                        <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
+                                            {{number}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                           
+                     
+                        </div> 
+            
+                    </div> 
+            
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="bathrooms">
+            
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex="100">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{(variant == 1) ? 'Douches' : 'Douches'}}</mat-label>
+                                    <mat-select placeholder="Nombre de Douches" formControlName="from">
+                                        <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
+                                            {{number}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div> 
+            
+                    </div> 
+        
+                    <div fxFlex="100" fxFlex.gt-sm="33.3" fxFlex.sm="50" class="p-2" formGroupName="garages">
+            
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+                            <div fxFlex="100">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{(variant == 1) ? 'Lits' : 'Lits'}}</mat-label>
+                                    <mat-select placeholder="Nombre de lits" formControlName="from">
+                                        <mat-option *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]" [value]="number">
+                                            {{number}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div> 
+            
+                    </div> 
+                   
+        
+                    <div fxFlex="100" class="mb-2"> 
+                        <p class="uppercase m-2 fw-500">Caractéristiques</p> 
+                        <div formArrayName="features" fxLayout="row wrap">
+                            <div [formGroupName]="i" *ngFor="let control of form.get('features')['controls']; index as i"   class="p-2">
+                                <mat-checkbox formControlName="selected" (change)="onChange($event)"  [value]="features[i].id ">{{features[i].name }}</mat-checkbox>                         
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+        
+        
+            </div>
+          
+        
+            <div fxLayout="column" fxLayoutAlign="center center" class="p-2" >
+                <button type="submit"  mat-raised-button color="primary" class="search-btn mx-1" ><mat-icon>search</mat-icon> Chercher</button>       
+              <button mat-raised-button color="warn" class="uppercase mx-1" style="margin :3%" (click)="vider()">Vider</button>
+
+            </div>
+            
+        
+        </form>
+        
         </mat-card> 
       </mat-sidenav>
 

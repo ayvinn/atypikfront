@@ -97,8 +97,6 @@ export class SubmitPropertyComponent implements OnInit {
  
 }     
 submitstep4(){
-  var json = Object.assign({}, this.feature);
-
   this.accomodationservice.putAcommodation(this.id,{equipments :this.feature,
   step : 5
 }).subscribe(res => {
