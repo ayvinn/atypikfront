@@ -13,26 +13,24 @@ export class AccountComponent implements OnInit {
   };
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
-  public links = [ 
-    { name: 'Profil', href: 'profile', icon: 'person' },  
-    { name: 'Mes reservations', href: 'bookings', icon: 'book' }, 
-    { name: 'Logements', href: 'logements', icon: 'home' },   
-    { name: 'Paramètres', href: 'custom', icon: 'settings' },    
-    { name: 'Mes logements', href: 'my-properties', icon: 'view_list' },
-    { name: 'Favories', href: 'favorites', icon: 'favorite' }, 
-    { name: 'Gérer les équipements', href: 'equipment', icon: 'fitbit' },
-    { name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' }, 
-    { name: 'Gérer les comptes', href: 'users', icon: 'group'}, 
-    { name: 'Se déconecter', href: '/login', icon: 'power_settings_new' }, 
-    
-     
-  ]; 
+  public links = [  ]; 
   constructor(public router:Router) { }
 
   ngOnInit() {
     if(window.innerWidth < 960){
       this.sidenavOpen = false;
     };
+
+    this.links.push({ name: 'Profil', href: 'profile', icon: 'person' });
+    this.links.push({ name: 'Mes reservations', href: 'bookings', icon: 'book' });
+   if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Logements', href: 'logements', icon: 'home' });
+   if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Paramètres', href: 'custom', icon: 'settings' });
+    this.links.push({ name: 'Mes logements', href: 'my-properties', icon: 'view_list' });
+    this.links.push({ name: 'Favories', href: 'favorites', icon: 'favorite' });
+    if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Gérer les équipements', href: 'equipment', icon: 'fitbit' });
+    this.links.push({ name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' });
+    if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Gérer les comptes', href: 'users', icon: 'group'});
+    this.links.push({ name: 'Se déconecter', href: '/login', icon: 'power_settings_new' });
   }
 
   @HostListener('window:resize')
