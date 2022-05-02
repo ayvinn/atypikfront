@@ -40,6 +40,9 @@ export class PropertyComponent implements OnInit {
   public propertyId:any;
   public mortgageForm: FormGroup;
   public data:any;
+  data2: any[];
+  public start = [];
+  public end = [];
   public days = 0;
   public name = '';
   public total = 0;
@@ -68,6 +71,19 @@ export class PropertyComponent implements OnInit {
   getdays(){
     return this.days;
   }
+
+  myFilter = (d: Date): boolean => {
+
+    for (let index = 0; index < this.start.length; index++) {
+      const start = this.start[index].start;
+      const end = this.start[index].end;
+      if (d >= start && d <= end) return false;
+    }
+
+    return true;
+
+  }
+
   gettotal(){
     this.total = this.days*this.data.price;
     return this.total;
@@ -106,6 +122,11 @@ export class PropertyComponent implements OnInit {
       this.propertyId = params['id'];
     });
     console.log(this.propertyId);
+
+    const data2 = await this.accomodationservice.getAccommodationHost(this.propertyId).toPromise();
+    data2['unavailableSlots'].forEach(element => {
+      this.start.push({ start: new Date(element.start), end: new Date(element.end) });
+    });
     
 
     const data = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
@@ -180,6 +201,7 @@ export class PropertyComponent implements OnInit {
       }
     };
 
+    
     this.config2 = {
       observer: false,
       slidesPerView: 4,

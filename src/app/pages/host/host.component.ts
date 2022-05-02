@@ -53,9 +53,6 @@ export class HostComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    /* this.appService.getProperties().subscribe(res => {
-       this.initDataSource(res);
-     });    */
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.propertyId = params['id'];
     });
@@ -209,12 +206,6 @@ get formRow() {
   dateClass() {
 
     return (date: Date): MatCalendarCellCssClasses => {
-      /* const highlightDate = this.datesToHighlight
-         .map(strDate => new Date(strDate))
-         .some(d => d.getDate() === date.getDate() && d.getMonth() === date.getMonth() && d.getFullYear() === date.getFullYear());
-       
-       return highlightDate ? 'special-date' : '';
-     };*/
 
       for (let index = 0; index < this.end.length; index++) {
         const start = this.end[index].start;
@@ -255,8 +246,4 @@ get formRow() {
    // this.parameters = await this.accomodationservice.getAccommodationBookingsParameters(this.propertyId).toPromise();
   }
 
-  /*onPaginateChange(event){
-    this.loaddata(JSON.stringify(event.pageIndex));
-    //alert(JSON.stringify("Current page index: " + event.pageIndex));
-  }*/
 }
