@@ -5,6 +5,7 @@ import { AppService } from 'src/app/app.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-payment',
@@ -15,7 +16,8 @@ export class PaymentComponent implements OnInit {
 
   form: FormGroup;
   public propertyStatuses = [];
-  constructor(  @Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<PaymentComponent>,public reservationservice:ReservationsService,private formBuilder: FormBuilder,public appService:AppService ) { }
+  constructor(  @Inject(MAT_DIALOG_DATA) public data: any,public dialogRef: MatDialogRef<PaymentComponent>,public reservationservice:ReservationsService,private formBuilder: FormBuilder,public appService:AppService,
+   public snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -39,6 +41,11 @@ export class PaymentComponent implements OnInit {
     console.log('Ajouter :',values);
     this.reservationservice.postReservations(values).subscribe(res => {
       console.log('Ajouter : ', res);
+      if (res) {
+        this.snackBar.open("Success la reservation est en attente d'approvement !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       this.onNoClick();
     },
       err => {

@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         if(data){
           const token = (<any>data).token; 
           this.etat=true ; //Categorie Admin
-          localStorage.setItem('isadmin', (<any>data).isAdmin );
+          localStorage.setItem('isadmin', (<any>data).isAdmin);
           this.invalidlogin =false;
           localStorage.setItem('jwt', token );
           localStorage.setItem('nom', this.loginForm.value.username );
