@@ -19,6 +19,8 @@ import { BookingsComponent } from './bookings/bookings.component';
 import { AddCommentComponent } from './bookings/add-comment/add-comment.component';
 import { UsersComponent } from './users/users.component';
 import { EditUsersComponent } from './users/edit-users/edit-users.component';
+import { UploadTaskComponent } from 'src/app/shared/upload-manager/upload-task/upload-task.component';
+import { UploadManagerComponent } from 'src/app/shared/upload-manager/upload-manager/upload-manager.component';
 
 export const routes = [
   { 
@@ -41,12 +43,12 @@ export const routes = [
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    DashboardComponent,UploadManagerComponent,
     AccountComponent,  
     MyPropertiesComponent, 
     FavoritesComponent, 
     ProfileComponent, 
-    EditPropertyComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent, AddCommentComponent, UsersComponent, EditUsersComponent
+    EditPropertyComponent,UploadTaskComponent, LogementsComponent, CustomFieldsComponent, AddCustomFieldComponent, EquipmentsComponent, AddEquipmentComponent, BookingsComponent, AddCommentComponent, UsersComponent, EditUsersComponent
   ],
   imports: [
     CommonModule,
