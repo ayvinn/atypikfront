@@ -32,8 +32,8 @@ export class AccommodationsService {
   getAccommodationsStars(): Observable<any[]>{
     return this.http.get<any[]>(`${this.url}/stars`);
   }
-  getAccommodation(id){
-    return this.http.get(this.url+"/"+id);
+  getAccommodation(id): Observable<any[]>{
+    return this.http.get<any[]>(this.url+"/"+id);
   }
   putAcommodation(id,accommodationUpdate) {
     return this.http.put(`${this.url}/${id}`, accommodationUpdate);
