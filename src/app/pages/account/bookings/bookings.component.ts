@@ -73,7 +73,7 @@ export class BookingsComponent implements OnInit {
     //alert(JSON.stringify("Current page index: " + event.pageIndex));
   }
   openDialog(id): void {
-
+    localStorage.setItem('propertyId',id)
     const dialogRef = this.dialog.open(AddCommentComponent, {
       width: '800px',
       data :{
