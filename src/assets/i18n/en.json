@@ -9,7 +9,7 @@
   "FAVORITES": "Favoris",
   "COMPARE": "Comparer",
   "EDIT_PROFILE": "Modifier le profil",
-  "LOCK_SCREEN": "Lock screen",
+  "LOCK_SCREEN": "Verouiller la session",
   "HELP": "Aide",
   "NAV": {  
     "HOME": "Acceuil", 
@@ -19,11 +19,11 @@
     "AGENT": "Agent", 
     "FAQS": "Faqs",
     "PRICING": "Tarification",
-    "TERMS_CONDITIONS": "Terms & Conditions",
+    "TERMS_CONDITIONS": "Termes et Conditions",
     "LANDING": "Landing", 
     "404_PAGE": "404 Page",
     "OTHERS": "Autres",
-    "EXTERNAL_LINK": "External Link",
+    "EXTERNAL_LINK": "Lien Externe",
     "MENU_ITEM": "Menu Item",
     "CONTACT": "Contact",
     "ABOUT_US": "À propos",
@@ -34,13 +34,13 @@
     "SAVE": "Enregistrer",
     "SUBMIT": "Valider",
     "CANCEL": "Annuler",
-    "UPLOAD": "Upload",
+    "UPLOAD": "Uploader",
     "REMOVE": "Supprimmer",
     "YES": "Oui",
     "NO": "Non",
     "OK": "OK",
     "CLEAR": "Effacer",
-    "ADVANCED": "Advanced",
+    "ADVANCED": "Avancée",
     "HIDE": "Cacher"
   },
   "MESSAGE": {
@@ -48,6 +48,6 @@
     "FILE_SIZE": "The file size cannot exceed {{param}} kb."
   },
   "FIELD": { 
-    "NAME": "Name" 
+    "NAME": "Nom" 
   }
 }
