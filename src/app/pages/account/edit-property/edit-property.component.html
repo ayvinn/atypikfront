@@ -2,17 +2,17 @@
 
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>    
     <mat-expansion-panel-header>
-      <mat-panel-title>Basic</mat-panel-title> 
+      <mat-panel-title>Basique</mat-panel-title> 
     </mat-expansion-panel-header>
     <form formGroupName="basic" fxLayout="row wrap">
 
         <div fxFlex="100" class="p-3">
-          <h1 class="fw-500 text-center">Basic</h1>
+          <h1 class="fw-500 text-center">Basique</h1>
         </div>
                 
         <div fxFlex="100" class="px-2">
           <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Title</mat-label>
+              <mat-label>Titre</mat-label>
               <input matInput placeholder="Title" formControlName="title" required autocomplete="off">
               <mat-error *ngIf="submitForm.get('basic')['controls'].title.errors?.required">Title is required</mat-error>
           </mat-form-field>
@@ -27,7 +27,7 @@
     
         <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
           <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Price ($)</mat-label>
+              <mat-label>Prix ($)</mat-label>
               <input matInput placeholder="Enter sale or rent price" formControlName="priceDollar" autocomplete="off"> 
           </mat-form-field>
         </div> 
@@ -41,7 +41,7 @@
     
         <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
           <mat-form-field appearance="outline" class="w-100">
-              <mat-label>type du bien</mat-label> 
+              <mat-label>Type du bien</mat-label> 
               <mat-select placeholder="Select Property Type" formControlName="propertyType" required>
                   <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                       {{propertyType.name}}
