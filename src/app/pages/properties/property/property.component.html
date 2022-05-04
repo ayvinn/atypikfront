@@ -85,6 +85,8 @@
                              
                             <p>{{data.price  | currency : 'EUR' : 'symbol' : '1.0'}} x {{getdays()}} Nuits</p>
                             <hr class="solid">
+                            <p style="margin-top: 2%;"> TVA : {{gettva()}}</p>
+                            <hr class="solid">
                             <p style="font-weight: bold;margin-top: 2%;"> TOTAL : {{gettotal()}}</p>
                             <div class="text-center">
                                 <button mat-raised-button color="accent" type="submit" (click)="openDialog()">Réserver</button>

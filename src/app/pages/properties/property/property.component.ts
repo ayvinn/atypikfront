@@ -83,10 +83,15 @@ export class PropertyComponent implements OnInit {
     return true;
 
   }
+  gettva(){
+   var a = this.days*this.data.price;
+    a = a*1.1;
+    return a- (this.days*this.data.price) ;
+  }
 
   gettotal(){
     this.total = this.days*this.data.price;
-    return this.total;
+    return this.total + this.gettva();
   }
   openDialog(): void {
     console.log(this.getFotoFondo());
