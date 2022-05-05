@@ -37,10 +37,10 @@ export const verticalMenuItems = [
     new Menu (50, '404 Page', '/404', null, null, false, 40),
     new Menu (60, 'NAV.CONTACT', '/contact', null, null, false, 0),  
     new Menu (70, 'NAV.ABOUT_US', '/about', null, null, false, 0),    
-    new Menu (140, 'Level 1', null, null, null, true, 0),
+   // new Menu (140, 'Level 1', null, null, null, true, 0),
     new Menu (141, 'Level 2', null, null, null, true, 140),
     new Menu (142, 'Level 3', null, null, null, true, 141),
     new Menu (143, 'Level 4', null, null, null, true, 142),
-    new Menu (144, 'Level 5', null, 'http://themeseason.com', null, false, 143),
-    new Menu (200, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 0)
+   // new Menu (144, 'Level 5', null, 'http://themeseason.com', null, false, 143),
+    //new Menu (200, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 0)
 ]
