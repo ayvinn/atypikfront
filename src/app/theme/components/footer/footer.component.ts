@@ -10,7 +10,8 @@ import { emailValidator } from '../../utils/app-validators';
 export class FooterComponent implements OnInit {
   public lat: number = 48.844100;
   public lng: number = 2.431290;
-  public zoom: number = 12; 
+  public zoom: number = 5; 
+  rooms = [];
   public mapStyles:any = [
     {
         "featureType": "all",
@@ -273,6 +274,11 @@ export class FooterComponent implements OnInit {
   constructor(public formBuilder: FormBuilder) { }
 
   ngOnInit() {
+      this.rooms.push({lat:48.8588897,lng:2.320041});
+      this.rooms.push({lat:45.7578137,lng:4.8320114});
+      this.rooms.push({lat:44.841225,lng:-0.5800364});
+      this.rooms.push({lat:43.2961743,lng:5.3699525});
+      this.rooms.push({lat:50.6365654,lng:3.0635282});
     this.feedbackForm = this.formBuilder.group({ 
       email: ['', Validators.compose([Validators.required, emailValidator])], 
       message: ['', Validators.required]
