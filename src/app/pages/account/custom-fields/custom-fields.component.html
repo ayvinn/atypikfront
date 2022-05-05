@@ -1,7 +1,7 @@
 <a mat-raised-button color="primary" style="margin:1%;" (click)="openDialog()">Ajouter</a>
 <br>
 <mat-form-field appearance="outline" class="w-100">
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter properties" autocomplete="off">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrer les proprietées" autocomplete="off">
   </mat-form-field>
   <div class="table-wrapper"> 
       <table mat-table [dataSource]="dataSource" matSort class="w-100">
