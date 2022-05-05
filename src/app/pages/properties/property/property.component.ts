@@ -139,7 +139,7 @@ export class PropertyComponent implements OnInit {
     });
     console.log(this.propertyId);
 
-    const data2 = await this.accomodationservice.getAccommodationHost(this.propertyId).toPromise();
+    const data2 = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
     data2['unavailableSlots'].forEach(element => {
       this.start.push({ start: new Date(element.start), end: new Date(element.end) });
     });

@@ -92,7 +92,9 @@ export class PropertiesComponent implements OnInit {
     }
   }
   
-
+   Count(){
+    return this.properties.length;
+  }
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
     console.log(dateRangeStart.value);
     console.log(dateRangeEnd.value);

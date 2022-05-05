@@ -195,6 +195,9 @@ export class HomeComponent implements OnInit {
     this.contactForm.reset();
     this.search();
   }
+  Count(){
+    return this.properties.length;
+  }
   search() {
     //console.log('get properties by : ', this.searchFields);  
     this.properties = [];

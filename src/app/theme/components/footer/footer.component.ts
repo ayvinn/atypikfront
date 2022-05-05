@@ -10,7 +10,7 @@ import { emailValidator } from '../../utils/app-validators';
 export class FooterComponent implements OnInit {
   public lat: number = 48.844100;
   public lng: number = 2.431290;
-  public zoom: number = 5; 
+  public zoom: number = 4; 
   rooms = [];
   public mapStyles:any = [
     {
