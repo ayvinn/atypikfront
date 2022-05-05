@@ -36,7 +36,7 @@ export class HostComponent implements OnInit {
   todayDate: Date = new Date();
   displayedColumns: string[] = ['Arrive', 'Departure', 'name', 'actions'];
   displayedColumns2: string[] = ['Arrive', 'Departure', 'name', 'Status'];
-  satuts: string[] = ['En attente', 'Validé', 'Refusé'];
+  satuts: string[] = ['En attente','Refusé', 'Validé'];
   public start = [];
   public end = [];
   public parameters: any = null;
@@ -173,14 +173,14 @@ get formRow() {
   }
 
   validatereservation(id) {
-    this.reservationservice.putReservations(id, { bookingStatus: 1 }).subscribe(res => {
+    this.reservationservice.putReservations(id, { bookingStatus: 2 }).subscribe(res => {
       this.ngOnInit();
 
     })
   }
 
   cancelreservation(id) {
-    this.reservationservice.putReservations(id, { bookingStatus: 2 }).subscribe(res => {
+    this.reservationservice.putReservations(id, { bookingStatus: 1 }).subscribe(res => {
       this.ngOnInit();
 
     })

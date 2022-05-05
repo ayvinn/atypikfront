@@ -17,7 +17,7 @@
     <div fxShow="false" fxShow.gt-xs>
         <!-- <span *ngIf="isHomePage"> -->
             <a mat-button [matMenuTriggerFor]="countsMenu" #countsMenuTrigger="matMenuTrigger">
-                Show {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                Afficher  {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
             </a>
             <mat-menu #countsMenu="matMenu" xPosition="before" overlapTrigger="true">
                 <span (mouseleave)="countsMenuTrigger.closeMenu()">
@@ -30,11 +30,11 @@
         <button mat-icon-button (click)="changeViewType('list', 100)">
             <mat-icon>view_list</mat-icon>
         </button>
-        <button mat-icon-button (click)="changeViewType('grid', 50)">
+        <!--<button mat-icon-button (click)="changeViewType('grid', 50)">
             <svg class="mat-icon mat-icon-sm" viewBox="0 0 25 25">
                 <path d="M3,11H11V3H3M3,21H11V13H3M13,21H21V13H13M13,3V11H21V3" />
             </svg>
-        </button>
+        </button>-->
         <button *ngIf="!isHomePage" mat-icon-button fxShow="false" fxShow.gt-md (click)="changeViewType('grid', 33.3)">
             <mat-icon>view_module</mat-icon>
         </button>

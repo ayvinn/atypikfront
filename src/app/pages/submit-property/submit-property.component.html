@@ -5,7 +5,7 @@
   
         <mat-horizontal-stepper #horizontalStepper linear="false" class="submit-property" (selectionChange)="onSelectionChange($event)">
 
-            <mat-step [stepControl]="submitForm.get('basic')" label="Basic">
+            <mat-step [stepControl]="submitForm.get('basic')" label="Basique">
               <div class="step-content">
 
                   <form formGroupName="basic" fxLayout="row wrap">
@@ -69,7 +69,7 @@
               </div>
             </mat-step>
             
-            <mat-step [stepControl]="submitForm.get('address')" label="Address">
+            <mat-step [stepControl]="submitForm.get('address')" label="Addresse">
               <div class="step-content">
 
                   <form formGroupName="address" fxLayout="row wrap">

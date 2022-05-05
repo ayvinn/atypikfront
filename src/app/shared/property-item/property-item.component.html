@@ -13,7 +13,7 @@
             <div class="swiper-container" [swiper]="config">
                 <div class="swiper-wrapper"> 
                     <div *ngFor="let image of property.gallery" class="swiper-slide">
-                        <img [attr.data-src]="image.medium" class="swiper-lazy">
+                        <img [attr.data-src]="image.medium" class="swiper-lazy" alt="image.id">
                         <div class="swiper-lazy-preloader"></div>
                     </div> 
                 </div>  
@@ -47,14 +47,14 @@
 
                 <div fxLayout="row" fxLayoutAlign="space-between center">
                     <div>
-                        <h3 *ngIf="settings.currency == 'USD'" class="primary-color price">
+                        <h2 *ngIf="settings.currency == 'USD'" class="primary-color price">
                             <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /mois</span>
-                        </h3>
-                        <h3 *ngIf="settings.currency == 'EUR'" class="primary-color price">
+                        </h2>
+                        <h2 *ngIf="settings.currency == 'EUR'" class="primary-color price">
                             <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
                             <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /mois</span>
-                        </h3>
+                        </h2>
                     </div>
                     <app-rating [ratingsCount]="property.ratingsCount" [ratingsValue]="property.ratingsValue"></app-rating>
                 </div>

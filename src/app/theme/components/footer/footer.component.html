@@ -45,16 +45,16 @@
                     <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45" ngClass.xs="pt-5"> 
                         <h2 class="uppercase">RETOUR D'INFORMATIONS</h2>
                         <p class="desc">Nous avons besoin de vos feedbacks sur tout</p>
-                        <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackFormSubmit(feedbackForm.value)" class="custom-form pt-2">                            
+                        <form action="https://api.sheetmonkey.io/form/3Vgpx6vhNDvKBJTFNkXSis" method="POST" class="custom-form pt-2">                            
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>E-mail</mat-label> 
-                                <input matInput autocomplete="off" formControlName="email">
+                                <input matInput autocomplete="off" formControlName="email" name ="email">
                                 <mat-error *ngIf="feedbackForm.controls.email.errors?.required">Adresse email est requis</mat-error>
                                 <mat-error *ngIf="feedbackForm.controls.email.hasError('invalidEmail')">Votre adresse email est invalide</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Un message pour nous</mat-label> 
-                                <textarea matInput formControlName="message" rows="6"></textarea> 
+                                <textarea matInput formControlName="message" rows="6" name = "message"></textarea> 
                                 <mat-error *ngIf="feedbackForm.controls.message.errors?.required">Message est requis</mat-error>
                             </mat-form-field>
                             <div class="w-100 text-center">
@@ -65,17 +65,17 @@
  
                     <div fxFlex="100" fxFlex.gt-sm="30" ngClass.lt-md="pt-5"> 
                         <h2 class="uppercase mb-3">NOTRE EMPLACEMENT</h2>
-                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles">
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles" alt="dfdf">
                             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>
                     </div>
-                </div> 
+                </div>  
               
             </div>
             
             <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="copyright">
                 <p ngClass.xs="mt-1">Copyright © 2022 Tous les droits sont réservés</p>
-                <p>Développer par<a mat-button href="https://www.institut-f2i.fr/" target="_blank">Digital School</a></p>
+                <p>Développer par<a mat-button href="https://www.institut-f2i.fr/" target="_blank">Dev Tech</a></p>
             </div>
 
         </div>

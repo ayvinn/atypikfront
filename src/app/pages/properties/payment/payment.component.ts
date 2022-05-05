@@ -6,6 +6,7 @@ import { ReservationsService } from 'src/app/services/reservations.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { formatDate } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AccommodationsService } from 'src/app/services/accommodations.service';
 
 @Component({
   selector: 'app-payment',
@@ -39,6 +40,8 @@ export class PaymentComponent implements OnInit {
                      month:last.getMonth()+1,year:last.getFullYear()
     };
     console.log('Ajouter :',values);
+    var start=[];
+    start.push({start :this.data.datestart,end:this.data.dateend});
     this.reservationservice.postReservations(values).subscribe(res => {
       console.log('Ajouter : ', res);
       if (res) {

@@ -31,25 +31,25 @@
                         <mat-icon color="primary" class="mat-icon-lg">mail_outline</mat-icon>
                         <h3 class="primary-color py-1">E-MAIL :</h3>
                         <span>contact@atypikhouse.com</span>
-                        <span>info@atypikhouse.com</span>
+                        <span> !!! Attention ceci est un projet etudiant !!! </span>
                     </div>
                 </div>
                 <div class="divider w-100 mt-3"></div>
                 <h3 class="w-100 text-center py-3">NOUS CONTACTER
                 </h3>
                 
-                <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)" fxLayout="row wrap">
+                <form action="https://api.sheetmonkey.io/form/bQQGWAtk6gsPUiTNxht8NX" method="POST" fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Nom</mat-label>
-                            <input matInput placeholder="Name" formControlName="name" required>
+                            <input matInput placeholder="Name" formControlName="name" name="name" required>
                             <mat-error *ngIf="contactForm.controls.name.errors?.required">Le nom est requis</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email" formControlName="email" required>
+                            <input matInput placeholder="Email" formControlName="email" name="email" required>
                             <mat-error *ngIf="contactForm.controls.email.errors?.required">L'adresse e-mail est requise</mat-error>
                             <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">L'adresse e-mail invalide</mat-error>
                         </mat-form-field>
@@ -57,14 +57,14 @@
                     <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Téléphone</mat-label>
-                            <input matInput placeholder="Phone" formControlName="phone" required>
+                            <input matInput placeholder="Phone" formControlName="phone" name="phone" required>
                             <mat-error *ngIf="contactForm.controls.phone.errors?.required">Le téléphone est requis</mat-error>
                         </mat-form-field>
                     </div>
                     <div fxFlex="100" class="px-1 mt-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Message</mat-label> 
-                            <textarea matInput placeholder="Message" formControlName="message" required rows="7"></textarea> 
+                            <textarea matInput placeholder="Message" formControlName="message"  name="message"  required rows="7"></textarea> 
                             <mat-error *ngIf="contactForm.controls.message.errors?.required">Un message est requis</mat-error>
                         </mat-form-field>
                     </div> 

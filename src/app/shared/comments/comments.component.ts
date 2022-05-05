@@ -46,17 +46,21 @@ export class CommentsComponent implements OnInit {
     { title: 'Very Satisfied', icon: 'sentiment_very_satisfied', percentage: 100, selected: false }
   ];
   private sub: any;
+  public isadmin = 'false';
   private propertyId: any;
   constructor(public fb: FormBuilder,
     private activatedRoute: ActivatedRoute
     ,public router: Router,public accommodationsservice :AccommodationsService,private _snackBar: MatSnackBar) { }
   public comments = [];
   async ngOnInit() {
+    
     this.sub = this.activatedRoute.params.subscribe(params => {   
       this.propertyId = params['id'];
     });
-    const data = await this.accommodationsservice.getAccommodation(parseInt(this.propertyId)).toPromise();
-    this.comments = data['comments'];
+    this.isadmin = localStorage.getItem('isadmin');
+    console.log(this.propertyId);
+    if(this.propertyId!=null) {const data = await this.accommodationsservice.getAccommodation(parseInt(this.propertyId)).toPromise();
+    this.comments = data['comments'];}
     this.commentForm = this.fb.group({ 
       review: [null, Validators.required],            
       rate: null,
@@ -74,13 +78,13 @@ export class CommentsComponent implements OnInit {
   public onCommentFormSubmit(values:any){
     if (this.commentForm.valid) { 
       console.log(values);
-      var id = parseInt(this.propertyId);
+      var id = parseInt(localStorage.getItem('propertyId'));
       
         this.accommodationsservice.postAccommodationComment({accommodationId:id,environmentalScore:values.rate
         ,content:values.review,cleanlinessScore :0 ,serviceScore:0, communicationScore:0, photos:[]
       }).subscribe(
-        (data) => this.openSnackBar('Commentaire ajouter avc success','X'),
-      (err) => this.openSnackBar(err.error.message,'X')
+        (data) => this.openSnackBar('Commentaire ajouter avec success !','x'),
+      (err) => this.openSnackBar(err.error.message,'x')
 
       );
       
@@ -93,6 +97,10 @@ export class CommentsComponent implements OnInit {
     this.ratings.filter(r => r.selected = false);
     this.ratings.filter(r => r.percentage == rating.percentage)[0].selected = true;
     this.commentForm.controls.rate.setValue(rating.percentage);
+  }
+  remove(id){
+    this.accommodationsservice.deleteAcommodationComment(id).subscribe();
+    this.ngOnInit();
   }
 
 }
