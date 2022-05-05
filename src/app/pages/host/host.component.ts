@@ -41,6 +41,7 @@ export class HostComponent implements OnInit {
   displayedColumns2: string[] = ['Arrive', 'Departure', 'name', 'Status'];
   satuts: string[] = ['En attente','Refusé', 'Validé'];
   public start = [];
+  public datamessages =[];
   public end = [];
   public parameters: any = null;
   dataSource: MatTableDataSource<any>;
@@ -64,10 +65,10 @@ export class HostComponent implements OnInit {
     data['unavailableSlots'].forEach(element => {
       this.start.push({ start: new Date(element.start), end: new Date(element.end) });
     });
-    const messages = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
-    console.log(messages['nearby']);
-    messages['nearby'].forEach(element => {
-      this.messages.push({ name: element.name, message: element.description ,date : new Date(element['address'].city)});
+    this.datamessages = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
+    console.log(this.datamessages['nearby']);
+    this.datamessages['nearby'].forEach(element => {
+      this.messages.push({ id:element.id,name: element.name, message: element.description ,date : new Date(element['address'].city)});
     });
     this.count = 0;
     //  var event ;
@@ -272,5 +273,13 @@ get formRow() {
   async getparameters(){
    // this.parameters = await this.accomodationservice.getAccommodationBookingsParameters(this.propertyId).toPromise();
   }
-
+  remove(ids){
+    
+      this.datamessages['nearby'] = this.datamessages['nearby'].filter(({ id }) => id !== ids);
+      this.accomodationservice.putAcommodation(this.propertyId,{nearby:this.datamessages['nearby']}).subscribe();          
+      this.nearbyservice.deleteNearby(ids).subscribe();;
+      console.log(this.datamessages['nearby']);
+      this.messages =[];
+      this.ngOnInit();
+  }
 }

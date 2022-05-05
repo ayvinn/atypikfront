@@ -28,7 +28,7 @@ putNearby(id, putNearby) {
 }
 
 deleteNearby(id) {
-  return this.http.delete(this.url+"/Nearby/"+id);
+  return this.http.delete(this.url+"/"+id);
 }
 getNearbyComment(id){
   return this.http.get(this.url+"/"+id+"/comments/");
