@@ -134,6 +134,11 @@
         transform: rotate(360deg);
     }
 }
+@media (max-width: 600px) {
+    .md-card {
+      max-width: 300px !important;
+    }
+  }
 
 .back-to-top{
     position: fixed;

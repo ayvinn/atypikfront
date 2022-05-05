@@ -64,9 +64,9 @@
                     </div>
  
                     <div fxFlex="100" fxFlex.gt-sm="30" ngClass.lt-md="pt-5"> 
-                        <h2 class="uppercase mb-3">NOTRE EMPLACEMENT</h2>
+                        <h2 class="uppercase mb-3">Hébergements par régions</h2>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles" alt="dfdf">
-                            <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
+                            <agm-marker *ngFor="let data of rooms" [latitude]="data.lat" [longitude]="data.lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>
                     </div>
                 </div>  
