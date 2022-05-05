@@ -2,10 +2,10 @@
   <div class="theme-container">
 
     <div fxLayout="row" fxLayoutAlign="center center" class="my-3">
-        <mat-card [style.max-width.px]="500" class="md-card">
+        <mat-card [style.max-width.px]="340" class="md-card">
           <div fxLayout="column" fxLayoutAlign="center center" class="text-center">  
             <h1 class="uppercase">S'identifier</h1>  
-            <a mat-button routerLink="/register" color="accent" class="w-100">Vous n'avez pas de compte ? Inscivez-vous maintenant</a>    
+            <a mat-button routerLink="/register" color="accent" class="w-100">Pas de compte ? Inscivez-vous maintenant</a>    
           </div>
           <form [formGroup]="loginForm" (ngSubmit)="onLoginFormSubmit(loginForm.value)">
               <mat-form-field appearance="outline" class="w-100 mt-2">
