@@ -2,6 +2,7 @@ import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -51,7 +52,7 @@ export class HostComponent implements OnInit {
   datesToHighlight = ["2022-04-22T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-28T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-23T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-25T18:30:00.000Z"];
   data: any[];
   constructor(public appService: AppService, public accomodationservice: AccommodationsService, private activatedRoute: ActivatedRoute,
-    public reservationservice: ReservationsService,private fb: FormBuilder,public nearbyservice:NearbyService
+    public reservationservice: ReservationsService,private fb: FormBuilder,public nearbyservice:NearbyService,public snackBar:MatSnackBar
   ) { }
 
   async ngOnInit() {
@@ -135,7 +136,11 @@ submitparameters(){
   });
   this.accomodationservice.putAcommodation(this.propertyId,{accommodationFieldValues:data}).subscribe(res =>
     {
-      console.log(res);
+      if (res) {
+        this.snackBar.open("Champ ajouter !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
     }
   )
 }
@@ -180,13 +185,23 @@ get formRow() {
 
   validatereservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 2 }).subscribe(res => {
+      if (res) {
+        this.snackBar.open("Réservation valider !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       this.ngOnInit();
-
     })
   }
 
   cancelreservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 1 }).subscribe(res => {
+      if (res) {
+        this.snackBar.open("Reservation annuler !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
       this.ngOnInit();
 
     })
@@ -238,6 +253,12 @@ get formRow() {
         this.start.push({start:element.start,end:element.end})
       });  
       this.accomodationservice.putAcommodation(this.propertyId,{unavailableSlots:this.start}).subscribe( res =>{
+        if (res) {
+          this.snackBar.open("Planning Modifier !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+        }
+        else
+        this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
         this.ngOnInit()
         this.end = [];
       }
