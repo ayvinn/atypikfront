@@ -8,6 +8,7 @@ import { PropertyComponent } from './property/property.component';
 import { PaymentComponent } from './payment/payment.component';
 //import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
+import { ContactHostComponent } from './contact-host/contact-host.component';
 
 export const routes = [
   { path: '', component: PropertiesComponent, pathMatch: 'full' },
@@ -17,7 +18,7 @@ export const routes = [
 @NgModule({
   declarations: [
     PropertiesComponent, 
-    PropertyComponent, PaymentComponent,
+    PropertyComponent, PaymentComponent, ContactHostComponent,
     
   ],
   exports: [

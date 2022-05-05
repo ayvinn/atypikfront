@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
+import { NearbyService } from 'src/app/services/nearby.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -32,6 +33,7 @@ export class HostComponent implements OnInit {
   public sub;
   public propertyId: any;
   public submitForm:FormGroup; 
+  public messages  = [];
   public count = 0;
   todayDate: Date = new Date();
   displayedColumns: string[] = ['Arrive', 'Departure', 'name', 'actions'];
@@ -49,7 +51,7 @@ export class HostComponent implements OnInit {
   datesToHighlight = ["2022-04-22T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-28T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-23T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-25T18:30:00.000Z"];
   data: any[];
   constructor(public appService: AppService, public accomodationservice: AccommodationsService, private activatedRoute: ActivatedRoute,
-    public reservationservice: ReservationsService,private fb: FormBuilder,
+    public reservationservice: ReservationsService,private fb: FormBuilder,public nearbyservice:NearbyService
   ) { }
 
   async ngOnInit() {
@@ -61,7 +63,11 @@ export class HostComponent implements OnInit {
     data['unavailableSlots'].forEach(element => {
       this.start.push({ start: new Date(element.start), end: new Date(element.end) });
     });
-    
+    const messages = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
+    console.log(messages['nearby']);
+    messages['nearby'].forEach(element => {
+      this.messages.push({ name: element.name, message: element.description ,date : new Date(element['address'].city)});
+    });
     this.count = 0;
     //  var event ;
     //  event.pageIndex = 0;
