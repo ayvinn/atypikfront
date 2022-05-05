@@ -31,8 +31,11 @@ export class ProfileComponent implements OnInit {
     const values = {firstName: this.infoForm.get('firstname').value, lastName: this.infoForm.get('lastname').value};
     console.log('Ajouter :',values);
     this.UserService.putUsers(values).subscribe(res => {
-      console.log('Ajouter : ', res);
-      
+      if (res) {
+        this.snackBar.open("Vous avez bien modifier votre profil!", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });   
     });
   }
 }

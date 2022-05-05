@@ -16,11 +16,11 @@ postNearby(NearbyCreate){
 }
 
 getNearbyaccomodations(id){
-  return this.http.get(this.url+"/accomdations"+id);
+  return this.http.get<any[]>(this.url+"/accomdations/"+id);
 }
 
 getNearby(id){
-  return this.http.get(this.url+"/"+id);
+  return this.http.get<any[]>(this.url+"/"+id);
 }
 
 putNearby(id, putNearby) {
@@ -28,7 +28,7 @@ putNearby(id, putNearby) {
 }
 
 deleteNearby(id) {
-  return this.http.delete(this.url+"/Nearby/"+id);
+  return this.http.delete(this.url+"/"+id);
 }
 getNearbyComment(id){
   return this.http.get(this.url+"/"+id+"/comments/");

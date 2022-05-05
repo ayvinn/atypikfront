@@ -2,12 +2,14 @@ import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
+import { NearbyService } from 'src/app/services/nearby.service';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -32,12 +34,14 @@ export class HostComponent implements OnInit {
   public sub;
   public propertyId: any;
   public submitForm:FormGroup; 
+  public messages  = [];
   public count = 0;
   todayDate: Date = new Date();
   displayedColumns: string[] = ['Arrive', 'Departure', 'name', 'actions'];
   displayedColumns2: string[] = ['Arrive', 'Departure', 'name', 'Status'];
   satuts: string[] = ['En attente','Refusé', 'Validé'];
   public start = [];
+  public datamessages =[];
   public end = [];
   public parameters: any = null;
   dataSource: MatTableDataSource<any>;
@@ -49,7 +53,7 @@ export class HostComponent implements OnInit {
   datesToHighlight = ["2022-04-22T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-28T18:30:00.000Z", "2019-01-24T18:30:00.000Z", "2019-01-23T18:30:00.000Z", "2019-01-22T18:30:00.000Z", "2019-01-25T18:30:00.000Z"];
   data: any[];
   constructor(public appService: AppService, public accomodationservice: AccommodationsService, private activatedRoute: ActivatedRoute,
-    public reservationservice: ReservationsService,private fb: FormBuilder,
+    public reservationservice: ReservationsService,private fb: FormBuilder,public nearbyservice:NearbyService,public snackBar:MatSnackBar
   ) { }
 
   async ngOnInit() {
@@ -61,7 +65,11 @@ export class HostComponent implements OnInit {
     data['unavailableSlots'].forEach(element => {
       this.start.push({ start: new Date(element.start), end: new Date(element.end) });
     });
-    
+    this.datamessages = await this.accomodationservice.getAccommodation(this.propertyId).toPromise();
+    console.log(this.datamessages['nearby']);
+    this.datamessages['nearby'].forEach(element => {
+      this.messages.push({ id:element.id,name: element.name, message: element.description ,date : new Date(element['address'].city)});
+    });
     this.count = 0;
     //  var event ;
     //  event.pageIndex = 0;
@@ -129,7 +137,11 @@ submitparameters(){
   });
   this.accomodationservice.putAcommodation(this.propertyId,{accommodationFieldValues:data}).subscribe(res =>
     {
-      console.log(res);
+      if (res) {
+        this.snackBar.open("Champ ajouter !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
     }
   )
 }
@@ -174,13 +186,23 @@ get formRow() {
 
   validatereservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 2 }).subscribe(res => {
+      if (res) {
+        this.snackBar.open("Réservation valider !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       this.ngOnInit();
-
     })
   }
 
   cancelreservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 1 }).subscribe(res => {
+      if (res) {
+        this.snackBar.open("Reservation annuler !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+      }
+      else
+      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
       this.ngOnInit();
 
     })
@@ -232,6 +254,12 @@ get formRow() {
         this.start.push({start:element.start,end:element.end})
       });  
       this.accomodationservice.putAcommodation(this.propertyId,{unavailableSlots:this.start}).subscribe( res =>{
+        if (res) {
+          this.snackBar.open("Planning Modifier !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
+        }
+        else
+        this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
         this.ngOnInit()
         this.end = [];
       }
@@ -245,5 +273,13 @@ get formRow() {
   async getparameters(){
    // this.parameters = await this.accomodationservice.getAccommodationBookingsParameters(this.propertyId).toPromise();
   }
-
+  remove(ids){
+    
+      this.datamessages['nearby'] = this.datamessages['nearby'].filter(({ id }) => id !== ids);
+      this.accomodationservice.putAcommodation(this.propertyId,{nearby:this.datamessages['nearby']}).subscribe();          
+      this.nearbyservice.deleteNearby(ids).subscribe();;
+      console.log(this.datamessages['nearby']);
+      this.messages =[];
+      this.ngOnInit();
+  }
 }

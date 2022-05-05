@@ -29,6 +29,9 @@ export class EditUsersComponent implements OnInit {
     });
   
   }
+  onNoclick(){
+    this.dialogRef.close();
+  }
 
 
   submit(){
@@ -36,7 +39,7 @@ export class EditUsersComponent implements OnInit {
     console.log('Ajouter :',values);
     this.UserService.putUsersnoid(this.data.id,values).subscribe(res => {
       console.log('Ajouter : ', res);
-      
+      this.onNoclick();
     });
   }
 

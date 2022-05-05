@@ -12,6 +12,7 @@ import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PaymentComponent } from '../payment/payment.component';
+import { ContactHostComponent } from '../contact-host/contact-host.component';
 
 
 @Component({
@@ -104,6 +105,7 @@ export class PropertyComponent implements OnInit {
         numberprs : this.getFotoFondo()
       }
     });
+    
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -111,6 +113,15 @@ export class PropertyComponent implements OnInit {
       this.ngOnInit();
     });
 
+  }
+  openDialog2(): void {
+    console.log(this.getFotoFondo());
+    const dialogRef = this.dialog.open(ContactHostComponent, {
+      width: '800px',
+      data: {
+        accommodationId:this.propertyId,
+      }
+    });
   }
   getFotoFondo(){ 
      return this.fondovalor.nativeElement.value
