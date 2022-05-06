@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-account',
@@ -14,9 +15,9 @@ export class AccountComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen:boolean = true;
   public links = [  ]; 
-  constructor(public router:Router) { }
-
-  ngOnInit() {
+  constructor(public router:Router,public UserService:UsersService) { }
+  public name = "";
+  async ngOnInit() {
     if(window.innerWidth < 960){
       this.sidenavOpen = false;
     };
@@ -30,7 +31,10 @@ export class AccountComponent implements OnInit {
     this.links.push({ name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' });
     if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Gérer les comptes', href: 'users', icon: 'group'});
     this.links.push({ name: 'Se déconecter', href: '/login', icon: 'power_settings_new' });
+    var data = await this.UserService.getUsersprofile().toPromise();
+    this.name = data['firstName']+' '+data['lastName'];
   }
+ 
 
   @HostListener('window:resize')
   public onWindowResize():void {
