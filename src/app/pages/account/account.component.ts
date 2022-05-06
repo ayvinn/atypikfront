@@ -26,7 +26,6 @@ export class AccountComponent implements OnInit {
    if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Logements', href: 'logements', icon: 'home' });
    if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Paramètres', href: 'custom', icon: 'settings' });
     this.links.push({ name: 'Mes logements', href: 'my-properties', icon: 'view_list' });
-    this.links.push({ name: 'Favories', href: 'favorites', icon: 'favorite' });
     if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Gérer les équipements', href: 'equipment', icon: 'fitbit' });
     this.links.push({ name: 'Ajouter un logement', href: '/submit-property', icon: 'add_circle' });
     if(localStorage.getItem('isadmin') == 'true') this.links.push({ name: 'Gérer les comptes', href: 'users', icon: 'group'});
