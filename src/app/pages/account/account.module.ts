@@ -29,7 +29,6 @@ export const routes = [
       { path: '', redirectTo: 'profile', pathMatch: 'full' }, 
       { path: 'my-properties', component: MyPropertiesComponent },
       { path: 'my-properties/:id', component: EditPropertyComponent },
-      { path: 'favorites', component: FavoritesComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'logements', component: LogementsComponent },
       { path: 'equipment', component: EquipmentsComponent },

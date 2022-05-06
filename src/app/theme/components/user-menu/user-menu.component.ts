@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router'; 
+import { UsersService } from 'src/app/services/users.service';
 
 
 @Component({
@@ -10,12 +11,13 @@ import { Router } from '@angular/router';
 })
 export class UserMenuComponent implements OnInit {
 
-  constructor(public appService:AppService,public router:Router) { }
+  constructor(public appService:AppService,public router:Router,public UserService:UsersService) { }
   cnx = 'False';
-  user='';
-  ngOnInit() {
+  user='';  
+  async ngOnInit() {
+    var data = await this.UserService.getUsersprofile().toPromise();
     this.cnx = localStorage.getItem('isLoggedIn');
-    this.user = localStorage.getItem('nom');
+    this.user = data['firstName']+' '+data['lastName'];
     
   }
 
