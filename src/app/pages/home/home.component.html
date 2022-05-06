@@ -12,8 +12,8 @@
 </app-header-map>
 
 <app-header-video *ngIf="settings.header == 'video'"
-    [backgroundVideo]="'https://firebasestorage.googleapis.com/v0/b/parisdev-1568668702659.appspot.com/o/Découvrez%20nos%20hébergements%20insolites%20Roulotte%2C%20yourtes%2C%20Chalets%20insolites_Trim.mp4?alt=media&token=18515feb-673f-4202-87c4-a316aea891f7'" [contentOffsetToTop]="true"
-    [title]="'Découvrez nos hébergements atypik'" [desc]="'Quelle sera votre prochaine destination ?'"
+    [backgroundVideo]="'https://rr5---sn-5hneknee.googlevideo.com/videoplayback?expire=1651676488&ei=6EByYvOKGZCFkwapyZOICg&ip=102.129.145.172&id=o-AGXP3vDPfFHhNMB5hrFS-3-cZJLvXreTWKzVexc9hYGa&itag=137&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278&source=youtube&requiressl=yes&spc=4ocVC6bW5yHWXy6PbvWZX0Z7VM9i&vprv=1&mime=video%2Fmp4&ns=Spo40oI_n_Z31c70xXqzdOkG&gir=yes&clen=24490230&otfp=1&dur=47.840&lmt=1533391727808767&keepalive=yes&fexp=24001373,24007246&c=WEB&n=0giBaEnYQ9CxJw&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&sig=AOq0QJ8wRAIgJcVvN3-GVduzWd5wUlVXaSS-HdUnZyLpVLXORinQltACIFcXkAPP7fYNfbboGzHZonp6MlAm5M8F-D_UXBrk3Nn9&redirect_counter=1&cm2rm=sn-a5mky7d&req_id=336916746914a3ee&cms_redirect=yes&cmsv=e&mh=IR&mip=62.23.45.171&mm=34&mn=sn-5hneknee&ms=ltu&mt=1651654834&mv=m&mvi=5&pl=23&lsparams=mh,mip,mm,mn,ms,mv,mvi,pl&lsig=AG3C_xAwRgIhAINgtbATCQ_Nn3S0Weh_Os0qh-D8HZPnCBdL84SuNxJRAiEA5mL3tTAbSX0jMeFPWCzw9yck_vG7QgOMoLo88ZdJE1A%3D'" [contentOffsetToTop]="true"
+    [title]="'Découvrez nos hébergements Atypique'" [desc]="'Quelle sera votre prochaine destination ?'"
     [isHomePage]="true" [fullscreen]="true">
 </app-header-video>
 
@@ -76,7 +76,7 @@
             <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
                 <mat-chip-list [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
                     <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-                        {{ pagination?.total }} foundddd
+                        {{ pagination?.total }} found
                     </mat-chip>
                 </mat-chip-list>
                 <app-properties-search-results-filters [searchFields]="searchFields"

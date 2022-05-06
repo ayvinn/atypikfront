@@ -18,7 +18,7 @@
                     (markerClick)="onMarkerClick($event, location.propertyId)">  
                     <agm-snazzy-info-window [closeWhenOthersOpen]="true" wrapperClass="map-info-window">
                         <ng-template>
-                            <a *ngIf="property" [routerLink]="['/properties', property.id]" class="text-center">
+                           <!-- <a *ngIf="property" [routerLink]="['/properties', property.id]" class="text-center">
                                 <img [src]="property.gallery[0].small" alt="image" class="d-block w-100"> 
                                 <p class="my-1">{{property.title}}</p> 
                                 <p *ngIf="settings.currency == 'USD'" class="fw-500 my-1">
@@ -29,7 +29,7 @@
                                     <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
                                     <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
                                 </p>
-                            </a>
+                            </a>-->
                             <div *ngIf="!property" class="p-3">
                                 <mat-spinner color="warn"></mat-spinner>
                             </div>
