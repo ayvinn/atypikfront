@@ -36,7 +36,7 @@ export class BookingsComponent implements OnInit {
     return this.data[parseInt(data)].name;
   }
   list: any[] = [];
-  loaddata(val:any){
+  loaddata(val:any){ 
     this.usersservice.getUsersbookings({page:val,order:'desc'}).subscribe(res => {
       if(!res){
         return;

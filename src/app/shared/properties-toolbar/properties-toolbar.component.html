@@ -3,12 +3,12 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <div>
-        <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
+        <a mat-button style="display: none;" [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
             {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
         </a>
-        <mat-menu #sortMenu="matMenu" xPosition="before" overlapTrigger="true">
+        <mat-menu  #sortMenu="matMenu" xPosition="before" overlapTrigger="true">
             <span (mouseleave)="sortMenuTrigger.closeMenu()">
-                <button mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
+                <button  mat-menu-item *ngFor="let sort of sortings" (click)="changeSorting(sort)">
                     <span>{{sort}}</span>
                 </button>
             </span>
