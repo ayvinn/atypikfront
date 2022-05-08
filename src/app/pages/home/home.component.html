@@ -37,8 +37,8 @@
                 <mat-form-field appearance="outline" >
                     <mat-label>Enter la date </mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate placeholder="Start date" #dateRangeStart formControlName="email">
-                        <input matEndDate placeholder="End date" #dateRangeEnd formControlName="message"
+                        <input matStartDate placeholder="Date d'arriver" #dateRangeStart formControlName="email">
+                        <input matEndDate placeholder="Date de depart" #dateRangeEnd formControlName="message"
                             (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
                     </mat-date-range-input>
                     <mat-hint>
@@ -58,10 +58,10 @@
                 </div>
             </form>
                 
-            <div fxLayout="row" fxLayoutAlign="center center" class="p-2">       
-                <button mat-raised-button color="warn" class="uppercase mx-1" (click)="search()" >Rechercher</button>
-                <button mat-raised-button color="secondary" class="uppercase mx-1" (click)="vider()">vider</button>
-                <button *ngIf="!vertical" mat-raised-button color="primary" class="uppercase mx-1" [routerLink]="['/properties']" (click)="showMore = !showMore">
+            <div fxLayout="row" fxLayoutAlign="center center" class="p-2 responsive">       
+                <button mat-raised-button color="warn" class="uppercase mx-1 space"  (click)="search()" >Rechercher</button>
+                <button mat-raised-button color="secondary" class="uppercase mx-1 space" (click)="vider()">vider</button>
+                <button *ngIf="!vertical" mat-raised-button color="primary" class="uppercase mx-1 space" [routerLink]="['/properties']" (click)="showMore = !showMore">
                    Avancer
                   </button>      
               </div>

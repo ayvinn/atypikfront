@@ -18,7 +18,7 @@
 
       <ng-container matColumnDef="Status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Statut de logement </th>
-        <td mat-cell *matCellDef="let element "><a mat-raised-button color="primary" *ngIf="element.status == 0">Poursuivre la création</a><a *ngIf="element.status != 0" [routerLink]="['/properties', element.id ]" class="property-name">{{getstatuts(element.status)}}</a></td>
+        <td mat-cell *matCellDef="let element "><a [routerLink]="['/account/my-properties', element.id ]" mat-raised-button color="primary" *ngIf="element.status == 0">Poursuivre la création</a><a *ngIf="element.status != 0" [routerLink]="['/properties', element.id ]" class="property-name">{{getstatuts(element.status)}}</a></td>
       </ng-container> 
       <!-- Title Column -->
       <ng-container matColumnDef="Type">
@@ -68,6 +68,6 @@
       <tr mat-row *matRowDef="let property; columns: displayedColumns;">
       </tr>
     </table> 
-    <p *ngIf="dataSource?.data.length === 0" class="py-5 mb-0 text-center">No data available</p> 
+    <p *ngIf="dataSource?.data.length === 0" class="py-5 mb-0 text-center">Pas de données disponibles</p> 
 </div>
 <mat-paginator [pageSizeOptions]="[20]"  (page)="onPaginateChange($event)" showFirstLastButtons></mat-paginator>

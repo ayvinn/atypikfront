@@ -121,35 +121,35 @@ export class PropertiesComponent implements OnInit {
     this.neighborhoods = this.appService.getNeighborhoods();
     this.streets = this.appService.getStreets();
     this.form = this.fb.group({
-      propertyType: null,
-      propertyStatus: null,
+      propertyType: 0,
+      propertyStatus: 0,
       price: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 9999999
       }),
       city: null,
-      zipCode: null,
+      zipCode: 0,
       neighborhood: null,
       street: null,
       bedrooms: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 100
       }),
       bathrooms: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 100
       }),
       garages: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 1100
       }),
       area: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 100
       }),
       yearBuilt: this.fb.group({
-        from: null,
-        to: null
+        from: 0,
+        to: 100
       }),
       features: this.buildFeatures(),
       datedepart:null,

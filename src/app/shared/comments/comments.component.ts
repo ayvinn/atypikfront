@@ -39,11 +39,11 @@ export class CommentsComponent implements OnInit {
     }
   ];
   public ratings = [
-    { title: 'Very Dissatisfied', icon: 'sentiment_very_dissatisfied', percentage: 20, selected: false },
-    { title: 'Dissatisfied', icon: 'sentiment_dissatisfied', percentage: 40, selected: false },
-    { title: 'Neutral', icon: 'sentiment_neutral', percentage: 60, selected: false },
-    { title: 'Satisfied', icon: 'sentiment_satisfied', percentage: 80, selected: false },
-    { title: 'Very Satisfied', icon: 'sentiment_very_satisfied', percentage: 100, selected: false }
+    { title: 'Très Insatisfait', icon: 'sentiment_very_dissatisfied', percentage: 20, selected: false },
+    { title: 'Insatisfait', icon: 'sentiment_dissatisfied', percentage: 40, selected: false },
+    { title: 'Neutre', icon: 'sentiment_neutral', percentage: 60, selected: false },
+    { title: 'Satisfait', icon: 'sentiment_satisfied', percentage: 80, selected: false },
+    { title: 'Très Satisfait', icon: 'sentiment_very_satisfied', percentage: 100, selected: false }
   ];
   private sub: any;
   public isadmin = 'false';
