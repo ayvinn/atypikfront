@@ -37,6 +37,7 @@
     "@ngx-translate/http-loader": "7.0.0",
     "angular-cc-library": "^3.0.0",
     "express": "4.17.1",
+    "firebase": "9.7.0",
     "ngx-dropzone": "^3.1.0",
     "ngx-embed-video": "1.0.4",
     "ngx-input-file": "10.2.0",
