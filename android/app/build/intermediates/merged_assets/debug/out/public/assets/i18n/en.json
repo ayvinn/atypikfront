@@ -1,0 +1,53 @@
+{   
+  "LOGIN": "Se connecter", 
+  "LOGOUT": "Se déconnecter", 
+  "REGISTER": "S'inscrire",
+  "ACCOUNT": "Compte",
+  "SUBMIT_PROPERTY": "Ajouter un HÉBERGEMENT",
+  "MENU": "Menu",
+  "MY_PROPERTIES": "Mes propriétés",
+  "FAVORITES": "Favoris",
+  "COMPARE": "Comparer",
+  "EDIT_PROFILE": "Modifier le profil",
+  "LOCK_SCREEN": "Verouiller la session",
+  "HELP": "Aide",
+  "NAV": {  
+    "HOME": "Acceuil", 
+    "PROPERTIES": "Propriétés", 
+    "PAGES": "Pages", 
+    "AGENTS": "Agents",
+    "AGENT": "Agent", 
+    "FAQS": "Faqs",
+    "PRICING": "Tarification",
+    "TERMS_CONDITIONS": "Termes et Conditions",
+    "LANDING": "Landing", 
+    "404_PAGE": "404 Page",
+    "OTHERS": "Autres",
+    "EXTERNAL_LINK": "Lien Externe",
+    "MENU_ITEM": "Menu Item",
+    "CONTACT": "Contact",
+    "ABOUT_US": "À propos",
+    "ADMIN": "Admin"
+  }, 
+  "BTN": {
+    "ADD": "Ajouter",
+    "SAVE": "Enregistrer",
+    "SUBMIT": "Valider",
+    "CANCEL": "Annuler",
+    "UPLOAD": "Uploader",
+    "REMOVE": "Supprimmer",
+    "YES": "Oui",
+    "NO": "Non",
+    "OK": "OK",
+    "CLEAR": "Effacer",
+    "ADVANCED": "Avancée",
+    "HIDE": "Cacher"
+  },
+  "MESSAGE": {
+    "SURE_DELETE": "Are you sure you want to delete?",
+    "FILE_SIZE": "The file size cannot exceed {{param}} kb."
+  },
+  "FIELD": { 
+    "NAME": "Nom" 
+  }
+}

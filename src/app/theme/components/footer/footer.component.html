@@ -45,7 +45,7 @@
                     <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45" ngClass.xs="pt-5"> 
                         <h2 class="uppercase">RETOUR D'INFORMATIONS</h2>
                         <p class="desc">Nous avons besoin de vos feedbacks</p>
-                        <form action="https://api.sheetmonkey.io/form/3Vgpx6vhNDvKBJTFNkXSis" method="POST" class="custom-form pt-2">                            
+                        <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackFormSubmit(feedbackForm.value)" class="custom-form pt-2">                            
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>E-mail</mat-label> 
                                 <input matInput autocomplete="off" formControlName="email" name ="email">

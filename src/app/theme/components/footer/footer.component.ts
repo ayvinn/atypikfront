@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { emailValidator } from '../../utils/app-validators';
@@ -271,7 +272,7 @@ export class FooterComponent implements OnInit {
   ];
   public feedbackForm: FormGroup;
   public subscribeForm: FormGroup;
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(public formBuilder: FormBuilder,private http:HttpClient) { }
 
   ngOnInit() {
       this.rooms.push({lat:48.8588897,lng:2.320041});
@@ -290,12 +291,14 @@ export class FooterComponent implements OnInit {
 
   public onFeedbackFormSubmit(values:Object):void {
     if (this.feedbackForm.valid) {
-      console.log(values);
+        this.http.post('https://api.sheetmonkey.io/form/3Vgpx6vhNDvKBJTFNkXSis',values).subscribe(); 
+        this.ngOnInit();
     }
   }
 
   public onSubscribeFormSubmit(values:Object):void {
     if (this.subscribeForm.valid) {
+      this.http.post('https://api.sheetmonkey.io/form/3Vgpx6vhNDvKBJTFNkXSis',values);  
       console.log(values);
     }
   }
