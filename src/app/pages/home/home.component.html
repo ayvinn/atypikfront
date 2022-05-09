@@ -61,7 +61,7 @@
                 <button mat-raised-button color="warn" class="uppercase mx-1" (click)="search()" >Rechercher</button>
                 <button mat-raised-button color="secondary" class="uppercase mx-1" (click)="vider()">vider</button>
                 <button *ngIf="!vertical" mat-raised-button color="primary" class="uppercase mx-1" [routerLink]="['/properties']" (click)="showMore = !showMore">
-                   Avancer
+                   Avancée
                   </button>      
               </div>
 
@@ -76,11 +76,8 @@
             <div fxFlex="100" fxLayoutAlign="start start" class="p-2">
                 <mat-chip-list >
                     <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-<<<<<<< HEAD
-                        {{ pagination?.total }} found
-=======
-                        {{ Count() }} Trouvées
->>>>>>> 5171f6c39866eb9ccf2f2fc48f3d9bfede572ce3
+                        {{ pagination?.total }}
+                        {{ Count() }}
                     </mat-chip>
                 </mat-chip-list>
                 <app-properties-search-results-filters [searchFields]="searchFields"
