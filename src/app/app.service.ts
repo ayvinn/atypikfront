@@ -138,7 +138,7 @@ export class AppService {
       { id: 1, name: 'Maison' },
       { id: 3, name: 'Annexe' },
       { id: 4, name: "Maison d'hote" },
-      { id: 5, name: 'Logement unique' }
+      
     ]
   }
 

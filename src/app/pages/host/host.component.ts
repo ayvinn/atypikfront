@@ -186,23 +186,14 @@ get formRow() {
 
   validatereservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 2 }).subscribe(res => {
-      if (res) {
         this.snackBar.open("Réservation valider !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
-      }
-      else
-      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       this.ngOnInit();
     })
   }
 
   cancelreservation(id) {
     this.reservationservice.putReservations(id, { bookingStatus: 1 }).subscribe(res => {
-      if (res) {
         this.snackBar.open("Reservation annuler !", '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 }); 
-      }
-      else
-      this.snackBar.open('Erreur', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
-
       this.ngOnInit();
 
     })
