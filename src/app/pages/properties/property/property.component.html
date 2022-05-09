@@ -79,8 +79,8 @@
                               
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Nombre de personnes</mat-label>
-                                <input matInput placeholder="Enrer le Nombre des personnes " autocomplete="off" #fondovalor formControlName="name" onlyNumber>
-                                <mat-error *ngIf="contactForm.controls.name.errors?.required">Le nombre de perssonne est obligatoire</mat-error>                   
+                                <input matInput placeholder="Entrer le Nombre des personnes " autocomplete="off" #fondovalor formControlName="name" onlyNumber>
+                                <mat-error *ngIf="contactForm.controls.name.errors?.required">Le nombre de personnes est obligatoire</mat-error>                   
                             </mat-form-field>   
                              
                             <p>{{data.price  | currency : 'EUR' : 'symbol' : '1.0'}} x {{getdays()}} Nuits</p>
@@ -194,15 +194,15 @@
                 
                 <mat-card *ngIf="property" class="mt-3">
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Details</mat-card-title> 
+                        <mat-card-title class="uppercase">Détails</mat-card-title> 
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Type du bien:</span>
+                            <span>Type du bien :</span>
                             <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Status du bien:</span>
+                            <span>Status du bien :</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                             </div>
@@ -212,11 +212,11 @@
                             <span>{{property.city}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Code postale:</span>
+                            <span>Code postale :</span>
                             <span>{{property.zipCode}}</span>
                         </div> 
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Quartier:</span>
+                            <span>Quartier :</span>
                             <div fxLayout="row wrap" class="list">
                                 <span *ngFor="let neighborhood of property.neighborhood; let last=last" [class.list-item]="property.neighborhood.length > 1" [class.last]="last">{{neighborhood}}</span>
                             </div>
@@ -228,23 +228,23 @@
                             </div>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Chambres:</span>
+                            <span>Chambres :</span>
                             <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Salles de bain:</span>
+                            <span>Salles de bain :</span>
                             <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Garages:</span>
+                            <span>Garages :</span>
                             <span>{{property.garages}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Supéficie du bien:</span>
+                            <span>Supéficie du bien :</span>
                             <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
-                            <span>Année de construction:</span>
+                            <span>Année de construction :</span>
                             <span>{{property.yearBuilt}}</span>
                         </div>
                     </div>   

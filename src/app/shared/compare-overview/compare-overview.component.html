@@ -17,7 +17,7 @@
         <span *ngIf="property.priceDollar.sale">{{property.priceDollar.sale | currency : 'USD' : 'symbol' : '1.0'}}</span>
         <span *ngIf="property.priceDollar.rent">{{property.priceDollar.rent | currency : 'USD' : 'symbol' : '1.0'}} /month</span>
     </span>
-    <span *ngIf="settings.currency == 'h'" class="primary-color price fw-500 mx-2">
+    <span *ngIf="settings.currency == 'EUR'" class="primary-color price fw-500 mx-2">
         <span *ngIf="property.priceEuro.sale">{{property.priceEuro.sale | currency : 'EUR' : 'symbol' : '1.0'}}</span>
         <span *ngIf="property.priceEuro.rent">{{property.priceEuro.rent | currency : 'EUR' : 'symbol' : '1.0'}} /month</span>
     </span>  
