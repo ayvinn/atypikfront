@@ -111,13 +111,13 @@
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                           <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Code postale</mat-label>
-                            <input matInput placeholder="exp. 98104" autocomplete="off" formControlName="zipCode">                  
+                            <input matInput placeholder="Code postale" autocomplete="off" formControlName="zipCode">                  
                           </mat-form-field>
                       </div>
                     
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                          <mat-label>Quatier</mat-label>
+                          <mat-label>Quartier</mat-label>
                           <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood"  (selectionChange)="onSelectNeighborhood()">
                             <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: submitForm.get('address')['controls'].city.value?.id" [value]="neighborhood.name">
                               {{neighborhood.name}}
