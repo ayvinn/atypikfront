@@ -319,6 +319,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/*
+ "@capacitor/android": "^3.5.1",
+    "@capacitor/cli": "^3.5.1",
+    "@capacitor/core": "^3.5.1",
+*/
 let UserService = class UserService {
     constructor(http) {
         this.http = http;
