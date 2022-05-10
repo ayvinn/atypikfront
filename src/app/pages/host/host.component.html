@@ -46,11 +46,8 @@
                                         matTooltip="Annuler" class="remove">
                                         <mat-icon>event_busy</mat-icon>
                                     </button>
-
-
                                 </td>
                             </ng-container>
-
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let property; columns: displayedColumns;">
                             </tr>
@@ -58,13 +55,8 @@
                         <p *ngIf="dataSource?.data.length === 0" class="py-5 mb-0 text-center">Pas de données disponibles</p>
                     </div>
                     <mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
-
-
                 </mat-tab>
                 <mat-tab label="Historique des réservations">
-
-
-
                     <mat-form-field appearance="outline" class="w-100">
                         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter properties"
                             autocomplete="off">
@@ -110,18 +102,9 @@
                         <p *ngIf="dataSource?.data.length === 0" class="py-5 mb-0 text-center">Pas de données disponibles</p>
                     </div>
                     <mat-paginator [pageSizeOptions]="[20]" showFirstLastButtons></mat-paginator>
-
                 </mat-tab>
-
-
-
-
-
-
                 <mat-tab label="Gérer les disponibilités" >
-
                     <h2 style="margin: 2%;color:white;"> Gérer les disponibilités</h2>
-
                     <mat-form-field appearance="fill" style="margin-left: 2%;">
                         <mat-label>Enter une date</mat-label>
                         <mat-date-range-input [rangePicker]="picker" [dateFilter]="myFilter">
@@ -137,7 +120,6 @@
                             </mat-date-range-picker-actions>
                         </mat-date-range-picker>
                     </mat-form-field>
-
                     <button style="margin-left: 2%;" mat-raised-button color="accent" type="submit"
                         (click)="submitslots()">Sauvgarder</button>
 
@@ -192,7 +174,6 @@
                             </div>
                         </form>
                     </div>
-
                 </mat-tab>
                 <mat-tab label ="Messages">
                     <mat-card class="p-5 mt-5">

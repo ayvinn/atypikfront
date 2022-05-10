@@ -99,7 +99,6 @@
             <div *ngIf="properties?.length" fxFlex="100" fxLayoutAlign="center center" class="p-2 mt-2">
                 <app-load-more [step]="2"></app-load-more>
             </div>
-
             <div *ngIf="properties?.length == 0" fxFlex="100" fxLayoutAlign="center center" [style.min-height.px]="200">
                 <mat-spinner *ngIf="!message"></mat-spinner>
                 <mat-chip-list *ngIf="message">

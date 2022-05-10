@@ -7,9 +7,7 @@ import { Subscription } from 'rxjs';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { AccommodationsService } from 'src/app/services/accommodations.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { emailValidator } from 'src/app/theme/utils/app-validators';
-import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -111,12 +109,7 @@ export class HomeComponent implements OnInit {
   }
 
   public getProperties() {
-    //console.log('get properties by : ', this.searchFields);  
     this.appService.getProperties().subscribe(data => {
-      /*if(this.properties && this.properties.length > 0){  
-        this.settings.loadMore.page++;
-        this.pagination.page = this.settings.loadMore.page; 
-      }*/
       let result = this.filterData(data);
       if (result.data.length == 0) {
         this.properties.length = 0;

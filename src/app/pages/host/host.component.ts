@@ -19,18 +19,6 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./host.component.scss']
 })
 export class HostComponent implements OnInit {
-  /*public sub ;
-   public propertyId: any;
-    constructor(
-      @Inject(PLATFORM_ID) private platformId: Object,
-      private activatedRoute: ActivatedRoute,
-    ) { }
-  
-    ngOnInit(): void {
-      this.sub = this.activatedRoute.params.subscribe(params => {   
-        this.propertyId = params['id'];
-      });
-    }*/
   public sub;
   public propertyId: any;
   public submitForm:FormGroup; 
