@@ -11,7 +11,6 @@ export class NoticesService {
   
   constructor(private http:HttpClient) { }
 
-
   
 postNotices(NoticeCreate){
   return this.http.post(this.url, NoticeCreate);
