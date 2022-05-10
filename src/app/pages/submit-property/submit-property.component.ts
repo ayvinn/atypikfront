@@ -190,20 +190,7 @@ onCheckChange(event) {
 }
 
  public async  loaddata(){
-   
- /*  this.devicesservice.getDevices().subscribe(res => {
-    if(!res){
-      return;
-    }   
-    this.dataSource = new MatTableDataSource<any>(res);
-  this.data=res;
-  for(let data of this.data) {
-  //  this.features.push({id:data.id}, {name:data.name})
-    this.setfeatures(data.id,data.name);
-  }
- //this.features =  res as any[];
- // console.log('hna',this.features);
-  });*/
+
   const data = await this.devicesservice.getDevices().toPromise();
   this.features = data;
 }
@@ -212,7 +199,6 @@ public async setfeatures(id,name){
 }
    public async ngOnInit() {
 
-   // this.features = JSON.a; 
     await this.loaddata();
     console.log('hna:',this.features);
     this.propertyTypes = this.appService.getPropertyTypes();
@@ -230,7 +216,7 @@ public async setfeatures(id,name){
     //    gallery: null
       }),
       address: this.fb.group({
-        location: ['', Validators.required],
+        location: [''],
         city: ['', Validators.required],
         zipCode: '',
         neighborhood: '',

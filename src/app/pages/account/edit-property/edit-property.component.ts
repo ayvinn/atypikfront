@@ -232,7 +232,7 @@ export class EditPropertyComponent implements OnInit {
         //    gallery: null
       }),
       address: this.fb.group({
-        location: ['', Validators.required],
+        location: [''],
         city: [this.donne['address'].city, Validators.required],
         zipCode: this.donne['address'].postalCode,
         neighborhood: '',

@@ -3,7 +3,7 @@
   
       <mat-card ngClass.lt-lg="p-0" [formGroup]="submitForm">
   
-        <mat-horizontal-stepper #horizontalStepper linear="false" class="submit-property" (selectionChange)="onSelectionChange($event)">
+        <mat-horizontal-stepper #horizontalStepper linear="true" class="submit-property" (selectionChange)="onSelectionChange($event)">
 
             <mat-step [stepControl]="submitForm.get('basic')" label="Basique">
               <div class="step-content">
@@ -77,19 +77,6 @@
                       <div fxFlex="100" class="p-3">
                         <h1 class="fw-500 text-center">Addresse</h1>
                       </div>
-                                
-                      <div fxFlex="100" class="px-2">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
-                            <mat-label>Location</mat-label>
-                            <input matInput placeholder="Enter a location" formControlName="location" autocomplete="off" #addressAutocomplete> 
-                            <button *ngIf="submitForm.get('address')['controls'].location.value" mat-button matSuffix mat-icon-button (click)="submitForm.get('address')['controls'].location.setValue(null)" type="button">
-                              <mat-icon>Fermer</mat-icon>
-                            </button>
-                            <mat-error *ngIf="submitForm.get('address')['controls'].location.errors?.required">La localisation est obligatoire</mat-error>   
-                        </mat-form-field>
-                      </div> 
-                    
                       <div fxFlex="100" class="px-2 mb-4">
                           <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true" [fullscreenControl]="true" (mapClick)="onMapClick($event)">
                               <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="true" (markerClick)="onMarkerClick($event)"></agm-marker>

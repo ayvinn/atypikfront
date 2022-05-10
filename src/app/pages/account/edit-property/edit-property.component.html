@@ -9,21 +9,6 @@
               <div fxFlex="100" class="p-3">
                 <h1 class="fw-500 text-center">Addresse</h1>
               </div>
-              <div fxFlex="100" class="px-2">
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
-                  <mat-label>Location</mat-label>
-                  <input matInput placeholder="Enter a location" formControlName="location" autocomplete="off"
-                    #addressAutocomplete>
-                  <button *ngIf="submitForm.get('address')['controls'].location.value" mat-button matSuffix
-                    mat-icon-button (click)="submitForm.get('address')['controls'].location.setValue(null)"
-                    type="button">
-                    <mat-icon>Fermer</mat-icon>
-                  </button>
-                  <mat-error *ngIf="submitForm.get('address')['controls'].location.errors?.required">La localisation est
-                    obligatoire</mat-error>
-                </mat-form-field>
-              </div>
               <div fxFlex="100" class="px-2 mb-4">
                 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="true"
                   [fullscreenControl]="true" (mapClick)="onMapClick($event)">
