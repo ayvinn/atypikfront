@@ -10,7 +10,7 @@ import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { DatePipe } from '@angular/common';
-import { Console } from 'console';
+
 
 @Component({
   selector: 'app-home',
