@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Property } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
-import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AddCommentComponent } from './add-comment/add-comment.component';
 @Component({
@@ -24,11 +23,6 @@ export class BookingsComponent implements OnInit {
   constructor(public appService:AppService,public usersservice:UsersService,public dialog: MatDialog) { }
 
   ngOnInit() {
-   /* this.appService.getProperties().subscribe(res => {
-      this.initDataSource(res);
-    });    */
-  //  var event ;
-  //  event.pageIndex = 0;
     this.data = this.appService.getPropertyStatuses();
     this.loaddata(0);
   }
@@ -70,7 +64,6 @@ export class BookingsComponent implements OnInit {
   }
   onPaginateChange(event){
     this.loaddata(JSON.stringify(event.pageIndex));
-    //alert(JSON.stringify("Current page index: " + event.pageIndex));
   }
   openDialog(id): void {
     localStorage.setItem('propertyId',id)

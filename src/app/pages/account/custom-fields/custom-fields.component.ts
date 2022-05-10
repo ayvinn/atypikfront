@@ -4,7 +4,6 @@ import { Property } from 'src/app/app.models';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { AccommodationsService } from 'src/app/services/accommodations.service';
 import { CustomFieldsService } from 'src/app/services/custom-fields.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddCustomFieldComponent } from './add-custom-field/add-custom-field.component';
@@ -16,31 +15,25 @@ import { AddCustomFieldComponent } from './add-custom-field/add-custom-field.com
 })
 export class CustomFieldsComponent implements OnInit {
 
-  displayedColumns: string[] = ['Title','Value','actions'];
+  displayedColumns: string[] = ['Title', 'Value', 'actions'];
   dataSource: MatTableDataSource<any>;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  data :string[]=['Booleen','Texte','Nombre'];
-  constructor(public appService:AppService,public customfieldsservice:CustomFieldsService,public dialog: MatDialog) { }
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  data: string[] = ['Booleen', 'Texte', 'Nombre'];
+  constructor(public appService: AppService, public customfieldsservice: CustomFieldsService, public dialog: MatDialog) { }
 
   ngOnInit() {
-   /* this.appService.getProperties().subscribe(res => {
-      this.initDataSource(res);
-    });    */
-  //  var event ;
-  //  event.pageIndex = 0;
-    
     this.loaddata(0);
   }
-  propertyType(data){
+  propertyType(data) {
     return this.data[parseInt(data)];
   }
   list: any[] = [];
-  loaddata(val:any){
+  loaddata(val: any) {
     this.customfieldsservice.getCustomFields().subscribe(res => {
-      if(!res){
+      if (!res) {
         return;
-      }   
+      }
       this.dataSource = new MatTableDataSource<any>(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -55,38 +48,32 @@ export class CustomFieldsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      //this.libelle = result;
       this.ngOnInit();
     });
 
   }
-  public initDataSource(data:any){
+  public initDataSource(data: any) {
 
 
     this.dataSource = new MatTableDataSource<Property>(data);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  } 
-  
-  public remove(element:any) {
-    
-   // const index: number = this.dataSource.data.indexOf(element.id);    
+  }
+
+  public remove(element: any) {
     if (element !== -1) {
-      
       const message = 'Etes Vous sur ?';
-      let dialogRef = this.appService.openConfirmDialog(null, message); 
-			dialogRef.afterClosed().subscribe(dialogResult => {
-				if(dialogResult){ 
-         // this.dataSource.data.splice(index,1);
-         // this.initDataSource(this.dataSource.data); 
+      let dialogRef = this.appService.openConfirmDialog(null, message);
+      dialogRef.afterClosed().subscribe(dialogResult => {
+        if (dialogResult) {
           this.customfieldsservice.deleteCustomField(element).subscribe(res => {
             this.ngOnInit();
           }
           )
-				}
-			});   
-    } 
-  } 
+        }
+      });
+    }
+  }
 
 
   public applyFilter(filterValue: string) {
@@ -95,8 +82,7 @@ export class CustomFieldsComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  onPaginateChange(event){
+  onPaginateChange(event) {
     this.loaddata(JSON.stringify(event.pageIndex));
-    //alert(JSON.stringify("Current page index: " + event.pageIndex));
   }
 }

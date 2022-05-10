@@ -1,16 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 import { AppService } from 'src/app/app.service'
 import { ActivatedRoute } from '@angular/router'
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  FormArray,
-  FormControl,
-} from '@angular/forms'
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms'
 import { MapsAPILoader } from '@agm/core'
-import { Property } from 'src/app/app.models'
-import { MatSnackBar } from '@angular/material/snack-bar'
 import { MatStepper } from '@angular/material/stepper'
 import { MatTableDataSource } from '@angular/material/table'
 import { AccommodationCreate } from 'src/app/models/Accommodation/accommodation-create'
@@ -58,11 +50,9 @@ export class EditPropertyComponent implements OnInit {
     public accomodationservice: AccommodationsService,
     private activatedRoute: ActivatedRoute,
     public devicesservice: DevicesService,
-  ) {}
+  ) { }
 
   onChange(event) {
-    // this.feature = <any>this.submitForm.get('additional.features').value as any;
-
     if (event.checked) {
       this.feature.push({ deviceId: event.source.value })
     } else {
@@ -97,7 +87,7 @@ export class EditPropertyComponent implements OnInit {
     this.adress.step = 3
     this.accomodationservice
       .putAcommodation(this.id, { address: this.adress, step: 3 })
-      .subscribe((res) => {})
+      .subscribe((res) => { })
   }
   submitstep3() {
     this.accomodationservice
@@ -108,7 +98,7 @@ export class EditPropertyComponent implements OnInit {
         travelers: Number(this.submitForm.get('additional.garages').value),
         step: 4,
       })
-      .subscribe((res) => {})
+      .subscribe((res) => { })
     this.submitstep4()
   }
   submitstep4() {
@@ -116,7 +106,7 @@ export class EditPropertyComponent implements OnInit {
 
     this.accomodationservice
       .putAcommodation(this.id, { equipments: this.feature, step: 5 })
-      .subscribe((res) => {})
+      .subscribe((res) => { })
     this.globalservice.clear()
   }
   submitstep5() {
@@ -154,12 +144,12 @@ export class EditPropertyComponent implements OnInit {
         price: this.submitForm.get('basic.priceEuro').value,
         step: 8,
       })
-      .subscribe((res) => {})
+      .subscribe((res) => { })
   }
   submitstep8() {
     this.accomodationservice
       .putAcommodation(this.id, { stauts: 1, step: 9 })
-      .subscribe((res) => {})
+      .subscribe((res) => { })
   }
 
   preview() {
@@ -189,10 +179,9 @@ export class EditPropertyComponent implements OnInit {
       // Add a new control in the arrayForm
       this.formArray.push(new FormControl(event.target.i.value))
     } else {
-    /* unselected */
+      /* unselected */
       // find the unselected element
       let i: number = 0
-
       this.formArray.controls.forEach((ctrl: FormControl) => {
         if (ctrl.value == event.target.value) {
           // Remove the unselected element from the arrayForm
@@ -219,21 +208,20 @@ export class EditPropertyComponent implements OnInit {
     console.log('donne', this.donne)
   }
   public async ngOnInit() {
-    // this.features = JSON.a;
-    this.sub = this.activatedRoute.params.subscribe(params => {   
+    this.sub = this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
     });
     await this.loaddata()
     await this.load()
     console.log('donne', this.donne)
     console.log('hna:', this.features)
- 
+
     this.propertyTypes = this.appService.getPropertyTypes()
     this.propertyStatuses = this.appService.getPropertyStatuses()
     this.cities = this.appService.getCities()
     this.neighborhoods = this.appService.getNeighborhoods()
     this.streets = this.appService.getStreets()
-    
+
     this.submitForm = this.fb.group({
       basic: this.fb.group({
         propertyType: [null, Validators.required],
@@ -253,7 +241,7 @@ export class EditPropertyComponent implements OnInit {
       additional: this.fb.group({
         bedrooms: this.donne['bedrooms'],
         bathrooms: this.donne['bathrooms'],
-        garages: this.donne['travelers'] ,
+        garages: this.donne['travelers'],
         area: this.donne['beds'],
         yearBuilt: '',
         features: this.buildFeatures(),
@@ -348,22 +336,6 @@ export class EditPropertyComponent implements OnInit {
       })
     })
   }
-
-  // public getAddress(){
-  //   this.mapsAPILoader.load().then(() => {
-  //     let geocoder = new google.maps.Geocoder();
-  //     let latlng = new google.maps.LatLng(this.lat, this.lng);
-  //     geocoder.geocode({'location': latlng}, (results, status) => {
-  //       if(status === google.maps.GeocoderStatus.OK) {
-  //         console.log(results);
-  //         //this.addresstext.nativeElement.focus();
-  //         let address = results[0].formatted_address;
-  //         this.submitForm.controls.location.setValue(address);
-  //         this.setAddresses(results[0]);
-  //       }
-  //     });
-  //   });
-  // }
   public getAddress() {
     this.appService.getAddress(this.lat, this.lng).subscribe((response) => {
       console.log(response)

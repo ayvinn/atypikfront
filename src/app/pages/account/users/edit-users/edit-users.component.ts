@@ -13,10 +13,10 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class EditUsersComponent implements OnInit {
 
-  public infoForm:FormGroup;
-  public passwordForm:FormGroup;
+  public infoForm: FormGroup;
+  public passwordForm: FormGroup;
   form: any;
-  constructor(public formBuilder: FormBuilder, public snackBar: MatSnackBar,public UserService:UsersService,public appService:AppService,
+  constructor(public formBuilder: FormBuilder, public snackBar: MatSnackBar, public UserService: UsersService, public appService: AppService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EditUsersComponent>) { }
 
@@ -25,24 +25,24 @@ export class EditUsersComponent implements OnInit {
     this.infoForm = this.formBuilder.group({
       firstname: [data['firstName'], Validators.compose([Validators.required, Validators.minLength(3)])],
       lastname: [data['lastName'], Validators.compose([Validators.required, Validators.minLength(3)])],
-     
+
     });
-  
+
   }
-  onNoclick(){
+  onNoclick() {
     this.dialogRef.close();
   }
 
 
-  submit(){
-    const values = {FirstName: this.infoForm.get('firstname').value, LastName: this.infoForm.get('lastname').value, Certified:true,Email:'test@TestBed.test',ProfilePicture:''};
-    console.log('Ajouter :',values);
-    this.UserService.putUsersnoid(this.data.id,values).subscribe(res => {
+  submit() {
+    const values = { FirstName: this.infoForm.get('firstname').value, LastName: this.infoForm.get('lastname').value, Certified: true, Email: 'test@TestBed.test', ProfilePicture: '' };
+    console.log('Ajouter :', values);
+    this.UserService.putUsersnoid(this.data.id, values).subscribe(res => {
       console.log('Ajouter : ', res);
       this.onNoclick();
     });
   }
 
-  
+
 
 }
